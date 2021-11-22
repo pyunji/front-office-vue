@@ -1,55 +1,41 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
+    <main-app-bar/>
 
     <v-main>
-      <router-view/>
+      <v-container fluid>
+        <router-view />
+      </v-container>
     </v-main>
+
+    <main-footer/>
   </v-app>
 </template>
 
 <script>
-
+import MainAppBar from "@/components/layout/AppBar";
+import MainFooter from "@/components/layout/Footer"
 export default {
-  name: 'App',
-
-  data: () => ({
-    //
-  }),
+  name: "App",
+  components: {
+    MainAppBar: MainAppBar,
+    MainFooter: MainFooter,
+  },
+  data() {
+    return {
+      drawer: false,
+    }
+  },
+  methods: {
+  },
+  // 사용자가 리프레시했을 때 세션에 저장된 로그인 상태를 복원
+  created() {
+    this.$store.dispatch("loadAuth");
+  },
 };
 </script>
+<style>
+.title {
+  color: red;
+}
+</style>
