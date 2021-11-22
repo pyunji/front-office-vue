@@ -8,6 +8,8 @@ import menu04 from "./menu04"
 import menu05 from "./menu05"
 import menu06 from './menu06'
 import menu07 from './menu07'
+import list from './List'
+
 
 Vue.use(VueRouter)
 
@@ -32,6 +34,7 @@ const routes = [
   ...menu05,
   ...menu06,
   ...menu07,
+  ...list,
 ]
 
 const router = new VueRouter({

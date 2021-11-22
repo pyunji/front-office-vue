@@ -16,7 +16,7 @@
             <v-list-item-title class="">여성</v-list-item-title>
           </template>
 
-          <v-list-item to="/menu01/exam01view" class="nav-link text-warning">
+          <v-list-item to="/list/list" class="nav-link text-warning">
             <v-list-item-content> 선언적 방식 화면 이동 </v-list-item-content>
           </v-list-item>
 
