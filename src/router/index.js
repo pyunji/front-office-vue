@@ -8,7 +8,7 @@ import menu04 from "./menu04"
 import menu05 from "./menu05"
 import menu06 from './menu06'
 import menu07 from './menu07'
-import list from './List'
+import list from './list'
 
 
 Vue.use(VueRouter)
