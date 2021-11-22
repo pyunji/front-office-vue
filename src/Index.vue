@@ -1,11 +1,25 @@
 <template>
-  <router-view />
+  <v-app>
+    <main-app-bar/>
+
+    <v-main>
+      <v-container fluid>
+        <router-view />
+      </v-container>
+    </v-main>
+
+    <main-footer/>
+  </v-app>
 </template>
 
 <script>
+import MainAppBar from "@/components/layout/AppBar";
+import MainFooter from "@/components/layout/Footer"
 export default {
-  name: "App",
+  name: "Index",
   components: {
+    MainAppBar: MainAppBar,
+    MainFooter: MainFooter,
   },
   data() {
     return {
