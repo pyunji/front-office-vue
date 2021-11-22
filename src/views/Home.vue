@@ -1,16 +1,8 @@
 <template>
   <div>
-    <v-col>
-      <v-row rows="12">
-      <event />
-      </v-row>
-      <v-row rows="12">
-      <new />
-      </v-row>
-      <v-row rows="6">
-      <best />
-      </v-row>
-    </v-col>
+    <event />
+    <new class="mt-6" />
+    <best class="mt-6 mb-15" />
   </div>
   
 </template>

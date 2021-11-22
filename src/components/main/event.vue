@@ -1,12 +1,23 @@
 <template>
-  <v-container>
+  <!-- <v-container>
         <v-img
           :src="require('@/assets/photos/event.png')"
           class="my-3"
           contain
           fluid
         />
-  </v-container>
+  </v-container> -->
+  <v-carousel
+    cycle
+    show-arrows-on-hover
+    hide-delimiter-background
+    delimiter-icon="mdi-minus">
+    <v-carousel-item 
+      v-for="(item, i) in items" 
+      :key="i"
+      :src="item.src">
+    </v-carousel-item>
+  </v-carousel>
 </template>
 
 <script>
@@ -14,7 +25,17 @@
     name: 'Event',
 
     data: () => ({
-     
+    items: [
+        {
+          src: require('@/assets/photos/event.png')
+        },
+        {
+          src: require('@/assets/photos/event1.png')
+        },
+        {
+          src: require('@/assets/photos/event2.png')
+        },
+      ]
     }),
   }
 </script>
