@@ -113,7 +113,7 @@
     <v-footer app>
       <v-bottom-navigation class="black" absolute dark>
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-btn>
+        <v-btn to="/">
           <v-icon>mdi-home-outline</v-icon>
         </v-btn>
         <v-btn>
