@@ -110,7 +110,7 @@
         </v-list-group>
       </v-list>
     </v-navigation-drawer>
-    <v-footer app>
+    <v-footer app padless>
       <v-bottom-navigation class="black" absolute dark>
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-btn to="/">
