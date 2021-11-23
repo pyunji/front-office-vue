@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import New from '../views/New.vue'
+import Best from '../views/Best.vue'
 import menu01 from "./menu01"
 import menu02 from "./menu02"
 import menu03 from "./menu03"
@@ -10,22 +12,44 @@ import menu06 from './menu06'
 import menu07 from './menu07'
 import product from './product'
 import shoppingbag from './shoppingbag'
+import list from './list'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: '',
+    component: () => import(/* webpackChunkName: "" */ '../Index.vue'),
+    children: [
+      {
+        path: '/',
+        name: Home,
+        component: Home
+      },
+      {
+        path: '/main-new',
+        name: New,
+        component: New
+      },
+      {
+        path: '/main-best',
+        name: Best,
+        component: Best
+      },
+    ]
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/',
+    name: '',
+    component: () => import(/* webpackChunkName: "" */ '../NoneHFIndex'),
+    children: [
+      {
+        path:'/orderform',
+        name: 'orderform',
+        component: () => import(/* webpackChunkName: "orderform" */ '../views/OrderForm'),
+      }
+    ]
   },
   {
     path: '/',
@@ -48,6 +72,7 @@ const routes = [
   ...menu07,
   ...product,
   ...shoppingbag,
+  ...list,
 ]
 
 const router = new VueRouter({
