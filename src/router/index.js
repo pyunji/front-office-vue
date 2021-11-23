@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import New from '../views/New.vue'
+import Best from '../views/Best.vue'
 import menu01 from "./menu01"
 import menu02 from "./menu02"
 import menu03 from "./menu03"
@@ -23,7 +25,17 @@ const routes = [
         path: '/',
         name: Home,
         component: Home
-      }
+      },
+      {
+        path: '/main-new',
+        name: New,
+        component: New
+      },
+      {
+        path: '/main-best',
+        name: Best,
+        component: Best
+      },
     ]
   },
   {
