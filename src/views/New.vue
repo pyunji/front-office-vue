@@ -8,11 +8,13 @@
     vertical=true
     height=570
     vertical-delimiters>
+    <router-link to="../product/productDetail">
     <v-carousel-item 
       v-for="(item, i) in items" 
       :key="i"
       :src="item.src">
     </v-carousel-item>
+    </router-link>
   </v-carousel>
 </template>
 
