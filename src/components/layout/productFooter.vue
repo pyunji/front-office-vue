@@ -5,7 +5,7 @@
     <v-footer app>
       <v-bottom-navigation >
         
-     <v-flex text-sm-center xs12 sm6 class="btn sample1 white" href="/">
+     <v-flex text-sm-center xs12 sm6 class="btn sample1 white">
       <v-btn v-on:click="goShoppingBag()" >쇼핑백 담기</v-btn>
     </v-flex>
 
@@ -33,7 +33,7 @@ export default {
     },
     goShoppingBag() {
       
-      this.$router.push("/");
+      this.$router.push("/cart");
 
     }
   },
