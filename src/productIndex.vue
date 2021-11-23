@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import MainAppBar from "@/components/layout/AppBar";
-import MainFooter from "@/components/layout/Footer2"
+import MainAppBar from "@/components/layout/productAppBar";
+import MainFooter from "@/components/layout/productFooter"
 export default {
   name: "Index",
   components: {

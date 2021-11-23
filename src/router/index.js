@@ -10,8 +10,9 @@ import menu04 from "./menu04"
 import menu05 from "./menu05"
 import menu06 from './menu06'
 import menu07 from './menu07'
+import product from './product'
+import shoppingbag from './shoppingbag'
 import list from './list'
-
 
 Vue.use(VueRouter)
 
@@ -50,6 +51,18 @@ const routes = [
       }
     ]
   },
+  {
+    path: '/',
+    name: '',
+    component: () => import(/* webpackChunkName: "" */ '../productIndex'),
+    children: [
+      {
+        path:'/product/productdetail',
+        name: 'productdetail',
+        component: () => import(/* webpackChunkName: "orderform" */ '../views/product/productDetail'),
+      }
+    ]
+  },
   ...menu01,
   ...menu02,
   ...menu03,
@@ -57,6 +70,8 @@ const routes = [
   ...menu05,
   ...menu06,
   ...menu07,
+  ...product,
+  ...shoppingbag,
   ...list,
 ]
 
