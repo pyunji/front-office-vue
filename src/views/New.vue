@@ -1,11 +1,19 @@
 <!--컴포넌트 UI 정의-->
 <template>
-  <div class="card">
-    <div class="card-header">
-    </div>
-    <div class="card-body">
-    </div>
-  </div>
+  <v-carousel
+    cycle
+    show-arrows-on-hover
+    hide-delimiter-background
+    delimiter-icon="mdi-minus"
+    vertical=true
+    height=570
+    vertical-delimiters>
+    <v-carousel-item 
+      v-for="(item, i) in items" 
+      :key="i"
+      :src="item.src">
+    </v-carousel-item>
+  </v-carousel>
 </template>
 
 <script>
@@ -16,10 +24,25 @@ export default {
   components:{
   },
   //컴포넌트 데이터 정의
-  data: function() {
-    return {
-    };
-  },
+  data: () => ({
+    items: [
+        {
+          src: require('@/assets/photos/new/1.png')
+        },
+        {
+          src: require('@/assets/photos/new/2.png')
+        },
+        {
+          src: require('@/assets/photos/new/3.png')
+        },
+        {
+          src: require('@/assets/photos/new/4.png')
+        },
+        {
+          src: require('@/assets/photos/new/5.png')
+        },
+      ]
+    }),
   //컴포넌트 메소드 정의
   methods:{
   }
