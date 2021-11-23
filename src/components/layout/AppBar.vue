@@ -14,9 +14,9 @@
           <v-tabs-slider color="primary"></v-tabs-slider>
 
           <v-tab v-for="item in items" :key="item.tab">
-            <!-- <router-link :to="item.link" v-text="item.tab"> -->
+            <router-link :to="item.path">
             {{ item.tab }}
-            <!-- </router-link> -->
+            </router-link>
           </v-tab>
         </v-tabs>
       </template>
@@ -39,9 +39,9 @@ export default {
     return {
       tab: null,
       items: [
-        {tab: '홈'},
-        {tab: '신상품'},
-        {tab: '베스트'},
+        {tab: '홈', path: '/'},
+        {tab: '신상품', path: '/main-new'},
+        {tab: '베스트', path: '/main-best'},
       ],
     };
   },
