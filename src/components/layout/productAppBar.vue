@@ -4,6 +4,9 @@
       <v-btn icon to="/">
         <v-icon>mdi-arrow-left-circle</v-icon>
       </v-btn>
+      <v-btn icon to="/">
+        <v-icon>mdi-home</v-icon>
+      </v-btn>
       <v-spacer></v-spacer>
       
 

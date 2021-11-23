@@ -1,6 +1,6 @@
 <template>
   
-    
+
 
     <v-footer app>
       <v-bottom-navigation >
@@ -10,7 +10,7 @@
     </v-flex>
 
     <v-flex xs12 sm6 class="btn sample1 black" >
-      <v-btn v-on:click="goorderForm()" class="text--white" >바로 주문</v-btn>
+      <v-btn v-on:click="goOrderForm()" class="text--white" >바로 주문</v-btn>
     </v-flex>
       </v-bottom-navigation>
     </v-footer>

@@ -193,7 +193,8 @@
 
     methods: {
       submit () {
-        this.$refs.observer.validate()
+        this.$refs.observer.validate();
+        this.$router.push("/order/ordercomplete");
       },
       clear () {
         this.name = ''

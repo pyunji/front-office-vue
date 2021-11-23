@@ -13,6 +13,7 @@ import menu07 from './menu07'
 import product from './product'
 import shoppingbag from './shoppingbag'
 import list from './list'
+import order from './order'
 
 Vue.use(VueRouter)
 
@@ -54,6 +55,18 @@ const routes = [
   {
     path: '/',
     name: '',
+    component: () => import(/* webpackChunkName: "" */ '../orderIndex'),
+    children: [
+      {
+        path:'/order/ordercomplete',
+        name: 'ordercomplete',
+        component: () => import(/* webpackChunkName: "orderform" */ '../views/order/orderComplete'),
+      }
+    ]
+  },
+  {
+    path: '/',
+    name: '',
     component: () => import(/* webpackChunkName: "" */ '../productIndex'),
     children: [
       {
@@ -73,6 +86,7 @@ const routes = [
   ...product,
   ...shoppingbag,
   ...list,
+  ...order,
 ]
 
 const router = new VueRouter({
