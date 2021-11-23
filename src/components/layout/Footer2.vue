@@ -32,7 +32,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryWoman1" :key="i" link>
+            <v-list-item v-for="([title], i) in categoryWoman1" :key="i" link to="/list/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>

@@ -41,7 +41,7 @@
       </v-layout>
     </v-container>
 
-    <router-link to="/">
+    <router-link to="../product/productDetail">
     <div >
       <img src="@/assets/list_image/1.jpg" width="200" class="ml-2"/>
       <img src="@/assets/list_image/2.jpg" width="200" />
