@@ -1,37 +1,41 @@
 <template>
-  <v-card tile>
+  <v-card tile elevation="0">
     <v-row>
-      <v-col cols="3">
-        <!-- <v-card height="200" width="100" flat> -->
-        <v-navigation-drawer permanent class="p-0">
+      <v-col cols="2" class="p-0">
+        <!-- 카테고리 보여주기 시작 -->
+        <v-navigation-drawer permanent class="mx-auto">
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title style="font-size: 0.5em; font-weight: bold"
+              <v-list-item-title style="font-size: 0.7em; font-weight: bold"
                 >신상품</v-list-item-title
               >
             </v-list-item-content>
           </v-list-item>
-          <v-divider></v-divider>
-          <v-list>
-            <v-list-item class="m-0 nav-link">
-              <v-list-item-content style="font-size: 0.2em"> 여성 </v-list-item-content>
+          <v-divider class="m-0"></v-divider>
+
+          <v-list dense nav>
+
+            <v-list-item  
+            v-for="d1name in d1names"
+            :key="d1name"
+            @click="changeItems(d1name)"
+            class="m-0 p-0" link>
+              <v-list-item-content> 
+                <v-list-item-title style="font-size: 0.2em">{{d1name}}</v-list-item-title>
+              </v-list-item-content>
             </v-list-item>
-            <v-list-item class="m-0 nav-link">
-              <v-list-item-content style="font-size: 0.2em"> 남성 </v-list-item-content>
-            </v-list-item>
+
           </v-list>
         </v-navigation-drawer>
-        <!-- </v-card> -->
+        <!--// 카테고리 보여주기 끝 -->
       </v-col>
-      <v-col cols="9">
+      <v-col class="p-1" cols="10" align-self="center">
         <v-slide-group>
           <v-slide-item class="mr-3" v-for="(item, i) in items" :key="i">
             <v-card height="200" width="100" tile>
-              <router-link to="../product/productDetail">
-                <v-img :src="item.src" height="140" />
-                <div class="text-center" style="font-size: 0.8em">{{ item.title }}</div>
-                <div class="text-center" style="font-size: 0.8em">{{ item.price }}</div>
-              </router-link>
+              <v-img :src="item.img1"/>
+              <div class="text-center" style="font-size: 0.8em">{{ item.bname }}</div>
+              <div class="text-center" style="font-size: 0.8em">{{ item.pprice }}</div>
             </v-card>
           </v-slide-item>
         </v-slide-group>
@@ -41,16 +45,36 @@
 </template>
 
 <script>
+import main from "@/apis/product/main";
 export default {
   name: "New",
 
   data: () => ({
-    items: [
-      { src: require("@/assets/photos/new1.jpg"), title: "구스 다운", price: "1,900,800" },
-      { src: require("@/assets/photos/new2.jpg"), title: "플레어 스커트", price: "900,000" },
-      { src: require("@/assets/photos/new3.jpg"), title: "퀼팅 구스 다운", price: "2,100,000" },
-      { src: require("@/assets/photos/new4.jpg"), title: "구스 퍼 베스트", price: "3,900,800" },
-    ],
+    items: null,
+    d1names: null,
   }),
+
+  methods: {
+    changeItems(d1name) {
+      main.getNewItems(d1name).then(response => {
+      this.items = response.data;
+    });
+    }
+  },
+
+  beforeCreate() {
+    main.getD1Names()
+    .then(response => {
+      this.d1names = response.data;
+    });
+    main.getNewItems().then(response => {
+      this.items = response.data;
+    });
+  
+  },
+
+  watch() {
+
+  }
 };
 </script>
