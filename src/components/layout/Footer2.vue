@@ -28,7 +28,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -44,7 +44,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -59,7 +59,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -74,7 +74,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -89,7 +89,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon  ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -104,19 +104,11 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
-          <v-list-group no-action sub-group>
-            <v-list-item v-for="([title], i) in category2" :key="i" link to="/list/list">
-              <v-list-item-title v-text="title"></v-list-item-title>
 
-              <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
-              </v-list-item-icon>
-            </v-list-item>
-          </v-list-group>
         </v-list-group>
         <v-list-group >
           <template v-slot:activator>
@@ -134,7 +126,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -150,7 +142,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -165,7 +157,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -180,7 +172,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -195,7 +187,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -216,7 +208,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -232,7 +224,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -247,7 +239,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -268,7 +260,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -284,7 +276,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -299,7 +291,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -320,7 +312,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -336,7 +328,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -351,7 +343,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -366,7 +358,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -381,7 +373,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -396,7 +388,7 @@
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
-                <v-icon v-text="icon"></v-icon>
+                <v-icon   ></v-icon>
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
