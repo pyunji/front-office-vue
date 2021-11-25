@@ -2,11 +2,11 @@
   <v-app>
     <main-app-bar/>
 
-    <v-main>
+    <!-- <v-main>
       <v-container fluid>
         <router-view />
       </v-container>
-    </v-main>
+    </v-main> -->
 
     <main-footer/>
   </v-app>

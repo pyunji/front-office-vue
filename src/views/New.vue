@@ -5,7 +5,7 @@
     show-arrows-on-hover
     hide-delimiter-background
     delimiter-icon="mdi-minus"
-    vertical=true
+    vertical
     height=570
     vertical-delimiters>
     <router-link to="../product/productDetail">

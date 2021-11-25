@@ -73,8 +73,6 @@ export default {
   
   },
 
-  watch() {
 
-  }
 };
 </script>

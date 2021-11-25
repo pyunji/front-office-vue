@@ -24,20 +24,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "" */ '../Index.vue'),
     children: [
       {
-        path: '/',
-        name: Home,
-        component: Home
-      },
-      {
-        path: '/main-new',
-        name: New,
-        component: New
-      },
-      {
-        path: '/main-best',
-        name: Best,
-        component: Best
-      },
+        path:"",
+        components: {
+          default: Home,
+          new: New,
+          best: Best,
+          home: Home,
+        }
+      }
     ]
   },
   {
