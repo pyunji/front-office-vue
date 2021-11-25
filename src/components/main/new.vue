@@ -46,10 +46,12 @@
 
 <script>
 import main from "@/apis/product/main";
+
 export default {
   name: "New",
 
   data: () => ({
+
     items: null,
     d1names: null,
   }),
