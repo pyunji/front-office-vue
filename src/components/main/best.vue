@@ -72,9 +72,5 @@ export default {
     });
   
   },
-
-  watch() {
-
-  }
 };
 </script>

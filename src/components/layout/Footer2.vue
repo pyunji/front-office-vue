@@ -407,7 +407,7 @@
         <v-btn to="/product/categoryList">
           <v-icon>mdi-heart-outline</v-icon>
         </v-btn>
-        <v-btn>
+        <v-btn to="/login">
           <v-icon>mdi-account-outline</v-icon>
         </v-btn>
       </v-bottom-navigation>

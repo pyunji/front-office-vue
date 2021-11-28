@@ -13,22 +13,26 @@
         <v-tabs v-model="tab" align-with-title>
           <v-tabs-slider color="primary"></v-tabs-slider>
 
-          <v-tab v-for="item in items" :key="item.tab">
-            <router-link :to="item.path">
+          <v-tab v-for="item in items" :key="item.tab" @click="changeComponent(item)">
+            <!-- <router-link :to="item.path">
             {{ item.tab }}
-            </router-link>
+            </router-link> -->
+            {{ item.tab }}
           </v-tab>
         </v-tabs>
       </template>
     </v-toolbar>
-
-    <v-tabs-items v-model="tab">
-      <v-tab-item v-for="item in items" :key="item.tab">
-        <v-card flat>
-          <!-- <v-card-text v-text="text"></v-card-text> -->
-        </v-card>
-      </v-tab-item>
-    </v-tabs-items>
+   <v-container fluid>
+      <v-tabs-items v-model="tab" >
+        <v-tab-item v-for="item in items" :key="item.tab" >
+          <!-- <v-card flat > -->
+            <router-view :name="componentName" ></router-view>
+            <!-- <v-card-text v-text="text"></v-card-text> -->
+          <!-- </v-card> -->
+        </v-tab-item>
+      </v-tabs-items>
+    </v-container>
+    
   </v-card>
 </template>
 
@@ -39,11 +43,17 @@ export default {
     return {
       tab: null,
       items: [
-        {tab: '홈', path: '/'},
-        {tab: '신상품', path: '/main-new'},
-        {tab: '베스트', path: '/main-best'},
+        { tab: "홈", path: "home" },
+        { tab: "신상품", path: "new" },
+        { tab: "베스트", path: "best" },
       ],
+      componentName: "home",
     };
+  },
+  methods: {
+    changeComponent(item) {
+      this.componentName = item.path;
+    },
   },
 };
 </script>

@@ -18,8 +18,10 @@ function join(user) { //user={id:xxx, name:xxx, password:xxx, role:xxx, email:xx
 }
 
 function login(user) { //user={id:xxx, password:xxx}
+  console.log("데이터 바인딩 확인 id :", user.id);
+  console.log("데이터 바인딩 확인 id :", user.password);
   return axios.post(
-    "/member/login1",
+    "/login",
     `mid=${user.id}&mpassword=${user.password}`
   );
 }
