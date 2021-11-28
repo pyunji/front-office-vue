@@ -7,8 +7,13 @@ function getNewItems(d1name="WOMEN") {
 function getD1Names() {
   return axios.get("/product/d1names");
 }
+function getCategories(){
+  return axios.get("/product/getCategoryList");
+}
+
 
 export default {
   getNewItems,
-  getD1Names
+  getD1Names,
+  getCategories
 }
