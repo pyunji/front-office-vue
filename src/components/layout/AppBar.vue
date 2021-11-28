@@ -22,8 +22,7 @@
         </v-tabs>
       </template>
     </v-toolbar>
-    
-    <v-container fluid>
+   <v-container fluid>
       <v-tabs-items v-model="tab" >
         <v-tab-item v-for="item in items" :key="item.tab" >
           <!-- <v-card flat > -->
