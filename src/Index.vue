@@ -14,7 +14,7 @@
 
 <script>
 import MainAppBar from "@/components/layout/AppBar";
-import MainFooter from "@/components/layout/Footer2"
+import MainFooter from "@/components/layout/Footer"
 export default {
   name: "Index",
   components: {
