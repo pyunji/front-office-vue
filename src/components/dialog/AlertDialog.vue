@@ -15,14 +15,14 @@
     </template>
 
     <template v-slot:footer> 
-      <button class="btn btn-info btn-sm" @click="$emit('close')">닫기</button>
+      <button class="btn btn-info btn-sm" v-on:click="closeAndPrev()">닫기</button>
     </template>
   </modal-dialog-template>
 </template>
 
 
 <script>
-import ModalDialogTemplate from '@/components/menu02/ModalDialogTemplate.vue';
+import ModalDialogTemplate from '@/components/dialog/ModalDialogTemplate.vue';
 
 export default {
   //컴포넌트의 대표 이름(devtools에 나오는 이름)
@@ -39,7 +39,12 @@ export default {
   },
   // 컴포넌트 메서드 정의
   methods: {
-    
+    closeAndPrev() {
+      //console.log("component7 closeAndPrev실행");
+      this.$emit('close');
+      //console.log("component7 close수행");
+      this.$router.go(-1);
+    }
   },
   props: [ "message", "loading" ]
 };
