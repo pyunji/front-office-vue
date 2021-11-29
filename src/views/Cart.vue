@@ -9,36 +9,49 @@
           <v-checkbox v-model="selectedItems" :value="cartItems[i]" />
         </v-list-item-action>
         <v-list-item-content>
+          <v-icon @click="deleteOneItem(cartItem.pstockid)">mdi-close</v-icon>
           <v-list-item-title class="headline mb-1">
-            <p>{{ cartItem.brand.name }}</p>
-            <p style="font-size: 15px">{{ cartItem.productCommon.name }}</p>
+            <p>{{ cartItem.bname }}</p>
+            <p style="font-size: 15px">{{ cartItem.pname }}</p>
           </v-list-item-title>
-          <v-list-item-subtitle>₩{{ cartItem.productColor.price }}</v-list-item-subtitle>
+          <v-list-item-subtitle>₩{{ cartItem.pprice }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       <v-card-text>
-        <v-img width="100" :src="cartItem.productColor.img1" />
+        <v-img width="100" :src="cartItem.img1" />
         <p class="mt-2">
-          옵션 수량 : {{ cartItem.productColor.colorCode }} / {{ cartItem.productStock.sizeCode }} /
-          {{ cartItem.cart.quantity }}개
+          옵션 : {{ cartItem.occode }} / {{ cartItem.oscode }}
+        </p>
+        <!--옵션 변경할 수 있는 기능을 위해 남겨놓은 것임-->
+        <!-- 
+          <div> 
+          <button v-for="(option, i) in cartItem.optionList" :key="i"><v-img :src="option.colorImg"></v-img></button>
+        </div>
+        <div v-for="(option, i) in cartItem.optionList" :key="i">
+          <v-btn v-for="(scodeObj, i) in option.scodeList" :key="i">
+            {{scodeObj.scode}}
+          </v-btn>
+        </div> -->
+        <p class="mt-2">
+          수량 : {{ cartItem.quantity }}개
         </p>
         <p>적립 마일리지 : 59,000M</p>
         <p>적립 H.Point : 1,180P</p>
+        <p v-if="cartItem.stock >= 5"> 재고 5개 이상 </p>
+        <p v-if="cartItem.stock < 5"> 재고 {{cartItem.stock}}개 남음 </p>
       </v-card-text>
     </v-card>
 
     <v-card class="mt-3">
       <v-container>
-        <p class="ml-4">총 1개 상품</p>
-
-        <v-img class="mb-3" src="@/assets/photos/cartimage2.png" />
+        <p class="ml-4">총 {{selectCount}}개 상품</p>
 
         <v-flex class="btn sample1 white" style="float: left">
           <v-btn>품절상품 삭제</v-btn>
         </v-flex>
 
         <v-flex class="btn sample1 white" style="float: right; display: inline-block">
-          <v-btn>선택상품 삭제</v-btn>
+          <v-btn @click="deleteSelected">선택상품 삭제</v-btn>
         </v-flex>
 
         <v-btn class="btn black white--text" width="100%" to="/orderform">
@@ -65,15 +78,31 @@ export default {
   //컴포넌트 데이터 정의
   data: function () {
     return {
-      masterCheck:false,
       checkbox: true,
       cartItems: [],
       cartSize: 0,
       selectedItems: [],
+      selectedOneItem: null,
     };
   },
-  //컴포넌트 메소드 정의
-  methods: {},
+
+  methods: {
+    // 체크박스 선택 상품 삭제 메서드
+    async deleteSelected() {
+      let delItems = [];
+      this.selectedItems.forEach((item) => {
+        delItems.push(item.productStock.pstockid);
+      });
+      const response = await cart.deleteSelected(delItems);
+      // 새로고침
+      this.$router.go();
+    },
+    async deleteOneItem(pstockid) {
+      console.log("pstockid =", pstockid);
+      const response = await cart.deleteOneItem(pstockid);
+      this.$router.go();
+    },
+  },
   beforeCreate() {
     cart.cartItems().then((response) => {
       this.cartItems = response.data;
@@ -103,6 +132,11 @@ export default {
           this.selectedItems = selectedItems;
       }
     },
+    selectCount: {
+      get: function () {
+        return this.selectedItems.length;
+      }
+    }
   }
 }
 </script>
