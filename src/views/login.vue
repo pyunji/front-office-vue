@@ -14,6 +14,7 @@
     <div v-if="$store.state.userId !== ''">
       <button class="btn btn-info btn-sm mr-2" v-on:click="handleLogout">로그아웃</button>
     </div>
+    <button class="btn btn-info btn-sm ma-2 mt-2" v-on:click="goUrl()">회원 가입</button>
   </div>
 </template>
 
@@ -36,28 +37,9 @@ export default {
   }),
     // 컴포넌트 메서드 정의
   methods: {
-    async handleJoin() {
-      try {
-        this.loading = true;
-        this.alertDialog = true;
-
-        const response = await auth.join(this.user);
-        this.loading = false;
-        if(response.data.result === "success") {
-          this.alertDialogMessage = "회원 가입 성공";
-        } else if(response.data.result === "duplicated") {
-          throw {message: "아이디가 중복됨"};
-        } else if(response.data.result === "fail") {
-          throw {message: "서버측 오류가 있음"};
-        }
-      } catch(error) {
-        this.loading = false;
-        this.alertDialogMessage = `회원 가입 실패: ${error.message}`;
-      } finally {
-        //
-      }
+    goUrl() {
+      this.$router.push({path:"/join"}).catch(()=>{});
     },
-
     async handleLogin() {
       try {
         // console.log("데이터 바인딩 확인 id", this.user.id);
