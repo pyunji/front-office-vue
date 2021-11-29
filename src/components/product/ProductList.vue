@@ -1,28 +1,31 @@
 <!--컴포넌트 UI 정의-->
 <template>
-  <div class="card">
-    <div class="card-header">
-    </div>
-    <div class="card-body">
-    </div>
+  <div>
+    
   </div>
 </template>
 
 <script>
+import list from "@/apis/product/list";
+
 export default {
   //컴포넌트의 대표 이름(devtools에 나오는 이름)
-  name:"Best",
+  name:"ProductList",
   //추가하고 싶은 컴포넌트들 목록
   components:{
   },
   //컴포넌트 데이터 정의
-  data: function() {
-    return {
-    };
-  },
+  data: ()=>({
+    items:null,
+  }),
   //컴포넌트 메소드 정의
   methods:{
-  }
+  },
+  beforeCreate() {
+    list.getProductList().then(response => {
+      this.items = response.data;
+    });
+  },
 }
 </script>
 

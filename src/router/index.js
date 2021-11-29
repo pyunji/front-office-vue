@@ -12,7 +12,6 @@ import menu06 from './menu06'
 import menu07 from './menu07'
 import product from './product'
 import shoppingbag from './shoppingbag'
-import list from './list'
 import order from './order'
 import login from '../views/login.vue'
 
@@ -37,6 +36,18 @@ const routes = [
           best: Best,
           home: Home,
         }
+      }
+    ]
+  },
+  {
+    path: '/',
+    name: '',
+    component: () => import(/* webpackChunkName: "" */ '../ListIndex.vue'),
+    children: [
+      {
+        path:"/product/list",
+        name: 'list',
+        component: () => import(/* webpackChunkName: "list" */ '../views/product/List'),
       }
     ]
   },
@@ -90,7 +101,6 @@ const routes = [
   ...menu07,
   ...product,
   ...shoppingbag,
-  ...list,
   ...order,
 ]
 
