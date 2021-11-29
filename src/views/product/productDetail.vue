@@ -15,11 +15,11 @@
         <v-btn depressed class="mr-2"> {{ psize }} </v-btn>
       </v-row>
       <v-divider />
-
+      <p>{{ProductDetail}}</p>
       <p>{{ pcontent }}</p>
 
       <v-divider />
-
+      
       <p>한섬마일리지 {{ mileage }}</p>
       <p>H.Point {{ point }}</p>
       <p>배송비 30,000원 이상 무료배송( 실결제 기준)</p>
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import main from "@/apis/product/detail";
 export default {
   // 컴포넌트의 대표이름(devtools에 나오는 이름)
   name: "productDetail",
@@ -69,6 +70,7 @@ export default {
       pcontent: "상품 상세 내용입니다.",
       mileage: "39,950 P (5%)",
       point: "799 P (0.1%)",
+      ProductDetail: null,
     };
   },
   // 컴포넌트 메서드 정의
@@ -78,6 +80,11 @@ export default {
       this.$router.push("/");
       
     }
+  },
+  beforeCreate() {
+    main.getProductDetail().then((response) => {
+      this.ProductDetail = response.data;
+    });
   },
 };
 </script>

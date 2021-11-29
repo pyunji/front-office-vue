@@ -31,7 +31,7 @@
           <v-list-item
             v-for="(d3name, index2) in value5" :key="index2"  v-bind:to="`/product/list?d1name=${d1name}&d2name=${d2name}&d3name=${d3name}&pageNo=1`">
             <v-list-item-title >{{d3name}}</v-list-item-title>
-
+          
             <v-list-item-icon>
               <v-icon v-text="icon"></v-icon>
             </v-list-item-icon>
