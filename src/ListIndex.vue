@@ -10,7 +10,7 @@
 
 <script>
 import ListAppBar from "@/components/layout/ListAppBar";
-import MainFooter from "@/components/layout/Footer2"
+import MainFooter from "@/components/layout/Footer"
 export default {
   name: "Index",
   components: {
