@@ -25,7 +25,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryWoman1" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryWoman1" :key="i" :to="`/product/list?d1name=WOMEN&d2name=OUTER&d3name=COAT&pageNo=1`">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -41,7 +41,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryWoman2" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryWoman2" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -56,7 +56,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryWoman3" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryWoman3" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -71,7 +71,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryWoman4" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryWoman4" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -86,7 +86,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryWoman5" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryWoman5" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -101,7 +101,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryWoman6" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryWoman6" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -124,7 +124,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryMan1" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryMan1" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -140,7 +140,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryMan2" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryMan2" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -155,7 +155,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryMan3" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryMan3" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -170,7 +170,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryMan4" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryMan4" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -185,7 +185,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryMan5" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryMan5" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -206,7 +206,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryKid1" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryKid1" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -222,7 +222,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryKid1" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryKid1" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -237,7 +237,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryKid2" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryKid2" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -258,7 +258,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryBeauty1" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryBeauty1" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -274,7 +274,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryBeauty2" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryBeauty2" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -289,7 +289,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryBeauty3" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryBeauty3" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -310,7 +310,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryLife1" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryLife1" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -326,7 +326,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryLife1" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryLife1" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -341,7 +341,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryLife2" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryLife2" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -356,7 +356,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryLife3" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryLife3" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -371,7 +371,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryLife4" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryLife4" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
@@ -386,7 +386,7 @@
               </v-list-item-content>
             </template>
 
-            <v-list-item v-for="([title], i) in categoryLife5" :key="i" link to="/list/list">
+            <v-list-item v-for="([title], i) in categoryLife5" :key="i" link to="/product/list">
               <v-list-item-title v-text="title"></v-list-item-title>
 
               <v-list-item-icon>
