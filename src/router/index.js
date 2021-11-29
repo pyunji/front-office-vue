@@ -13,10 +13,16 @@ import menu07 from './menu07'
 import product from './product'
 import shoppingbag from './shoppingbag'
 import order from './order'
+import login from '../views/login.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path:'/login',
+    name:'login',
+    component: () => import(/* webpackChunkName: "orderform" */ '../views/login.vue')    
+  },
   {
     path: '/',
     name: '',

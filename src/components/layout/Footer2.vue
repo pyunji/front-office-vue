@@ -11,10 +11,11 @@
 
       <v-divider></v-divider>
 
-      <v-list>
-        <v-list-group >
+      <v-list v-for="value in Categories" :key="value">>
+        <v-list-item-group v-for="value2 in value" :key="value2">
           <template v-slot:activator>
-            <v-list-item-title>여성</v-list-item-title>
+            
+            <v-list-item-title v-for="(value3, name ) in value2" :key="name">{{name}}</v-list-item-title>
           </template>
 
           <v-list-group  no-action sub-group>
@@ -110,6 +111,7 @@
           </v-list-group>
 
         </v-list-group>
+
         <v-list-group >
           <template v-slot:activator>
             <v-list-item-title>남성</v-list-item-title>
@@ -402,10 +404,10 @@
         <v-btn to="/">
           <v-icon>mdi-home-outline</v-icon>
         </v-btn>
-        <v-btn to="/product/productdetail">
+        <v-btn to="/product/categoryList">
           <v-icon>mdi-heart-outline</v-icon>
         </v-btn>
-        <v-btn>
+        <v-btn to="/login">
           <v-icon>mdi-account-outline</v-icon>
         </v-btn>
       </v-bottom-navigation>
@@ -414,89 +416,24 @@
 </template>
 
 <script>
+import main from "@/apis/product/main";
 export default {
   name: "Footer",
 
   data: () => ({
     drawer: false,
-    categoryWoman1: [
-      ["전체"],
-      ["재킷"],
-      ["점퍼"],
-      ["가디건/베스트"],
-      ["트렌치 코트"],
-      ["코트"],
-      ["다운/패딩"],
-    ],
-    categoryWoman2: [["전체"], ["티셔츠"], ["블라우스"], ["셔츠"]],
-    categoryWoman3: [["전체"], ["미니 드레스"], ["미디 드레스"], ["롱/맥시 드레스"]],
-    categoryWoman4: [["전체"], ["캐주얼"], ["포멀"], ["데님"], ["쇼츠"]],
-    categoryWoman5: [
-      ["전체"],
-      ["재킷"],
-      ["점퍼"],
-      ["가디건/베스트"],
-      ["트렌치 코트"],
-      ["코트"],
-      ["다운/패딩"],
-    ],
-    categoryWoman6: [
-      ["전체"],
-      ["미니 스커트"],
-      ["팬슬 스커트"],
-      ["플레어 스커트"],
-      ["롱/맥시 스커트"],
-    ],
-    categoryMan2: [["전체"], ["티셔츠"], ["셔츠"], ["니트"]],
-    categoryMan1: [
-      ["전체"],
-      ["재킷"],
-      ["점퍼"],
-      ["가디건/베스트"],
-      ["트렌치 코트"],
-      ["코트"],
-      ["다운/패딩"],
-    ],
-    categoryMan3: [
-      ["전체"],
-      ["루즈/테이퍼드"],
-      ["슬림/스트레이트"],
-      ["조거/트랙"],
-      ["데님"],
-      ["쇼츠"],
-    ],
-    categoryMan4: [["전체"], ["드레스셔츠"], ["수트재킷"], ["수트팬츠"]],
-    categoryMan5: [["전체"], ["가방"], ["슈즈"], ["모자"], ["타이"], ["양말"]],
-    categoryKid1: [["전체"], ["상의"], ["하의"]],
-    categoryKid2: [["전체"], ["슈즈"], ["스카프/머플러"], ["기타 소품"]],
-    categoryBeauty1: [
-      ["전체"],
-      ["토너/에멀전/크림"],
-      ["세런/앰플/오일/밤"],
-      ["클렌징/스크럽/마스크"],
-      ["기타 스킨케어"],
-    ],
-    categoryBeauty2: [
-      ["전체"],
-      ["핸드,바디로션/크림/오일"],
-      ["핸드,바디워시/스크럽"],
-      ["샴푸/컨디셔너"],
-      ["기타 바디/헤어케어"],
-    ],
-    categoryBeauty3: [["전체"], ["향수"]],
-    categoryLife1: [["전체"], ["패브릭"], ["프래그런스"], ["기타소품"]],
-    categoryLife2: [["전체"], ["기타소품"]],
-    categoryLife3: [
-      ["전체"],
-      ["그릇"],
-      ["보드/트레이"],
-      ["커트러리"],
-      ["커피/티"],
-      ["패브릭/냅킨"],
-      ["기타소품"],
-    ],
-    categoryLife4: [["전체"], ["문구"], ["책"], ["기타소품"]],
-    categoryLife5: [["전체"], ["패션"], ["기타소품"]],
+    Categories: null,
+    
   }),
+
+  methods: {},
+  beforeCreate() {
+    main.getCategories().then((response) => {
+      this.Categories = response.data;
+      //console.log(this.Categories);
+      //this.lcategory = Object.keys(this.Categories);
+      //this.mcategory = Object.keys(this.lcategory);
+    });
+  },
 };
 </script>

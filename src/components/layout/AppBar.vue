@@ -22,14 +22,13 @@
         </v-tabs>
       </template>
     </v-toolbar>
-
-    <v-container fluid>
-      <v-tabs-items v-model="tab">
-        <v-tab-item v-for="item in items" :key="item.tab">
-          <v-card flat>
-            <router-view :name="componentName"></router-view>
+   <v-container fluid>
+      <v-tabs-items v-model="tab" >
+        <v-tab-item v-for="item in items" :key="item.tab" >
+          <!-- <v-card flat > -->
+            <router-view :name="componentName" ></router-view>
             <!-- <v-card-text v-text="text"></v-card-text> -->
-          </v-card>
+          <!-- </v-card> -->
         </v-tab-item>
       </v-tabs-items>
     </v-container>
