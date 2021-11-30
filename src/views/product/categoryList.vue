@@ -1,13 +1,7 @@
 <template>
-  <v-card>
-
-    <div> {{$route.params}} </div>
-    <div> {{$route.params.d1name}} </div>
-    <div> {{$route.params.d2name}} </div>
-    <div> {{$route.params.d3name}} </div>
-    <v-divider /><v-divider /><v-divider />
-   
-  </v-card>
+<v-card>
+  안녕하세요
+</v-card>
 </template>
 
 <script>

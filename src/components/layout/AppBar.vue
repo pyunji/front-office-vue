@@ -2,12 +2,12 @@
   <v-card>
     <v-toolbar color="transparent" flat>
       <v-spacer></v-spacer>
-      <v-toolbar-title>| THE | HANDSOME |</v-toolbar-title>
+      <v-toolbar-title>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| THE | HANDSOME |</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
-        <v-icon>mdi-cart-outline</v-icon>
+      <v-btn icon to="/cart">
+        <v-icon>mdi-shopping-outline</v-icon>
       </v-btn>
       <template v-slot:extension>
         <v-tabs v-model="tab" align-with-title>
