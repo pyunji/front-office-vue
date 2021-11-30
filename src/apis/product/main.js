@@ -1,5 +1,7 @@
 import axios from "axios";
 
+axios.defaults.baseURL = "http://localhost:80";
+
 function getNewItems(d1name="WOMEN") {
   return axios.get("/product/list", {params:{d1name}});
 }
