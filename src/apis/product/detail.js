@@ -5,11 +5,11 @@ const instance = axios.create({
 });
 
 axios.defaults.baseURL = "http://localhost:80";
-function getProductDetail(){
-  return axios.get("/product/{depth1}/{depth2}/{depth3}/{pcolorId}");
+
+function setCategory(pcolorId){
+  return axios.get(`/product/set/${pcolorId}`);
 }
-
-
+ 
 export default {
-  getProductDetail,
+  setCategory
 }
