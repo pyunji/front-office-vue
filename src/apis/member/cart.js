@@ -30,8 +30,14 @@ function deleteOneItem(pstockid) {
       {headers: {"Content-Type": "text/plain"}} // 기본으로 json 타입으로 인식하므로 문자열이라고 명시해주었다
       );
 }
+
+function deleteByOrder(delItemsByOrder) {
+  return instance.post("/cart/deletebyorder", delItemsByOrder);
+}
+
 export default {
   cartItems,
   deleteSelected,
-  deleteOneItem
+  deleteOneItem,
+  deleteByOrder
 }
