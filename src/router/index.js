@@ -74,18 +74,19 @@ const routes = [
       // }
     ]
   },
-  {
-    path: '/',
-    name: '',
-    component: () => import(/* webpackChunkName: "" */ '../orderIndex'),
-    children: [
-      {
-        path:'/order/ordercomplete',
-        name: 'ordercomplete',
-        component: () => import(/* webpackChunkName: "orderform" */ '../views/order/orderComplete'),
-      }
-    ]
-  },
+  // {
+  //   path: '/',
+  //   name: '',
+  //   component: () => import(/* webpackChunkName: "" */ '../orderIndex'),
+  //   children: [
+  //     {
+  //       path:'/order/ordercomplete',
+  //       name: 'ordercomplete',
+  //       component: () => import(/* webpackChunkName: "orderform" */ '../views/order/orderComplete'),
+  //     }
+  //   ]
+  // },
+  
   {
     path: '/',
     name: '',
