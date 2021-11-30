@@ -48,32 +48,7 @@
     </v-card>
     <v-card>
   <template>
-        <v-row
-    align="center"
-    justify="space-around"
-  >
-    <v-btn depressed>
-      Normal
-    </v-btn>
-    <v-btn
-      depressed
-      color="primary"
-    >
-      Primary
-    </v-btn>
-    <v-btn
-      depressed
-      color="error"
-    >
-      Error
-    </v-btn>
-    <v-btn
-      depressed
-      disabled
-    >
-      Disabled
-    </v-btn>
-  </v-row>
+     
   </template>
     </v-card>
     <v-btn depressed color="error" class="mt-3" width="100%" align-center @click="toOrderForm">
