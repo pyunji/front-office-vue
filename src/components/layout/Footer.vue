@@ -3,8 +3,8 @@
     <v-navigation-drawer app width="340" color="white" v-model="drawer">
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="text-h6"> Application </v-list-item-title>
-          <v-list-item-subtitle> with Vue + Vuetify </v-list-item-subtitle>
+          <v-list-item-title class="text-h6"> ~회원님 반갑습니다. </v-list-item-title>
+          <!--로그인 하지 않으면 로그인 해주세요 창 띄울 예정-->
         </v-list-item-content>
       </v-list-item>
 
@@ -42,11 +42,18 @@
           </div>
         </div>
     </v-list>
+    <template v-slot:append>
+        <div class="pa-2">
+          <v-btn block class="button">
+            Logout
+          </v-btn>
+        </div>
+      </template>
     </v-navigation-drawer>
     <v-footer app padless>
       <v-bottom-navigation class="black" absolute dark>
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-btn to="/">
+        <v-btn to="/" >
           <v-icon>mdi-home-outline</v-icon>
         </v-btn>
         <v-btn to="/product/categoryList">

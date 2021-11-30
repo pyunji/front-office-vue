@@ -1,6 +1,7 @@
 <template>
   <v-card>
-    <v-app-bar app color="transparent">
+    <v-app-bar absolute outlined 
+      white>
       <v-btn icon to="/">
         <v-icon>mdi-arrow-left-circle</v-icon>
       </v-btn>
@@ -18,6 +19,7 @@
         <v-icon>mdi-heart</v-icon>
       </v-btn>
     </v-app-bar>
+  
   </v-card>
 </template>
 
