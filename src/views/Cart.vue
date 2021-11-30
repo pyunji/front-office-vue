@@ -70,6 +70,28 @@ export default {
   },
 
   methods: {
+    // orderform으로 가는 메서드
+    toOrderForm() {
+      let cartItems = [];
+      this.selectedItems.forEach((item) => {
+        let cartItem = {
+          "pstockid": item.pstockid,
+          "quantity": Number(item.quantity),
+          "pprice": Number(item.pprice),
+          "appliedPrice":Number(item.quantity) * Number(item.pprice),
+          "img1": item.img1,
+          "scode": item.oscode,
+          "ccode": item.occode,
+        };
+        cartItems.push(cartItem);
+      });
+      console.log("cartItems =", cartItems);
+      this.$router.push({
+        name: 'orderform',
+        params: {initCartItems: cartItems}
+      })
+    },
+
     // 체크박스 선택 상품 삭제 메서드
     async deleteSelected() {
       let delItems = [];
