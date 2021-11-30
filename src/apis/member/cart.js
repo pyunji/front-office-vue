@@ -1,5 +1,7 @@
 import axios from "axios";
 
+axios.defaults.baseURL = "http://localhost:81";
+
 function cartItems() {
   return axios.get("/cart");
 }
