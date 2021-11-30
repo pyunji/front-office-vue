@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 import counter from "./counter";
 
-import auth from "@/apis/auth";
+import axiosConfig from "@/apis/axiosConfig";
 
 Vue.use(Vuex)
 
@@ -60,7 +60,7 @@ export default new Vuex.Store({
       sessionStorage.setItem("authToken", payload.authToken);
 
       // 로그인 성공 후 모든 요청은 Axios의 공통 헤더에 Authorization을 추가
-      auth.addAuthHeader(payload.authToken);
+      axiosConfig.addAuthHeader(payload.authToken);
     },
 
     /* 리프레시 처리하기 */
@@ -72,7 +72,7 @@ export default new Vuex.Store({
 
       // authToken이 있을 경우 Axios의 공통 헤더에 Authorization을 추가
       if(context.state.authToken !== "") {
-        auth.addAuthHeader(context.state.authToken);
+        axiosConfig.addAuthHeader(context.state.authToken);
       }
     },
 
@@ -87,7 +87,7 @@ export default new Vuex.Store({
       sessionStorage.removeItem("authToken");
 
       // 헤더 지우기
-      auth.removeAuthHeader();
+      axiosConfig.removeAuthHeader();
     }
   },
   /* 루트가 아닌 자식 상태를 정의한 모듈을 가져오기 */
