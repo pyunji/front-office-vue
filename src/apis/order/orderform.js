@@ -14,5 +14,25 @@ instance.interceptors.request.use(function (config) {
 
 function orderForm(cartItems) {
   console.log(cartItems);
-  return instance.post("/order/orderform", cartItems)
+  return instance.post("/order/orderform", cartItems);
+}
+
+/* 주문서 폼에서 주문하기 버튼을 누르면 주문 절차가 시작된다
+ * 만들어진 주문번호를 반환한다.
+ */
+function makeOrder(orders) {
+  return instance.post("/order/ordercomplete", orders);
+}
+
+/* 
+  주문번호에 해당하는 주문완료 페이지 데이터를 넘겨준다.
+ */
+function orderComplete(oid) {
+  return instance.get(`/order/ordercomplete?oid=${oid}`);
+}
+
+export default {
+  orderForm,
+  makeOrder,
+  orderComplete
 }

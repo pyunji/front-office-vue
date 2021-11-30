@@ -18,11 +18,14 @@ function getD1Names() {
 function getCategories(){
   return instance.get("/product/getCategoryList");
 }
-
+function reduceStock(stocks) {
+  return instance.post("/stock/reduce", stocks);
+}
 
 export default {
   getNewItems,
   getBestItems,
   getD1Names,
   getCategories,
+  reduceStock
 }
