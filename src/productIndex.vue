@@ -3,11 +3,14 @@
     <main-app-bar/>
 
     <v-main>
-      <v-container fluid>
+        
+      <v-container fluid >
+    
         <router-view />
+        
       </v-container>
+      
     </v-main>
-
     <main-footer/>
   </v-app>
 </template>

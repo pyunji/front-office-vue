@@ -1,69 +1,52 @@
 <!--컴포넌트 UI 정의-->
 <template>
-  <v-container class="px-0" fluid>
-    <v-checkbox id="masterCheckbox" v-model="selectAll" label="전체 선택"></v-checkbox>
-    <p>selectedItems:{{ selectedItems }}</p>
-    <v-card v-for="(cartItem, i) in cartItems" :key="i">
-      <v-list-item two-line>
-        <v-list-item-action>
-          <v-checkbox v-model="selectedItems" :value="cartItems[i]" />
-        </v-list-item-action>
-        <v-list-item-content>
-          <v-icon @click="deleteOneItem(cartItem.pstockid)">mdi-close</v-icon>
-          <v-list-item-title class="headline mb-1">
-            <p>{{ cartItem.bname }}</p>
-            <p style="font-size: 15px">{{ cartItem.pname }}</p>
-          </v-list-item-title>
-          <v-list-item-subtitle>₩{{ cartItem.pprice }}</v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-      <v-card-text>
-        <v-img width="100" :src="cartItem.img1" />
-        <p class="mt-2">
-          옵션 : {{ cartItem.occode }} / {{ cartItem.oscode }}
-        </p>
-        <!--옵션 변경할 수 있는 기능을 위해 남겨놓은 것임-->
-        <!-- 
-          <div> 
-          <button v-for="(option, i) in cartItem.optionList" :key="i"><v-img :src="option.colorImg"></v-img></button>
+  <v-container fluid>
+    <v-row>
+      <div width="100%" outlined>
+        <v-checkbox id="masterCheckbox" v-model="selectAll" label="전체 선택"></v-checkbox>
+        <p>selectedItems:{{ selectedItems }}</p>
+      </div>
+    </v-row>
+
+    <v-row>
+      <v-card width="100%" v-for="(cartItem, i) in cartItems" :key="i">
+        <v-card class="d-flex align">
+          <v-checkbox> </v-checkbox>
+
+          <v-btn>
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-card>
+        <v-card class="d-flex align-end flex-column">
+          <p>{{ cartItem.bname }}</p>
+          <p>{{ cartItem.pname }}</p>
+          <p>{{ cartItem.pprice }}</p>
+        </v-card>
+        <div>
+          <button v-for="(option, i) in cartItem.optionList" :key="i">
+            <v-img :src="option.colorImg" width="20" height="20"></v-img>
+          </button>
         </div>
         <div v-for="(option, i) in cartItem.optionList" :key="i">
           <v-btn v-for="(scodeObj, i) in option.scodeList" :key="i">
-            {{scodeObj.scode}}
+            {{ scodeObj.scode }}
           </v-btn>
-        </div> -->
-        <p class="mt-2">
-          수량 : {{ cartItem.quantity }}개
-        </p>
-        <p>적립 마일리지 : 59,000M</p>
-        <p>적립 H.Point : 1,180P</p>
-        <p v-if="cartItem.stock >= 5"> 재고 5개 이상 </p>
-        <p v-if="cartItem.stock < 5"> 재고 {{cartItem.stock}}개 남음 </p>
-      </v-card-text>
-    </v-card>
-
-    <v-card class="mt-3">
-      <v-container>
-        <p class="ml-4">총 {{selectCount}}개 상품</p>
-
-        <v-flex class="btn sample1 white" style="float: left">
-          <v-btn>품절상품 삭제</v-btn>
-        </v-flex>
-
-        <v-flex class="btn sample1 white" style="float: right; display: inline-block">
-          <v-btn @click="deleteSelected">선택상품 삭제</v-btn>
-        </v-flex>
-
-        <v-btn class="btn black white--text" width="100%" to="/orderform">
-          선택상품 주문하기
-        </v-btn>
-      </v-container>
-    </v-card>
-
-    <v-btn depressed color="error" class="mt-3" width="100%" align-center to="/orderform">
-      <p>12,500원</p>
-      <p>주문하기</p>
-    </v-btn>
+        </div>
+      </v-card>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-btn  v-on:click="deleteSelected" width="100%" outlined> 품절 상품 삭제 </v-btn>
+      </v-col>
+      <v-col>
+        <v-btn  v-on:click="deleteSelected" width="100%" outlined> 선택 상품 삭제 </v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-btn width="100%" outlined> 쇼핑 계속 하기 </v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -115,30 +98,30 @@ export default {
     selectAll: {
       // 체크박스들이 전체 선택되면 true를 반환 아니면 false를 반환
       get: function () {
-          return this.cartItems ? this.selectedItems.length == this.cartItems.length : false;
+        return this.cartItems ? this.selectedItems.length == this.cartItems.length : false;
       },
 
       set: function (value) {
         // tmp
-          var selectedItems = [];
+        var selectedItems = [];
 
-          // 마스터 체크박스가 체크된 경우
-          if (value) {
-              this.cartItems.forEach(function (cartItem) {
-                  selectedItems.push(cartItem);
-              });
-          }
-          // 마스터 체크박스가 체크되었으면 모든 아이템이 들어갈 것이고, 체크 해제되었으면 빈 리스트가 할당될 것이다.
-          this.selectedItems = selectedItems;
-      }
+        // 마스터 체크박스가 체크된 경우
+        if (value) {
+          this.cartItems.forEach(function (cartItem) {
+            selectedItems.push(cartItem);
+          });
+        }
+        // 마스터 체크박스가 체크되었으면 모든 아이템이 들어갈 것이고, 체크 해제되었으면 빈 리스트가 할당될 것이다.
+        this.selectedItems = selectedItems;
+      },
     },
     selectCount: {
       get: function () {
         return this.selectedItems.length;
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 </script>
 
 <!--컴포넌트 스타일 정의-->

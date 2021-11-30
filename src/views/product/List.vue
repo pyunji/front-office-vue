@@ -1,5 +1,6 @@
 <!--컴포넌트 UI 정의-->
 <template>
+
 <div>
   <div>
     <!--
@@ -26,13 +27,13 @@
   <div v-if="page!=null">
     <div>
       <section class="py-5">
-        <div class="container px-4 px-lg-5 mt-5">
+        <v-container>
           <div class="row gx-4 gx-lg-5 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div v-for="product in page.products" :key="product.pcommonid">
-              <v-card class="h-100 mx-auto" height="250" width="200">
+              <v-col md-6 >
 									<!-- Product image-->
                   <div class="align-center" v-for="(clist,index) in product.colorList" v-bind:key="index">
-                        <img v-if="index<=0" :src="`${clist.img1}`" width="130" height="200"/>
+                        <img v-if="index<=0" :src="`${clist.img1}`" width="100%"/>
 									</div>
 
      <!--             <div>
@@ -40,10 +41,9 @@
                       <v-col cols="1"><img :src="`${clist.color_img}`" width="20" height="20"/></v-col>
 										</v-row>
 									</div>-->
-                  <v-card-actions class="ma-2" v-for="(clist,index) in product.colorList" :key="index">
-                    <v-img :src="`${clist.color_img}`" width="20" height="20"/>
-                  </v-card-actions>
-
+                  <div  class="grid ma-2" style="display: inline-block; " v-for="(clist,index) in product.colorList" :key="index" width="21px" height="21px" >
+                    <v-img :src="`${clist.color_img}`" width="21px" height="21px" display: inline-block />
+                  </div>
 									<!-- Product details-->
 									<v-card-text class="card-body p-4">
 										<div class="text-center">
@@ -58,10 +58,10 @@
 
 										</div>
 									</v-card-text>
-              </v-card>
+              </v-col>
             </div>
           </div>
-        </div>
+        </v-container>
         <v-container>
                 <div colspan="5" style="text-align: center;">
                 <v-btn class="ma-2" outlined color="indigo" @click="changePageNo(d1name,d2name,d3name,1)">처음</v-btn>

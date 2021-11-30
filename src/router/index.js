@@ -61,11 +61,11 @@ const routes = [
         name: 'orderform',
         component: () => import(/* webpackChunkName: "orderform" */ '../views/OrderForm'),
       },
-      {
-        path:'/cart',
-        name: 'Cart',
-        component: () => import(/* webpackChunkName: "cart" */ '../views/Cart'),
-      }
+      // {
+      //   path:'/cart',
+      //   name: 'Cart',
+      //   component: () => import(/* webpackChunkName: "cart" */ '../views/Cart'),
+      // }
     ]
   },
   {
@@ -92,6 +92,18 @@ const routes = [
       }
     ]
   },
+  // {
+  //   path: '/',
+  //   name: '',
+  //   component: () => import(/* webpackChunkName: "" */ '../productIndex'),
+  //   children: [
+  //     {
+  //       path:'/cart',
+  //       name: 'cart',
+  //       component: () => import(/* webpackChunkName: "orderform" */ '../views/Cart'),
+  //     }
+  //   ]
+  // },
   ...menu01,
   ...menu02,
   ...menu03,
