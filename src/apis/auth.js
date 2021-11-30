@@ -6,11 +6,12 @@ function join(user) { //user={id:xxx, name:xxx, password:xxx, role:xxx, email:xx
   // const promise = axios.post();
   // return promise;
   return axios.post(
-    "/member/join2",
+    "/join2",
     {
       mid:        user.id,
       mname:      user.name,
       mpassword:  user.password,
+      menabled:   user.enabled,
       mrole:      user.role,
       memail:     user.email
   }
