@@ -213,8 +213,11 @@
       ],
       address: '',
       checkbox: null,
+      cartItems: this.initCartItems
     }),
-
+    props: {
+      initCartItems : Object,
+    },
     methods: {
       submit () {
         this.$refs.observer.validate();
@@ -229,6 +232,10 @@
         this.$refs.observer.reset()
       },
     },
+
+    mounted() {
+      console.log("데이터 바인딩 확인 =", this.cartItems);
+    }
   }
 </script>
 

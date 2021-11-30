@@ -65,6 +65,7 @@ const routes = [
         path:'/orderform',
         name: 'orderform',
         component: () => import(/* webpackChunkName: "orderform" */ '../views/OrderForm'),
+        props: true
       },
       // {
       //   path:'/cart',
