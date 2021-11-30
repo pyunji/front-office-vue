@@ -3,6 +3,9 @@
     ref="observer"
     v-slot="{ invalid }"
   >
+  <!-- cart에서 여기로 넘어오는 데이터를 확인하고, 상품 정보를 보여주세요 -->
+  <p>cartItems:{{ cartItems }}</p>
+  <!-- //cart에서 여기로 넘어오는 데이터를 확인하고, 상품 정보를 보여주세요 -->
     <form @submit.prevent="submit">
       <v-card class="p-3" outlined>
         <v-card-title style="font-weight: bold float: left;">주문자 정보</v-card-title>
@@ -213,10 +216,10 @@
       ],
       address: '',
       checkbox: null,
-      cartItems: this.initCartItems
+      cartItems: [],
     }),
     props: {
-      initCartItems : Object,
+      initCartItems : Array,
     },
     methods: {
       submit () {
@@ -232,8 +235,9 @@
         this.$refs.observer.reset()
       },
     },
-
-    mounted() {
+    /* props는 created 주기에서 data에 설정할 수 있다.*/
+    created() {
+      this.cartItems = this.initCartItems;
       console.log("데이터 바인딩 확인 =", this.cartItems);
     }
   }

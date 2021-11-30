@@ -76,7 +76,7 @@
   </v-row>
   </template>
     </v-card>
-    <v-btn depressed color="error" class="mt-3" width="100%" align-center to="/orderform">
+    <v-btn depressed color="error" class="mt-3" width="100%" align-center @click="toOrderForm">
       <p>12,500원</p>
       <p>주문하기</p>
     </v-btn>
@@ -103,6 +103,29 @@ export default {
   },
 
   methods: {
+    toOrderForm() {
+      let toOrderItemList = []
+      this.selectedItems.forEach((item)=> {
+        let toOrderItem = {
+          'pstockid':item.pstockid,
+          'img1':item.img1,
+          'pprice':Number(item.pprice),
+          'scode':item.oscode,
+          'ccode':item.occode,
+          'bname':item.bname,
+          'pname':item.pname,
+          'quantity':Number(item.quantity),
+          'appliedPrice':Number(item.pprice) * Number(item.quantity)
+        };
+        toOrderItemList.push(toOrderItem);
+      });
+      this.$router.push({
+        name:'orderform',
+        params:{
+          initCartItems: toOrderItemList
+        }
+      });
+    },
     // 체크박스 선택 상품 삭제 메서드
     async deleteSelected() {
       let delItems = [];
