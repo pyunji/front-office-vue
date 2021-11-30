@@ -1,11 +1,15 @@
 import axios from "axios";
 
+const instance = axios.create({
+  baseURL: 'http://localhost:81'
+});
 
+/* 추가 끝 */
 function join(user) { //user={id:xxx, name:xxx, password:xxx, role:xxx, email:xxx}
   /* axios의 모든 메서드는 promise를 리턴한다 */
   // const promise = axios.post();
   // return promise;
-  return axios.post(
+  return instance.post(
     "/join2",
     {
       mid:        user.id,
@@ -21,7 +25,7 @@ function join(user) { //user={id:xxx, name:xxx, password:xxx, role:xxx, email:xx
 function login(user) { //user={id:xxx, password:xxx}
   console.log("데이터 바인딩 확인 id :", user.id);
   console.log("데이터 바인딩 확인 id :", user.password);
-  return axios.post(
+  return instance.post(
     "/login",
     `mid=${user.id}&mpassword=${user.password}`
   );
@@ -29,5 +33,5 @@ function login(user) { //user={id:xxx, password:xxx}
 
 export default {
   join,
-  login
+  login,
 }
