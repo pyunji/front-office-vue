@@ -4,9 +4,12 @@ const instance = axios.create({
   baseURL: 'http://localhost:80'
 });
 
-
 function getNewItems(d1name="WOMEN") {
-  return instance.get("/product/list", {params:{d1name}});
+  return instance.get("/product/new", {params:{d1name}});
+}
+
+function getBestItems(d1name="WOMEN") {
+  return instance.get("/product/best", {params:{d1name}});
 }
 
 function getD1Names() {
@@ -19,6 +22,7 @@ function getCategories(){
 
 export default {
   getNewItems,
+  getBestItems,
   getD1Names,
-  getCategories
+  getCategories,
 }

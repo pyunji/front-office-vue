@@ -56,7 +56,7 @@ export default {
 
   methods: {
     changeItems(d1name) {
-      main.getNewItems(d1name).then(response => {
+      main.getBestItems(d1name).then(response => {
       this.items = response.data;
     });
     }
@@ -67,7 +67,7 @@ export default {
     .then(response => {
       this.d1names = response.data;
     });
-    main.getNewItems().then(response => {
+    main.getBestItems().then(response => {
       this.items = response.data;
     });
   
