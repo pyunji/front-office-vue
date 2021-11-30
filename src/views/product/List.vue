@@ -29,17 +29,12 @@
         <div class="container px-4 px-lg-5 mt-5">
           <div class="row gx-4 gx-lg-5 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div v-for="product in page.products" :key="product.pcommonid">
-              <v-card class="h-100 mx-auto" height="250" width="200">
+              <v-card class="h-100 mx-auto" height="250" width="200" @click="showDetail(product.colorList[0].pcolorId)" >
 									<!-- Product image-->
-                  <div class="align-center" v-for="(clist,index) in product.colorList" v-bind:key="index">
-                        <img v-if="index<=0" :src="`${clist.img1}`" width="130" height="200"/>
+                  <div class="align-center" >
+                        <img :src="`${product.colorList[0].img1}`" width="130" height="200"/>
 									</div>
 
-     <!--             <div>
-										<v-row v-for="(clist,index) in product.colorList" :key="index">
-                      <v-col cols="1"><img :src="`${clist.color_img}`" width="20" height="20"/></v-col>
-										</v-row>
-									</div>-->
                   <v-card-actions class="ma-2" v-for="(clist,index) in product.colorList" :key="index">
                     <v-img :src="`${clist.color_img}`" width="20" height="20"/>
                   </v-card-actions>
@@ -52,15 +47,15 @@
 											<!-- 상품명-->
 											<div class="fw-bolder mb-1 name">{{product.pname}}</div>
 											<!-- 가격-->
-											<div class="fw-bolder mb-1 price" v-for="(clist,index) in product.colorList" v-bind:key="index">
-                        <span v-if="index<=0">₩{{clist.pprice}}</span>
+											<div class="fw-bolder mb-1 price">
+                        <span>₩{{product.colorList[0].pprice}}</span>
 											</div>
 
 										</div>
 									</v-card-text>
               </v-card>
+              </div>
             </div>
-          </div>
         </div>
         <v-container>
                 <div colspan="5" style="text-align: center;">
@@ -83,7 +78,6 @@
               </div>
         </v-container>
       </section>
-      
     </div>
   </div>
 </div>
@@ -111,6 +105,9 @@ export default {
   },
   //컴포넌트 메소드 정의
   methods:{
+    showDetail(pcolorId) {
+      this.$router.push(`/product/productDetail?pcolorId=${pcolorId}`);
+    },
     changePageNo(d1name,d2name,d3name,pageNo) {
       console.log(this.d1name);
       console.log(this.d2name);
