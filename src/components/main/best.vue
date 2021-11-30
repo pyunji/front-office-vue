@@ -32,7 +32,7 @@
       <v-col class="p-1" cols="10" align-self="center">
         <v-slide-group>
           <v-slide-item class="mr-3" v-for="(item, i) in items" :key="i">
-            <v-card height="200" width="100" tile>
+            <v-card height="200" width="100" tile @click="showDetail(item.pcolorid)">
               <v-img :src="item.img1"/>
               <div class="text-center" style="font-size: 0.8em">{{ item.bname }}</div>
               <div class="text-center" style="font-size: 0.8em">{{ item.pprice }}</div>
@@ -55,6 +55,9 @@ export default {
   }),
 
   methods: {
+    showDetail(pcolorId) {
+      this.$router.push(`/product/productDetail?pcolorId=${pcolorId}`);
+    },
     changeItems(d1name) {
       main.getBestItems(d1name).then(response => {
       this.items = response.data;
