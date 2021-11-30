@@ -1,20 +1,29 @@
 <template>
-  
+  <v-card flat>
+    <v-container fluid>
+      <v-row class="child-flex">
+        <div>
+          <v-toolbar>
+            <v-spacer />
+            <router-link to="/" style="text-decoration: none; color: inherit;">
+            <v-toolbar-title class="font-weight-bold">쇼핑백 담기</v-toolbar-title>
+            </router-link>
+            <v-spacer />
+          </v-toolbar>
+        </div>
 
-
-    <v-footer app>
-      <v-bottom-navigation >
-        
-     <v-flex text-sm-center xs12 sm6 class="btn sample1 white">
-      <v-btn v-on:click="goShoppingBag()" >쇼핑백 담기</v-btn>
-    </v-flex>
-
-    <v-flex xs12 sm6 class="btn sample1 black" >
-      <v-btn v-on:click="goOrderForm()" class="text--white" >바로 주문</v-btn>
-    </v-flex>
-      </v-bottom-navigation>
-    </v-footer>
-  
+        <div>
+          <v-toolbar dark>
+            <v-spacer />
+            <router-link to="/" style="text-decoration: none; color: inherit;">
+            <v-toolbar-title  class="font-weight-bold">바로 주문</v-toolbar-title>
+            </router-link>
+            <v-spacer />
+          </v-toolbar>
+        </div>
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -23,19 +32,14 @@ export default {
 
   data: () => ({
     drawer: false,
-    
   }),
   methods: {
     goOrderForm() {
-      
       this.$router.push("/orderform");
-
     },
     goShoppingBag() {
-      
       this.$router.push("/cart");
-
-    }
+    },
   },
 };
 </script>
