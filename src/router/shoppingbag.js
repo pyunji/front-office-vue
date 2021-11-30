@@ -6,7 +6,7 @@ export default [
   },
   {
     path: "/cart",
-    component: () => import(/* webpackChunkName: "menu02" */ '../views/Cart'),
+    component: () => import(/* webpackChunkName: "menu02" */ '../views/Cart2'),
 
   },
 ]
