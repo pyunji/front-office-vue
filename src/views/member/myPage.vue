@@ -2,33 +2,28 @@
 <template>
   
   <div>
-    
-    <v-card class="mt-5 mb-8" outlined>
+    <ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">주문</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">혜택</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">정보</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">활동</a>
+  </li>
+</ul>
+    <v-card class="mt-2 mb-8" outlined height="600">
       <v-card-text>
+        <btn style="float: right;">주문 조회</btn>
         <v-container>
-          <v-row>
-            <v-col cols="12" align="center" justify="center">
-              <v-card
-                class="pa-2  "
-                outlined
-                tile height = "100"  
-              ><div  style="  font-size: 25px; font-weight: bold ;">주문이 완료 되었습니다.</div>
-              </v-card>
-            </v-col>
-          </v-row>
           
           <v-row>
-            <v-col cols="12">
-              <v-card
-                class="pa-2 justify-center"
-                outlined
-                tile 
-              ><div> 주문 번호</div>
-              </v-card>
-            </v-col>
-          </v-row>
-          <div v-for="i in 3" :key="i">
-          <v-row>
+            <v-col cols="12" align="center">
+                        <v-row>
             <v-col cols="4">
               
                 <v-img class="mr-2" :src="require(`@/assets/photos/photo1.jpg`)" width="100" height="100"/>
@@ -49,17 +44,16 @@
             <v-col cols="2">
             </v-col>
           </v-row>
-          </div>
-          
+            </v-col>
+          </v-row>
         </v-container>
       </v-card-text>
-      <v-btn width="100%" depressed  > 주문 배송 조회 </v-btn>
     </v-card>
   </div>
 </template>
 
 <style scoped>
-  /* .container {
+/* .container {
     border: 1px solid green;
   }
   .row {
@@ -69,7 +63,6 @@
     border: 1px solid blue;
   } */
 </style>
-
 
 <script>
 export default {
