@@ -4,7 +4,7 @@
       <div id = "content" class="content">
         <router-view></router-view>
       </div>
-    <main-footer/>
+    <main-footer style="padding-bottom:70px"/>
   </v-app>
 </template>
 

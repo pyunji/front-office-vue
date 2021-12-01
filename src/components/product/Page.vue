@@ -10,7 +10,7 @@ import list from "@/apis/product/list";
 
 export default {
   //컴포넌트의 대표 이름(devtools에 나오는 이름)
-  name:"ProductList",
+  name:"Page",
   //추가하고 싶은 컴포넌트들 목록
   components:{
   },
