@@ -8,16 +8,21 @@
           <v-row>
             <v-col cols="12">
               <div @click="goToOrderComplete(oneOrder.oid)" style="font-weight: bold; font-size: large">주문 날짜<btn style="float: right;"><v-icon>mdi-chevron-right</v-icon></btn></div> 
+
             </v-col>
             <v-divider/>
              
           </v-row>
           <div v-for="(oneItem, i) in oneOrder.orderItemListMap" :key="i">
+
             <div class= "card mb-2" >
+
             <v-row>
               
               <v-col cols="12">
+
               <div style=" font-weight: bold; color:blue; float: right; opacity: 0.5" >{{oneItem.ostatus}}</div> 
+
             </v-col>
               <v-col cols="4">
                 <v-img
@@ -28,12 +33,14 @@
                 />
               </v-col>
               <v-col cols="6">
+
                 
                   <div style="font-weight: bold; ">{{oneItem.bname}}</div>
                   <div>{{oneItem.pname}}</div>
                   <div>{{oneItem.ccode}} | {{oneItem.scode}} | {{oneItem.ocount}} 개</div>
                   <div style="font-weight: bold; font-size: large">{{oneItem.totalPrice}}원</div>
                 
+
               </v-col>
               <v-col cols="2"> </v-col>
             </v-row>
