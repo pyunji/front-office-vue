@@ -11,51 +11,50 @@
               <v-card
                 class="pa-2  "
                 outlined
-                tile height = "100"  
-              ><div  style="  font-size: 25px; font-weight: bold ;">주문이 완료 되었습니다.</div>
+                tile height = "150" style="display:flex"   
+              ><div  style="  font-size: 25px; font-weight: bold; margin:auto auto;">주문이 완료 되었습니다.</div>
               </v-card>
             </v-col>
           </v-row>
           
-          <v-row>
+          <div class = "card mt-2">
+          <v-row class="mb-1">
+            
             <v-col cols="12">
-              <v-card
-                class="pa-2 justify-center"
-                outlined
-                tile 
-              ><div> 주문 번호: {{initOrderItems.oid}}</div>
-              </v-card>
+              <div style="font-weight: bold"> 주문 번호: {{initOrderItems.oid}}</div>
+              
             </v-col>
           </v-row>
+    
           <div v-for="(orderItem, i) in initOrderItems.orderItemListMap" :key="i">
-          <v-row>
+          <v-row class="mb-2">
             <v-col cols="4">
               
                 <v-img class="mr-2" :src="`${orderItem.img1}`" width="100" height="100"/>
               
             </v-col>
             <v-col cols="6">
-              <v-card
-                class="pa-2"
-                outlined
-                tile
-              >
+                
+                <div style="font-weight: bold">{{orderItem.bname}}</div>
                 <div>{{orderItem.pname}}</div>
-                <div>{{orderItem.ccode}} | {{orderItem.scode}}</div>
-                <div>{{orderItem.ocount}} 개</div>
+                <div>{{orderItem.ccode}} | {{orderItem.scode}} |  {{orderItem.ocount}} 개</div>
+               
             
                 
-              </v-card>
+              
             </v-col>
             <v-col cols="2">
             </v-col>
           </v-row>
           </div>
+          </div>
           
         </v-container>
+        <v-btn width="100%" depressed  color="black"> <div style="font-weight: bold">주문 배송 조회</div> </v-btn>
       </v-card-text>
-      <v-btn width="100%" depressed  > 주문 배송 조회 </v-btn>
+    
     </v-card>
+    <div>{{orderItem}}</div>
   </div>
 </template>
 
@@ -83,6 +82,7 @@ export default {
     return {
       // orderItems: {},
       photoFileName: "orderComplete.jpg",
+      show: false,
     };
   },
   props: {

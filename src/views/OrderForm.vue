@@ -4,32 +4,41 @@
     <!--<p>cartItems:{{ cartItems }}</p>-->
     <!-- //cart에서 여기로 넘어오는 데이터를 확인하고, 상품 정보를 보여주세요 -->
     <form @submit.prevent="submit">
+      
       <v-card class="p-3" outlined>
         <div>
-          <h5>
+          <div style="font-weight: bold" class="mb-2">
             주문 상품
-            <span> {{ cartLength }} 개 </span>
-          </h5>
+             {{ cartLength }} 개 
+             <btn style="float: right;" @click="toggleShow"><v-icon>mdi-card-text-outline</v-icon></btn>
+          </div>
+          
         </div>
-        <div>
+        <div v-if="show">
           <div v-for="(productInCart, i) in cartItems" :key="i">
-                  
+                <v-row>
+                  <v-col cols="4">
                   <v-img :src="productInCart.img1" max-width="100" max-height="100" align="left" />
-                  <p>
+                  </v-col>
+                  <v-col cols="7">
+                  <div>
                     {{ productInCart.bname }}
-                  </p>
+                  </div>
 
-                  <p>
+                  <div>
                     {{ productInCart.pname }}
-                  </p>
-                  <p>
+                  </div>
+                  <div>
                     {{ productInCart.ccode }} / {{ productInCart.scode }} /
                     {{ productInCart.quantity }} 개
-                  </p>
-                  <p>
+                  </div>
+                  <div>
                     {{ productInCart.pprice }} 원
-                  </p>
-
+                  </div>
+                  </v-col>
+                  <v-col cols="1">
+                  </v-col>
+                </v-row>
           </div>
         </div>
       </v-card>
@@ -190,6 +199,7 @@ export default {
     productAllShow: true,
     totalPrice: 0,
     memberInfo: {},
+    show: false,
   }),
   props: {
     initCartItems: Array,
@@ -208,6 +218,9 @@ export default {
     //   this.checkbox = null;
     //   this.$refs.observer.reset();
     // },
+    toggleShow(){
+                    this.show = !this.show;
+                },
     async toOrderComplete(){
       let orderAllInfo = {
         "orders": this.orders,
