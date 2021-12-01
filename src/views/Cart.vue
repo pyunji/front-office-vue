@@ -3,8 +3,8 @@
   <v-container fluid>
     <v-row>
       <v-col cols="12">
-        <p>selectedItems:{{ selectedItems }}</p>
-        <v-checkbox id="masterCheckbox" v-model="selectAll" label="전체 선택"></v-checkbox>
+        <!-- <p>selectedItems:{{ selectedItems }}</p> -->
+        <v-checkbox id="masterCheckbox" @click="[updateTotalPrice(),updateSelectedItems()]" v-model="selectAll" label="전체 선택"></v-checkbox>
         
       </v-col>
     </v-row>
@@ -13,7 +13,7 @@
         <div class="card">
         <v-row>
           <v-col cols="6">
-            <v-checkbox v-model="selectedItems" :value="cartItems[i]"> </v-checkbox>
+            <v-checkbox @click="[updateTotalPrice(),updateSelectedItems()]" v-model="selectedItems" :value="cartItems[i]"> </v-checkbox>
           </v-col>
           <v-col cols="6">
             <btn style="float: right"><v-icon>mdi-close</v-icon></btn>
@@ -83,6 +83,7 @@
 <script>
 import cart from "@/apis/member/cart";
 import orderform from "@/apis/member/orderform";
+import { eventBus } from '../main'
 export default {
   //컴포넌트의 대표 이름(devtools에 나오는 이름)
   name: "Cart",
@@ -100,6 +101,18 @@ export default {
   },
 
   methods: {
+    // 체크박스 누를 때 마다 실행
+    updateTotalPrice() {
+      let totalPrice = 0;
+      this.selectedItems.forEach((item) => {
+        totalPrice += item.pprice * item.quantity;
+      });
+      // 이벤트 버스로 데이터 전달
+      eventBus.setTotalPrice(totalPrice);
+    },
+    updateSelectedItems() {
+      eventBus.setToOrderItems(this.selectedItems);
+    },
     async quantity_control(pstockid, quantity, operator) {
       let value = quantity;
       // 마이너스 버튼을 눌렀을 경우

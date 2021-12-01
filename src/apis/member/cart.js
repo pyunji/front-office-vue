@@ -12,6 +12,16 @@ instance.interceptors.request.use(function (config) {
 });
 /* 로그인이 필요한 서비스에서 session의 token을 가져와 초기화하는 설정 시작 */
 
+function insertCartItem(pstockid, quantity) {
+  console.log("insertCartItem실행");
+  console.log(pstockid+" "+quantity);
+  return instance.post("/cart",{
+    mid: null,
+    pstockid: pstockid,
+    quantity: quantity,
+  });
+}
+
 function cartItems() {
   return instance.get("/cart");
 }
@@ -43,6 +53,7 @@ export default {
   cartItems,
   deleteSelected,
   deleteOneItem,
+  insertCartItem,
   deleteByOrder,
   updateQuantity
 }
