@@ -48,7 +48,7 @@
             
           </div>
           </div>
-          
+          <v-divider/>
           </div>
         </v-container>
       </v-card-text>
