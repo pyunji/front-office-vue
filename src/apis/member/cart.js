@@ -35,9 +35,14 @@ function deleteByOrder(delItemsByOrder) {
   return instance.post("/cart/deletebyorder", delItemsByOrder);
 }
 
+function updateQuantity(map) {
+  return instance.post("/cart/update/quantity", map);
+}
+
 export default {
   cartItems,
   deleteSelected,
   deleteOneItem,
-  deleteByOrder
+  deleteByOrder,
+  updateQuantity
 }
