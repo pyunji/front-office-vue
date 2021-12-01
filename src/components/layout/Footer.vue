@@ -3,7 +3,8 @@
     <v-navigation-drawer app width="340" color="white" v-model="drawer">
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="text-h6"> ~회원님 반갑습니다. </v-list-item-title>
+          <v-list-item-title v-if="$store.state.userId !== ''" class="text-h6"> {{$store.state.userId}}회원님 반갑습니다. </v-list-item-title>
+          <v-list-item-title v-else class="text-h6"> 현재 로그인이 필요합니다 </v-list-item-title>
           <!--로그인 하지 않으면 로그인 해주세요 창 띄울 예정-->
         </v-list-item-content>
       </v-list-item>
@@ -43,10 +44,9 @@
         </div>
     </v-list>
     <template v-slot:append>
-        <div class="pa-2">
-          <v-btn block class="button" to="/login">
-            Login
-          </v-btn>
+        <div class="pa-2" >
+          <v-btn v-if="$store.state.userId !== ''" block class="button" v-on:click="handleLogout()">Logout</v-btn>
+          <v-btn v-else block class="button" v-on:click="handleLogin()">Login</v-btn>
         </div>
       </template>
     </v-navigation-drawer>
@@ -59,8 +59,11 @@
         <v-btn to="/product/categoryList">
           <v-icon>mdi-heart-outline</v-icon>
         </v-btn>
-        <v-btn>
-          <v-icon>mdi-account-outline</v-icon>
+        <v-btn v-if="$store.state.userId !== ''">
+          <v-icon @click="goOrderList()">mdi-account-outline</v-icon>
+        </v-btn>
+        <v-btn v-else>
+          <v-icon @click="handleLogin()">mdi-account-outline</v-icon>
         </v-btn>
       </v-bottom-navigation>
     </v-footer>
@@ -79,7 +82,18 @@ export default {
     
   }),
 
-  methods: {},
+  methods: {
+    handleLogin() {
+      this.$router.push({path:"/login"}).catch(()=>{});
+    },
+    handleLogout() {
+      this.$store.dispatch("deleteAuth");
+      this.$router.push("/");
+    },
+    goOrderList() {
+      this.$router.push("/order/orderlist");
+    }
+  },
   beforeCreate() {
     main.getCategories().then((response) => {
       this.Categories = response.data;

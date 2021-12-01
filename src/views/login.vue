@@ -51,6 +51,7 @@ export default {
         });
         console.log("userId", response.data.mid);
         console.log("authToken", response.data.jwt);
+        this.$router.push("/");
       } catch(error) {
         try {
           if(error.response.status === 401) {
