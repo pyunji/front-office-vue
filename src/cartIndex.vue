@@ -2,7 +2,7 @@
   <v-app>
     <main-app-bar/>
 
-    <v-main>
+    <v-main class="mainPage" style="background-color: lightgray; padding-top: 60px;">
         
       <v-container fluid >
     
@@ -41,4 +41,5 @@ export default {
 .title {
   color: red;
 }
+
 </style>
