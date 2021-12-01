@@ -1,6 +1,8 @@
 <!--컴포넌트 UI 정의-->
 <template>
+  
   <div>
+    
     <v-card class="mt-5 mb-8" outlined>
       <v-card-text>
         <v-container>
@@ -9,50 +11,50 @@
               <v-card
                 class="pa-2  "
                 outlined
-                tile height = "100"  
-              ><div  style="  font-size: 25px; font-weight: bold ;">주문이 완료 되었습니다.</div>
+                tile height = "150" style="display:flex"   
+              ><div  style="  font-size: 25px; font-weight: bold; margin:auto auto;">주문이 완료 되었습니다.</div>
               </v-card>
             </v-col>
           </v-row>
           
-          <v-row>
+          <div class = "card mt-2">
+          <v-row class="mb-1">
+            
             <v-col cols="12">
-              <v-card
-                class="pa-2 justify-center"
-                outlined
-                tile 
-              ><div> 주문 번호</div>
-              </v-card>
+              <div style="font-weight: bold"> 주문 번호: {{initOrderItems.oid}}</div>
+              
             </v-col>
           </v-row>
-          <div v-for="i in 3" :key="i">
-          <v-row>
+    
+          <div v-for="(orderItem, i) in initOrderItems.orderItemListMap" :key="i">
+          <v-row class="mb-2">
             <v-col cols="4">
               
-                <v-img class="mr-2" :src="require(`@/assets/photos/photo1.jpg`)" width="100" height="100"/>
+                <v-img class="mr-2" :src="`${orderItem.img1}`" width="100" height="100"/>
               
             </v-col>
             <v-col cols="6">
-              <v-card
-                class="pa-2"
-                outlined
-                tile
-              >
-                <div>pname</div>
-                <div>조건</div>
-                <div>수량</div>
                 
-              </v-card>
+                <div style="font-weight: bold">{{orderItem.bname}}</div>
+                <div>{{orderItem.pname}}</div>
+                <div>{{orderItem.ccode}} | {{orderItem.scode}} |  {{orderItem.ocount}} 개</div>
+               
+            
+                
+              
             </v-col>
             <v-col cols="2">
             </v-col>
           </v-row>
           </div>
+          </div>
           
         </v-container>
+        <v-btn width="100%" depressed  color="black"> <div style="font-weight: bold">주문 배송 조회</div> </v-btn>
       </v-card-text>
-      <v-btn width="100%" depressed  > 주문 배송 조회 </v-btn>
+    
     </v-card>
+    <div>{{orderItem}}</div>
   </div>
 </template>
 
@@ -78,11 +80,21 @@ export default {
   //컴포넌트 데이터 정의
   data: function () {
     return {
+      // orderItems: {},
       photoFileName: "orderComplete.jpg",
+      show: false,
     };
+  },
+  props: {
+    initOrderItems: Object
   },
   //컴포넌트 메소드 정의
   methods: {},
+
+  created(){
+    // this.orderItems = this.initOrderItems;
+    console.log("주문 아이템", this.initOrderItems);
+  }
 };
 </script>
 
