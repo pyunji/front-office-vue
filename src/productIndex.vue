@@ -6,12 +6,12 @@
         
       <v-container fluid >
     
-        <router-view />
+        <router-view @productForCart="handleEvent"/>
         
       </v-container>
       
     </v-main>
-    <main-footer/>
+    <main-footer v-bind:pstockid="pstockid" v-bind:quantity="quantity"/>
   </v-app>
 </template>
 
@@ -27,9 +27,16 @@ export default {
   data() {
     return {
       drawer: false,
+      pstockid:null,
+      quantity:null,
     }
   },
   methods: {
+    handleEvent(arg1,arg2) {
+      console.log("productIndex 실행 : "+arg1+" "+arg2);
+      this.pstockid = arg1;
+      this.quantity = arg2;
+    },
   },
   // 사용자가 리프레시했을 때 세션에 저장된 로그인 상태를 복원
   created() {

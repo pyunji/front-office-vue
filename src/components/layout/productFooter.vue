@@ -3,11 +3,9 @@
     <v-container fluid>
       <v-row class="child-flex">
         <div>
-          <v-toolbar>
+          <v-toolbar v-on:click="putShoppingBag()">
             <v-spacer />
-            <router-link to="/" style="text-decoration: none; color: inherit;">
             <v-toolbar-title class="font-weight-bold">쇼핑백 담기</v-toolbar-title>
-            </router-link>
             <v-spacer />
           </v-toolbar>
         </div>
@@ -27,9 +25,11 @@
 </template>
 
 <script>
+import cart from "@/apis/member/cart";
+
 export default {
   name: "Footer",
-
+  props:["pstockid","quantity"],
   data: () => ({
     drawer: false,
   }),
@@ -37,7 +37,11 @@ export default {
     goOrderForm() {
       this.$router.push("/orderform");
     },
-    goShoppingBag() {
+    async putShoppingBag() {
+      console.log("putShoppingBag 실행");
+      console.log(this.pstockid+" "+this.quantity);
+      await cart.insertCartItem(this.pstockid, this.quantity);
+      //장바구니 담은 후 처리
       this.$router.push("/cart");
     },
   },
