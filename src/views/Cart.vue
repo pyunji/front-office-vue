@@ -1,51 +1,48 @@
 <!--컴포넌트 UI 정의-->
 <template>
-  <v-container fluid>
-    <v-row>
-      <v-col cols="12">
-        <!-- <p>selectedItems:{{ selectedItems }}</p> -->
-        <v-checkbox id="masterCheckbox" @click="[updateTotalPrice(),updateSelectedItems()]" v-model="selectAll" label="전체 선택"></v-checkbox>
-        
-      </v-col>
-    </v-row>
-    
-      <div class="m-3" v-for="(cartItem, i) in cartItems" :key="i">
-        <div class="card">
-        <v-row>
-          <v-col cols="6">
-            <v-checkbox @click="[updateTotalPrice(),updateSelectedItems()]" v-model="selectedItems" :value="cartItems[i]"> </v-checkbox>
-          </v-col>
-          <v-col cols="6">
-            <btn style="float: right"><v-icon>mdi-close</v-icon></btn>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="4">
-            <v-img class="mr-2" :src="cartItem.img1" width="100" height="100" />
-          </v-col>
-          <v-col cols="7">
-            <div style="font-weight: bold">{{ cartItem.bname }}</div>
-            <div>{{ cartItem.pname }}</div>
-            <div style="font-weight: bold; font-size: large">{{ cartItem.pprice }}원</div>
-            <div>{{ cartItem.occode }} | {{ cartItem.oscode }}</div>
-          </v-col>
-          <v-col cols="1"> </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols ="12">
-          <button
-            @click="quantity_control(cartItem.pstockid, cartItem.quantity, 'minus')"
-            style="margin: 0px"
-            type="button"
-            class="btn btn-light left1"
-          >
-            -
-          </button>
+  <v-container fluid class="p-0">
+    <v-card outlined>
+      <v-row> 
+        <v-col cols="4" class="pb-0 pt-0">
+          <!-- <p>selectedItems:{{ selectedItems }}</p> -->
+          <v-checkbox id="masterCheckbox" @click="[updateTotalPrice(),updateSelectedItems()]" v-model="selectAll" label="전체 선택"></v-checkbox>
+          
+        </v-col>
+      </v-row>
+   </v-card> 
+      <div class="mt-7">
+        <v-card v-for="(cartItem, i) in cartItems" :key="i" outlined tile>
+
+          <v-row>
+            <v-col cols="6" class="pb-0">
+              <v-checkbox class="m-0" @click="[updateTotalPrice(),updateSelectedItems()]" v-model="selectedItems" :value="cartItems[i]"> </v-checkbox>
+            </v-col>
+            <v-col cols="6">
+              <btn style="float: right" @click="deleteOneItem(cartItem.pstockid)"><v-icon>mdi-close</v-icon></btn>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col cols="3" class="pt-0">
+              <v-img class="ml-2" :src="cartItem.img1" width="80" height="90" />
+            </v-col>
+            <v-col cols="5" class="pt-0">
+              <div style="font-weight: bold">{{ cartItem.bname }}</div>
+              <div>{{ cartItem.pname }}</div>
+              <div>{{ cartItem.occode }} | {{ cartItem.oscode }}</div>
+              <button
+                @click="quantity_control(cartItem.pstockid, cartItem.quantity, 'minus')"
+                style="margin: 0px;"
+                type="button"
+                class="btn btn-light left1"
+              >
+              -
+              </button>
           <input
             id="quantity"
             name="quantity"
             type="text"
-            class="mr0"
+            class="mr0 text-center"
             :value="cartItem.quantity"
             size="1"
             maxlength="2"
@@ -59,23 +56,31 @@
           >
             +
           </button>
+            </v-col>
+            <v-col cols="4">
+              <div v-if="cartItem.stock < 5 && cartItem.stock > 0">재고 5개 미만</div>
+              <div v-if="cartItem.stock >= 5">재고 5개 이상</div>
+              <div v-if="cartItem.stock <= 0 ">품절</div>
+              <div style="font-weight: bold; font-size: large">{{ cartItem.pprice }}원</div>
+              
+            </v-col>
+          </v-row>
+        <!-- <v-row>
+          <v-col cols ="12">
           </v-col>
-        </v-row>
-        </div>
+        </v-row> -->
+        </v-card>
       </div>
     
-    <v-row>
+    <v-row class="mt-3">
       <v-col>
-        <v-btn v-on:click="deleteSelected" width="100%" outlined> 품절 상품 삭제 </v-btn>
+        <v-btn v-on:click="deleteSelected" width="100%" outlined  style="background-color: white;"> 품절 상품 삭제 </v-btn>
       </v-col>
       <v-col>
-        <v-btn v-on:click="deleteSelected" width="100%" outlined> 선택 상품 삭제 </v-btn>
+        <v-btn v-on:click="deleteSelected" width="100%" outlined style="background-color: white;"> 선택 상품 삭제 </v-btn>
       </v-col>
     </v-row>
     <v-row>
-      <v-col>
-          <v-btn depressed color="error" class="mt-3" width="100%" align-center @click="toOrderForm"></v-btn>
-      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -88,7 +93,7 @@ export default {
   //컴포넌트의 대표 이름(devtools에 나오는 이름)
   name: "Cart",
   //추가하고 싶은 컴포넌트들 목록
-  components: {},
+  // components: {},
   //컴포넌트 데이터 정의
   data: function () {
     return {
@@ -169,7 +174,7 @@ export default {
     async deleteSelected() {
       let delItems = [];
       this.selectedItems.forEach((item) => {
-        delItems.push(item.productStock.pstockid);
+        delItems.push(item.pstockid);
       });
       const response = await cart.deleteSelected(delItems);
       // 새로고침
@@ -221,4 +226,6 @@ export default {
 
 <!--컴포넌트 스타일 정의-->
 <!--scoped를 생략하면 전역으로 사용-->
-<style scoped></style>
+<style scoped>
+
+</style>
