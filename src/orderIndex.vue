@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import MainAppBar from "@/components/layout/productAppBar";
+import MainAppBar from "@/components/layout/orderAppBar";
 
 export default {
   name: "Index",
