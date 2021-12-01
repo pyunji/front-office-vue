@@ -48,7 +48,7 @@
             
           </div>
           </div>
-          
+          <v-divider/>
           </div>
         </v-container>
       </v-card-text>
@@ -70,7 +70,7 @@
 
 <script>
 
-import ordercheck from "@/apis/order/ordercheck"
+import orderlist from "@/apis/order/orderlist"
 import orderform from "@/apis/order/orderform";
 
 export default {
@@ -104,7 +104,7 @@ export default {
   },
 
   async created() {
-    await ordercheck.showAllOrder()
+    await orderlist.showAllOrder()
       .then((response) => {
         this.allOrders = response.data;
         console.log("this.allOrders =", this.allOrders);

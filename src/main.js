@@ -8,6 +8,18 @@ import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
+/* Cart에서 cartFooter로 총 가격 데이터 전달 */
+export const eventBus = new Vue({
+  methods: {
+    setTotalPrice(totalPrice) {
+      this.$emit('setTotalPrice', totalPrice)
+    },
+    setToOrderItems(selectedItems) {
+      this.$emit('setToOrderItems', selectedItems)
+    }
+  }
+})
+
 new Vue({
   router,
   store,
