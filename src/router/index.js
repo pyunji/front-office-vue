@@ -14,6 +14,7 @@ import product from './product'
 import shoppingbag from './shoppingbag'
 import order from './order'
 import login from '../views/login.vue'
+import member from './member'
 
 Vue.use(VueRouter)
 
@@ -99,18 +100,18 @@ const routes = [
       }
     ]
   },
-  // {
-  //   path: '/',
-  //   name: '',
-  //   component: () => import(/* webpackChunkName: "" */ '../productIndex'),
-  //   children: [
-  //     {
-  //       path:'/cart',
-  //       name: 'cart',
-  //       component: () => import(/* webpackChunkName: "orderform" */ '../views/Cart'),
-  //     }
-  //   ]
-  // },
+  {
+    path: '/',
+    name: '',
+    component: () => import(/* webpackChunkName: "" */ '../cartIndex'),
+    children: [
+      {
+        path:'/cart',
+        name: 'cart',
+        component: () => import(/* webpackChunkName: "orderform" */ '../views/Cart'),
+      }
+    ]
+  },
   ...menu01,
   ...menu02,
   ...menu03,
@@ -121,6 +122,7 @@ const routes = [
   ...product,
   ...shoppingbag,
   ...order,
+  ...member,
 ]
 
 const router = new VueRouter({
