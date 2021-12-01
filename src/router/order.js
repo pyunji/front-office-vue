@@ -7,6 +7,7 @@ export default [
   },
   {
     path: "/order/ordercheck",
+    name: 'ordercheck',
     component: () => import(/* webpackChunkName: "menu02" */ '../views/order/orderCheck'),
 
   },

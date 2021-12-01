@@ -4,34 +4,34 @@
     <v-card class="mt-5 mb-8" outlined>
       <v-card-text>
         <v-container>
-          <div v-for="j in 3" :key="j">
+          <div v-for="(oneOrder, j) in allOrders" :key="j">
           <v-row>
             <v-col cols="12">
-              <v-card class="pa-2 justify-center" outlined tile><div>주문 날짜<btn style="float: right;"><v-icon>mdi-chevron-right</v-icon></btn></div> </v-card>
+              <v-card class="pa-2 justify-center" outlined tile><div @click="goToOrderComplete(oneOrder.oid)">주문 날짜<btn style="float: right;"><v-icon>mdi-chevron-right</v-icon></btn></div> </v-card>
             </v-col>
             <v-divider/>
              
           </v-row>
-          <div v-for="i in 3" :key="i">
+          <div v-for="(oneItem, i) in oneOrder.orderItemListMap" :key="i">
             
             <v-row>
               <v-col cols="12">
-              <v-card class="pa-1 justify-center" outlined tile><div>주문 상태</div> </v-card>
+              <v-card class="pa-1 justify-center" outlined tile><div>주문 상태 : {{oneItem.ostatus}}</div> </v-card>
             </v-col>
               <v-col cols="4">
                 <v-img
                   class="mr-2"
-                  :src="require(`@/assets/photos/photo1.jpg`)"
+                  :src="oneItem.img1"
                   width="100"
                   height="100"
                 />
               </v-col>
               <v-col cols="6">
                 <v-card class="pa-2" outlined tile>
-                  <div>pname</div>
-                  <div>product조건</div>
-                  <div>수량</div>
-                  <div>가격</div>
+                  <div>{{oneItem.pname}}</div>
+                  <div>{{oneItem.ccode}} | {{oneItem.scode}}</div>
+                  <div>{{oneItem.ocount}} 개</div>
+                  <div>{{oneItem.totalPrice}}원</div>
                 </v-card>
               </v-col>
               <v-col cols="2"> </v-col>
@@ -60,6 +60,10 @@
 </style>
 
 <script>
+
+import ordercheck from "@/apis/order/ordercheck"
+import orderform from "@/apis/order/orderform";
+
 export default {
   //컴포넌트의 대표 이름(devtools에 나오는 이름)
   name: "",
@@ -68,11 +72,35 @@ export default {
   //컴포넌트 데이터 정의
   data: function () {
     return {
-      photoFileName: "orderComplete.jpg",
+      allOrders : [],
     };
   },
   //컴포넌트 메소드 정의
-  methods: {},
+  methods: {
+    async goToOrderComplete(oid) {
+      let orderCompleteItems = {};
+      await orderform.orderComplete(oid)
+        .then((response) => {
+          orderCompleteItems = response.data;
+        });
+      console.log("orderCompleteItems", orderCompleteItems);
+      this.$router.push({
+        name:'ordercomplete',
+        params: {
+          initOrderItems: orderCompleteItems
+        }
+      });
+    }
+
+  },
+
+  async created() {
+    await ordercheck.showAllOrder()
+      .then((response) => {
+        this.allOrders = response.data;
+        console.log("this.allOrders =", this.allOrders);
+      });
+  }
 };
 </script>
 
