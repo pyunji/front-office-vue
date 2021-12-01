@@ -26,11 +26,28 @@
           </v-card>
           <div>
             <v-card class="m-3">
-              <!-- 장바구니 수량 변경 시작 -->
-              <button @click="quantity_control(cartItem.pstockid, cartItem.quantity, 'minus')" style="margin: 0px;" type="button" class="btn btn-light left1">-</button>
-              <input id="quantity" name="quantity" type="text"  class="mr0" :value="cartItem.quantity" size="1" maxlength="2" readonly="readonly"/>
-              <button @click="quantity_control(cartItem.pstockid, cartItem.quantity, 'plus')" style="margin: 0px;" type="button" class="btn btn-light right1">+</button>
-              <!-- //장바구니 수량 변경 끝 -->
+              <div>
+                <v-radio-group>
+                  <v-radio v-for="(option1) in cartItem.optionList" :key="option1.ccode" :label="option1.ccode"></v-radio>
+                </v-radio-group>
+<!-- 
+                <button
+                  type="radio"
+                  :value="option.occode"
+                  v-for="(option, i) in cartItem.optionList"
+                  :key="i"
+                >
+                  {{ option.ccode }}
+                  <v-img :src="option.colorImg" width="40" height="40"></v-img>
+                </button> -->
+              </div>
+              <div v-for="(option2) in cartItem.optionList" :key="option2.ccode">
+                <div v-if="option1.ccode === option2.ccode">
+                <v-btn v-for="(scodeObj, j) in option2.scodeList" :key="j">
+                  {{ scodeObj.scode }}
+                </v-btn>
+                </div>
+              </div>
             </v-card>
           </div>
         </v-card>
@@ -72,32 +89,6 @@ export default {
   },
 
   methods: {
-    async quantity_control(pstockid, quantity, operator) {
-      let value = quantity;
-      // 마이너스 버튼을 눌렀을 경우
-      if (operator === 'minus') {
-        // 현재 값이 1보다 큰 경우만 값을 빼준다
-        if (value > 1) {
-          // 뺀 값을 value에 다시 넣어준다
-          value = value - 1;
-        }
-      // 플러스 버튼을 눌렀을 경우
-      } else if (operator === 'plus') {
-        // 값을 더해준다
-        value = value + 1;
-      }
-      // 기존 수량과 바뀐 수량이 다를 경우에만 DB에 접근한다.
-      if (value !==quantity) {
-        let map = {
-          "pstockid": pstockid,
-          "quantity": value
-        };
-
-        await cart.updateQuantity(map);
-        // 새로고침
-        this.$router.go();
-      }
-    },
     async toOrderForm() {
       let response = await orderform.getMemberInfo();
       let initMemberInfo = response.data;
