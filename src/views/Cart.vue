@@ -17,7 +17,9 @@
             <v-btn>
               <v-icon>mdi-close</v-icon>
             </v-btn>
-            <v-img :src="cartItem.img1" />
+            <v-col cols="4">
+            <v-img :src="cartItem.img1" width="100" height="100"/>
+            </v-col>
           </v-card>
           <v-card class="d-flex align-end flex-column" flat>
             <p>{{ cartItem.bname }}</p>
@@ -46,7 +48,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-btn width="100%" outlined> 쇼핑 계속 하기 </v-btn>
+        <button type="button" class="btn btn-secondary" style="color:white; font-weight: bold;"> 주문 배송 조회 </button>
       </v-col>
     </v-row>
   </v-container>
