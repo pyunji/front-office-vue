@@ -44,8 +44,8 @@
     </v-list>
     <template v-slot:append>
         <div class="pa-2">
-          <v-btn block class="button">
-            Logout
+          <v-btn block class="button" to="/login">
+            Login
           </v-btn>
         </div>
       </template>
