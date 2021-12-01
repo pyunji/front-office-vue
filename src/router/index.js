@@ -14,6 +14,7 @@ import product from './product'
 import shoppingbag from './shoppingbag'
 import order from './order'
 import login from '../views/login.vue'
+import member from './member'
 
 Vue.use(VueRouter)
 
@@ -121,6 +122,7 @@ const routes = [
   ...product,
   ...shoppingbag,
   ...order,
+  ...member,
 ]
 
 const router = new VueRouter({
