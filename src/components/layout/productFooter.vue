@@ -39,10 +39,14 @@ export default {
     },
     async putShoppingBag() {
       console.log("putShoppingBag 실행");
-      console.log(this.pstockid+" "+this.quantity);
-      await cart.insertCartItem(this.pstockid, this.quantity);
-      //장바구니 담은 후 처리
-      this.$router.push("/cart");
+      if(this.$store.state.userId==='') {
+        this.$router.push("/login");
+      } else {
+        console.log(this.pstockid+" "+this.quantity);
+        await cart.insertCartItem(this.pstockid, this.quantity);
+        //장바구니 담은 후 처리
+        this.$router.push("/cart");
+      }
     },
   },
 };

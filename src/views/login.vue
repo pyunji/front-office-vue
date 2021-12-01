@@ -1,28 +1,39 @@
 <template>
-  <div class="card-body">
-    <div v-if="$store.state.userId === ''">
-      <div class="form-group">
-        <label class="form-label">User ID</label>
-        <input type="text" class="form-control" id="userId" v-model="user.id"/>
+  <div>
+    <div class="card-body">
+      <div v-if="$store.state.userId === ''">
+        <div class="form-group">
+          <label class="form-label">User ID</label>
+          <input type="text" class="form-control" id="userId" v-model="user.id"/>
+        </div>
+        <div class="form-group">
+          <label for="userPassword" class="col-form-label">User Password</label>
+          <input type="text" class="form-control" v-model="user.password"/>
+        </div>
+        <button class="btn btn-info btn-sm" v-on:click="handleLogin">로그인</button>
       </div>
-      <div class="form-group">
-        <label for="userPassword" class="col-form-label">User Password</label>
-        <input type="text" class="form-control" v-model="user.password"/>
+      <div v-if="$store.state.userId !== ''">
+        <button class="btn btn-info btn-sm mr-2" v-on:click="handleLogout">로그아웃</button>
       </div>
-      <button class="btn btn-info btn-sm" v-on:click="handleLogin">로그인</button>
+      <button class="btn btn-info btn-sm ma-2 mt-2" v-on:click="goUrl()">회원 가입</button>
     </div>
-    <div v-if="$store.state.userId !== ''">
-      <button class="btn btn-info btn-sm mr-2" v-on:click="handleLogout">로그아웃</button>
-    </div>
-    <button class="btn btn-info btn-sm ma-2 mt-2" v-on:click="goUrl()">회원 가입</button>
+      <alert-dialog
+      :message="alertDialogMessage"
+      :loading="loading"
+      v-if="alertDialog"
+      @close="alertDialog = false"/>
   </div>
 </template>
 
 <script>
 import auth from "@/apis/auth";
+import AlertDialog from "@/components/dialog/AlertDialog.vue";
+
 export default {
   name: "Home",
-
+  components:{
+    AlertDialog,
+  },
   data: () => ({
     user: {
       id: "",
@@ -44,6 +55,9 @@ export default {
       try {
         // console.log("데이터 바인딩 확인 id", this.user.id);
         // console.log("데이터 바인딩 확인 password", this.user.password);
+        this.loading = true;
+        this.alertDialog = true;
+
         const response = await auth.login(this.user);
         this.$store.dispatch("saveAuth", {
           userId: response.data.mid,
@@ -51,17 +65,20 @@ export default {
         });
         console.log("userId", response.data.mid);
         console.log("authToken", response.data.jwt);
-        this.$router.push("/");
+        this.loading = false;
+        this.$router.go(-1);
       } catch(error) {
         try {
-          if(error.response.status === 401) {
-            this.alertDialog = true;
+          if(error.response.status === 401 || error.response.status === 403) {
+            this.loading = false;
             this.alertDialogMessage = "로그인 실패(아이디 또는 패스워드가 틀림)";
           }
         } catch (err){
-          this.alertDialog = true;
+          this.loading = false;
           this.alertDialogMessage = "로그인 실패(네트워크 에러)";          
-        } 
+        } finally{
+          this.loading = false;
+        }
       }
     },
     handleLogout() {

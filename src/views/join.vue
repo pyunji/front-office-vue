@@ -64,8 +64,8 @@ export default {
   methods:{
     async handleJoin() {
       try {
-        console.log("데이터 바인딩 확인 id", this.user.id);
-        console.log("데이터 바인딩 확인 password", this.user.password);
+        // console.log("데이터 바인딩 확인 id", this.user.id);
+        // console.log("데이터 바인딩 확인 password", this.user.password);
         this.loading = true;
         this.alertDialog = true;
 
