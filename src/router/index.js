@@ -100,18 +100,18 @@ const routes = [
       }
     ]
   },
-  // {
-  //   path: '/',
-  //   name: '',
-  //   component: () => import(/* webpackChunkName: "" */ '../productIndex'),
-  //   children: [
-  //     {
-  //       path:'/cart',
-  //       name: 'cart',
-  //       component: () => import(/* webpackChunkName: "orderform" */ '../views/Cart'),
-  //     }
-  //   ]
-  // },
+  {
+    path: '/',
+    name: '',
+    component: () => import(/* webpackChunkName: "" */ '../cartIndex'),
+    children: [
+      {
+        path:'/cart',
+        name: 'cart',
+        component: () => import(/* webpackChunkName: "orderform" */ '../views/Cart'),
+      }
+    ]
+  },
   ...menu01,
   ...menu02,
   ...menu03,
