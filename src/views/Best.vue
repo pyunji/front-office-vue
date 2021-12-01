@@ -1,24 +1,36 @@
 <!--컴포넌트 UI 정의-->
 <template>
-  <v-carousel
-    cycle
-    show-arrows-on-hover
-    hide-delimiter-background
-    delimiter-icon="mdi-minus"
-    vertical
-    height=570
-    vertical-delimiters>
-    <router-link to="../product/productDetail">
-    <v-carousel-item 
-      v-for="(item, i) in items" 
-      :key="i"
-      :src="item.src">
-    </v-carousel-item>
-    </router-link>
-  </v-carousel>
+  <div class="deep-orange lighten-4 pa-8">
+    <v-carousel
+      cycle
+      show-arrows-on-hover
+      hide-delimiters
+      hide-delimiter-background
+      delimiter-icon="mdi-minus"
+      vertical
+      vertical-delimiters>
+      <v-carousel-item 
+        v-for="(item, i) in items" 
+        :key="i"
+        :src="item.img1"
+        @click="showDetail(item.pcolorid)">
+        <h2 class="ma-3" style="font-weight: bold">베스트</h2>
+        <div class="mt-4 ml-4" style="font-weight: bold">{{item.bname}}</div>
+        <div class="ml-4">{{item.pname}}</div>
+        <div class="ml-4">{{item.pprice}}</div>
+      </v-carousel-item>
+    </v-carousel>
+    <v-select
+    :items="d1names"
+    v-model="d1name"
+    @change="change()">
+    </v-select>
+  </div>
 </template>
 
 <script>
+import main from "@/apis/product/main";
+
 export default {
   //컴포넌트의 대표 이름(devtools에 나오는 이름)
   name:"Best",
@@ -27,27 +39,30 @@ export default {
   },
   //컴포넌트 데이터 정의
   data: () => ({
-    items: [
-        {
-          src: require('@/assets/photos/best/1.png')
-        },
-        {
-          src: require('@/assets/photos/best/2.png')
-        },
-        {
-          src: require('@/assets/photos/best/3.png')
-        },
-        {
-          src: require('@/assets/photos/best/4.png')
-        },
-        {
-          src: require('@/assets/photos/best/5.png')
-        },
-      ]
+    items: null,
+    d1names:null,
+    d1name:"WOMEN",
     }),
   //컴포넌트 메소드 정의
   methods:{
-  }
+    showDetail(pcolorId) {
+      this.$router.push(`/product/productDetail?pcolorId=${pcolorId}`);
+    },
+    change() {
+      main.getBestItems(this.d1name).then(response => {
+      this.items = response.data;
+    });
+    }
+  },
+  beforeCreate() {
+    main.getD1Names()
+    .then(response => {
+      this.d1names = response.data;
+    });
+    main.getBestItems().then(response => {
+      this.items = response.data;
+    });
+  },
 }
 </script>
 

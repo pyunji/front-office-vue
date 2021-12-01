@@ -60,6 +60,7 @@
 
 <script>
 import cart from "@/apis/member/cart";
+import orderform from "@/apis/member/orderform";
 
 export default {
   //컴포넌트의 대표 이름(devtools에 나오는 이름)
@@ -78,7 +79,9 @@ export default {
   },
 
   methods: {
-    toOrderForm() {
+    async toOrderForm() {
+      let response = await orderform.getMemberInfo();
+      let initMemberInfo = response.data;
       let toOrderItemList = []
       this.selectedItems.forEach((item)=> {
         let toOrderItem = {
@@ -97,7 +100,8 @@ export default {
       this.$router.push({
         name:'orderform',
         params:{
-          initCartItems: toOrderItemList
+          initCartItems: toOrderItemList,
+          initMemberInfo: initMemberInfo
         }
       });
     },

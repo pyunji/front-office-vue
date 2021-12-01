@@ -23,15 +23,15 @@
                 class="pa-2 justify-center"
                 outlined
                 tile 
-              ><div> 주문 번호</div>
+              ><div> 주문 번호: {{initOrderItems.oid}}</div>
               </v-card>
             </v-col>
           </v-row>
-          <div v-for="i in 3" :key="i">
+          <div v-for="(orderItem, i) in initOrderItems.orderItemListMap" :key="i">
           <v-row>
             <v-col cols="4">
               
-                <v-img class="mr-2" :src="require(`@/assets/photos/photo1.jpg`)" width="100" height="100"/>
+                <v-img class="mr-2" :src="`${orderItem.img1}`" width="100" height="100"/>
               
             </v-col>
             <v-col cols="6">
@@ -40,9 +40,10 @@
                 outlined
                 tile
               >
-                <div>pname</div>
-                <div>조건</div>
-                <div>수량</div>
+                <div>{{orderItem.pname}}</div>
+                <div>{{orderItem.ccode}} | {{orderItem.scode}}</div>
+                <div>{{orderItem.ocount}} 개</div>
+            
                 
               </v-card>
             </v-col>
@@ -80,11 +81,20 @@ export default {
   //컴포넌트 데이터 정의
   data: function () {
     return {
+      // orderItems: {},
       photoFileName: "orderComplete.jpg",
     };
   },
+  props: {
+    initOrderItems: Object
+  },
   //컴포넌트 메소드 정의
   methods: {},
+
+  created(){
+    // this.orderItems = this.initOrderItems;
+    console.log("주문 아이템", this.initOrderItems);
+  }
 };
 </script>
 
