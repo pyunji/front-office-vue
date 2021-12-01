@@ -6,9 +6,9 @@ export default [
     props: true
   },
   {
-    path: "/order/ordercheck",
-    name: 'ordercheck',
-    component: () => import(/* webpackChunkName: "menu02" */ '../views/order/orderCheck'),
+    path: "/order/orderlist",
+    name: 'orderlist',
+    component: () => import(/* webpackChunkName: "menu02" */ '../views/order/orderList'),
 
   },
 ]
