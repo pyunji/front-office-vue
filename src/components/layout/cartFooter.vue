@@ -2,12 +2,15 @@
   <v-card flat>
     <v-container fluid>
       <v-row class="child-flex">
-        <div>
+        <div style="height: 48px;">&nbsp;</div>
+        <div id="fixed">
+          
           <v-toolbar color="indigo" class="white--text">
             <v-spacer />
             <v-toolbar-title class="font-weight-bold;" @click="toOrderForm()">{{totalPrice}}원 주문 하기</v-toolbar-title>
             <v-spacer />
           </v-toolbar>
+          
         </div>
 
       </v-row>
@@ -77,3 +80,13 @@ export default {
   }
 };
 </script>
+
+<style  scope>
+#fixed{
+  position: fixed;
+  bottom : 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+}
+</style>
