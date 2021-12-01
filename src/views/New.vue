@@ -1,6 +1,6 @@
 <!--컴포넌트 UI 정의-->
 <template>
-  <div class="deep-orange lighten-4 pa-8">
+  <div class="indigo lighten-4 pa-8">
     <v-carousel
       cycle
       show-arrows-on-hover
