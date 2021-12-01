@@ -8,12 +8,12 @@
       </v-container>
     </v-main>
 
-    <main-footer/>
+    <main-footer/> 
   </v-app>
 </template>
 
 <script>
-import MainAppBar from "@/components/layout/productAppBar";
+import MainAppBar from "@/components/layout/orderAppBar";
 
 export default {
   name: "Index",
@@ -34,7 +34,9 @@ export default {
 };
 </script>
 <style>
-.title {
+.title { 
   color: red;
 }
+
+
 </style>

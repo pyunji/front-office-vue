@@ -17,7 +17,7 @@
             <!-- <router-link :to="item.path">
             {{ item.tab }}
             </router-link> -->
-            {{ item.tab }}
+            <span style="font-weight: bold; font-size:18px;">{{ item.tab }}</span>
           </v-tab>
         </v-tabs>
       </template>

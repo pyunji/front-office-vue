@@ -87,7 +87,7 @@
       </v-list>
         </v-container>
         <v-btn width="100%" depressed color="black">
-          <div style="font-weight: bold"> 배송 조회</div>
+          <div style="font-weight: bold" @click="toOrderList"> 주문 내역 확인 </div>
         </v-btn>
       </v-card-text>
     </v-card>
@@ -127,6 +127,9 @@ export default {
   },
   //컴포넌트 메소드 정의
   methods: {
+    toOrderList() {
+      this.$router.push("/order/orderlist");
+    }
 //     formattingDate(){
     
       

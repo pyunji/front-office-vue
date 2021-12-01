@@ -1,6 +1,6 @@
 <template>
   <v-card> 
-    <v-app-bar  app  outlined  inverted-scroll white flat>
+    <v-app-bar  app  outlined   white flat>
       <v-btn style="margin" icon to="/">
         <v-icon>mdi-arrow-left-circle</v-icon>
       </v-btn>
