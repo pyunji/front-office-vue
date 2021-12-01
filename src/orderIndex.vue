@@ -8,7 +8,7 @@
       </v-container>
     </v-main>
 
-    <main-footer/>
+    <main-footer/> 
   </v-app>
 </template>
 
@@ -34,7 +34,9 @@ export default {
 };
 </script>
 <style>
-.title {
+.title { 
   color: red;
 }
+
+
 </style>
