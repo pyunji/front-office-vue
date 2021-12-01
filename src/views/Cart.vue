@@ -27,6 +27,7 @@
             <div style="font-weight: bold">{{ cartItem.bname }}</div>
             <div>{{ cartItem.pname }}</div>
             <div style="font-weight: bold; font-size: large">{{ cartItem.pprice }}원</div>
+            <div>{{ cartItem.occode }} | {{ cartItem.oscode }}</div>
           </v-col>
           <v-col cols="1"> </v-col>
         </v-row>
@@ -73,7 +74,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-btn width="100%" outlined font-weight:> 쇼핑 계속 하기 </v-btn>
+          <v-btn depressed color="error" class="mt-3" width="100%" align-center @click="toOrderForm"></v-btn>
       </v-col>
     </v-row>
   </v-container>
