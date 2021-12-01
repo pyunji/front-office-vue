@@ -2,42 +2,67 @@
 <template>
   <v-container fluid>
     <v-row>
-      <div width="100%" outlined>
-        <v-checkbox id="masterCheckbox" v-model="selectAll" label="전체 선택"></v-checkbox>
+      <v-col cols="12">
         <p>selectedItems:{{ selectedItems }}</p>
-      </div>
+        <v-checkbox id="masterCheckbox" v-model="selectAll" label="전체 선택"></v-checkbox>
+        
+      </v-col>
     </v-row>
-
-    <v-row class="m-3" v-for="(cartItem, i) in cartItems" :key="i">
-      <div>
-        <v-card width="100%">
-          <v-card class="d-flex align">
+    
+      <div class="m-3" v-for="(cartItem, i) in cartItems" :key="i">
+        <div class="card">
+        <v-row>
+          <v-col cols="6">
             <v-checkbox v-model="selectedItems" :value="cartItems[i]"> </v-checkbox>
-
-            <v-btn>
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
-            <v-col cols="4">
-            <v-img :src="cartItem.img1" width="100" height="100"/>
-            </v-col>
-          </v-card>
-          <v-card class="d-flex align-end flex-column" flat>
-            <p>{{ cartItem.bname }}</p>
-            <p>{{ cartItem.pname }}</p>
-            <p>{{ cartItem.pprice }}</p>
-          </v-card>
-          <div>
-            <v-card class="m-3">
-              <!-- 장바구니 수량 변경 시작 -->
-              <button @click="quantity_control(cartItem.pstockid, cartItem.quantity, 'minus')" style="margin: 0px;" type="button" class="btn btn-light left1">-</button>
-              <input id="quantity" name="quantity" type="text"  class="mr0" :value="cartItem.quantity" size="1" maxlength="2" readonly="readonly"/>
-              <button @click="quantity_control(cartItem.pstockid, cartItem.quantity, 'plus')" style="margin: 0px;" type="button" class="btn btn-light right1">+</button>
-              <!-- //장바구니 수량 변경 끝 -->
-            </v-card>
-          </div>
-        </v-card>
+          </v-col>
+          <v-col cols="6">
+            <btn style="float: right"><v-icon>mdi-close</v-icon></btn>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="4">
+            <v-img class="mr-2" :src="cartItem.img1" width="100" height="100" />
+          </v-col>
+          <v-col cols="7">
+            <div style="font-weight: bold">{{ cartItem.bname }}</div>
+            <div>{{ cartItem.pname }}</div>
+            <div style="font-weight: bold; font-size: large">{{ cartItem.pprice }}원</div>
+          </v-col>
+          <v-col cols="1"> </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols ="12">
+          <button
+            @click="quantity_control(cartItem.pstockid, cartItem.quantity, 'minus')"
+            style="margin: 0px"
+            type="button"
+            class="btn btn-light left1"
+          >
+            -
+          </button>
+          <input
+            id="quantity"
+            name="quantity"
+            type="text"
+            class="mr0"
+            :value="cartItem.quantity"
+            size="1"
+            maxlength="2"
+            readonly="readonly"
+          />
+          <button
+            @click="quantity_control(cartItem.pstockid, cartItem.quantity, 'plus')"
+            style="margin: 0px"
+            type="button"
+            class="btn btn-light right1"
+          >
+            +
+          </button>
+          </v-col>
+        </v-row>
+        </div>
       </div>
-    </v-row>
+    
     <v-row>
       <v-col>
         <v-btn v-on:click="deleteSelected" width="100%" outlined> 품절 상품 삭제 </v-btn>
@@ -48,7 +73,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <button type="button" class="btn btn-secondary" style="color:white; font-weight: bold;"> 주문 배송 조회 </button>
+        <v-btn width="100%" outlined font-weight:> 쇼핑 계속 하기 </v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -77,22 +102,22 @@ export default {
     async quantity_control(pstockid, quantity, operator) {
       let value = quantity;
       // 마이너스 버튼을 눌렀을 경우
-      if (operator === 'minus') {
+      if (operator === "minus") {
         // 현재 값이 1보다 큰 경우만 값을 빼준다
         if (value > 1) {
           // 뺀 값을 value에 다시 넣어준다
           value = value - 1;
         }
-      // 플러스 버튼을 눌렀을 경우
-      } else if (operator === 'plus') {
+        // 플러스 버튼을 눌렀을 경우
+      } else if (operator === "plus") {
         // 값을 더해준다
         value = value + 1;
       }
       // 기존 수량과 바뀐 수량이 다를 경우에만 DB에 접근한다.
-      if (value !==quantity) {
+      if (value !== quantity) {
         let map = {
-          "pstockid": pstockid,
-          "quantity": value
+          pstockid: pstockid,
+          quantity: value,
         };
 
         await cart.updateQuantity(map);
