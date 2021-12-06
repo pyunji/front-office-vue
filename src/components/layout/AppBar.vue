@@ -56,7 +56,7 @@ export default {
     },
     goCart() {
       console.log("goCart() 실행");
-      if(this.$store.state.userId==='') {
+      if(this.$store.getters["userStore/getUserId"]==='') {
         this.$router.push("/login");
       } else {
         this.$router.push("/cart");
