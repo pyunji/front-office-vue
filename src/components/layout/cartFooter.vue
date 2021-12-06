@@ -75,8 +75,6 @@ export default {
     eventBus.$on('setToOrderItems', (data) => {
       this.selectedItems = data;
     });
-    // console.log("totalPrice =", this.totalPrice);
-    // console.log("selectedItems =", this.selectedItems);
   }
 };
 </script>
