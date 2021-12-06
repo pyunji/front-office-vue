@@ -1,9 +1,6 @@
 <!--컴포넌트 UI 정의-->
 <template>
   <div>
-    <v-card>
-      {{ initOrderItems }}
-    </v-card>
     <v-card class="mt-5 mb-8" outlined>
       <v-card-text>
         <v-container>

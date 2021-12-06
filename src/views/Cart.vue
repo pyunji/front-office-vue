@@ -18,7 +18,7 @@
               <v-checkbox class="m-0" @click="[updateTotalPrice(),updateSelectedItems()]" v-model="selectedItems" :value="cartItems[i]" :disabled="cartItem.stock==0" :readonly="cartItem.stock==0"> </v-checkbox>
             </v-col>
             <v-col cols="6">
-              <btn style="float: right" @click="deleteOneItem(cartItem.pstockid)"><v-icon>mdi-close</v-icon></btn>
+              <button style="float: right" @click="deleteOneItem(cartItem.pstockid)"><v-icon>mdi-close</v-icon></button>
             </v-col>
           </v-row>
 
@@ -220,7 +220,7 @@ export default {
   },
   computed: {
     selectAll: {
-      // 체크박스들이 전체 선택되면 true를 반환 아니면 false를 반환
+      // 품절상품 제외 체크박스들이 전체 선택되면 true를 반환 아니면 false를 반환
       get: function () {
         // if(this.selectedItems.length == this.ableToCheckCount) return true;
         // else return false;
