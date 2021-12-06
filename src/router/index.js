@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import New from '../views/New.vue'
 import Best from '../views/Best.vue'
 import product from './product'
-import shoppingbag from './shoppingbag'
+// import cart from './cart'
 import order from './order'
 import login from '../views/login.vue'
 import member from './member'
@@ -61,11 +61,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "orderform" */ '../views/OrderForm'),
         props: true
       },
-      // {
-      //   path:'/cart',
-      //   name: 'Cart',
-      //   component: () => import(/* webpackChunkName: "cart" */ '../views/Cart'),
-      // }
+
     ]
   },
   {
@@ -106,7 +102,7 @@ const routes = [
     ]
   },
   ...product,
-  ...shoppingbag,
+  // ...cart,
   ...order,
   ...member,
 ]
