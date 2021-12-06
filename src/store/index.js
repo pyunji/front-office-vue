@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import counter from "./counter";
+// import paging from "./paging";
+import productAPI from "../apis/product/list"
 
 import axiosConfig from "@/apis/axiosConfig";
 
@@ -13,6 +15,13 @@ export default new Vuex.Store({
   state: {
     userId: "",
     authToken: "",
+
+    count: 0,
+    pageNo: 1,
+    d1Name: "",
+    d2Name: "",
+    d3Name: "",
+    pageItems: null
   },
   /* 루트 상태값을 읽는 메서드 정의(Getter) */
   getters: {
@@ -21,6 +30,20 @@ export default new Vuex.Store({
     },
     getAuthToken(state) {
       return state.authToken;
+    },
+
+    getPageNo(state) {
+      return state.pageNo;
+    },
+    getDepth(state) {
+      return {
+        "d1Name": state.d1Name,
+        "d2Name": state.d2Name,
+        "d3Name": state.d3Name
+      }
+    },
+    getPageItems(state){
+      return state.pageItems;
     }
   },
   /* 루트 상태값을 변경하는 동기 메서드 정의(Setter) */
@@ -30,10 +53,31 @@ export default new Vuex.Store({
     },
     setAuthToken(state, payload) {
       state.authToken = payload;
+    },
+
+    setPageNo(state, pageNo){
+      state.pageNo = pageNo;
+    },
+    setDepth(state, payload) {
+      state.d1Name = payload.d1Name;
+      state.d2Name = payload.d2Name;
+      state.d3Name = payload.d3Name;
+    },
+    setPageItems(state, pageItems) {
+      console.log("-----------",pageItems);
+      state.pageItems = pageItems;
     }
   },
   /* 루트 상태값을 변경하는 비동기 메서드 정의(Setter) */
   actions: {
+    async FETCH_ITEMS({commit}, {d1Name, d2Name, d3Name}) {
+      // 비동기 처리
+      commit('setDepth', {d1Name, d2Name, d3Name});
+      const response = await productAPI.getProductList(d1Name, d2Name, d3Name);
+      console.log(response);
+      commit('setPageItems', response.data);
+    },
+
     setUserIdByAsync(context, payload) { // payload = {userId:xxx, duration:3000, ...}
       new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -93,5 +137,6 @@ export default new Vuex.Store({
   /* 루트가 아닌 자식 상태를 정의한 모듈을 가져오기 */
   modules: {
     counter,
+    // paging
   }
 })

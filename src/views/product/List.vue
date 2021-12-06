@@ -93,15 +93,16 @@ export default {
       this.$router.push(`/product/productDetail?pcolorId=${pcolorId}`);
     },
     changePageNo(d1name,d2name,d3name,pageNo) {
-      console.log(this.d1name);
-      console.log(this.d2name);
-      list.getProductList(d1name,d2name,d3name,pageNo)
-        .then(response => {
-          this.page = response.data;
-        })
-        .catch(error=>{
-          console.log(error);
-        })
+      // console.log(this.d1name);
+      // console.log(this.d2name);
+      // list.getProductList(d1name,d2name,d3name,pageNo)
+      //   .then(response => {
+      //     this.page = response.data;
+      //   })
+      //   .catch(error=>{
+      //     console.log(error);
+      //   })
+      this.$store.commit('setPageNo', pageNo);
     },
     range(start, end) {
       const arr = [];
@@ -111,18 +112,37 @@ export default {
       return arr;
     }
   },
-  created() {
-    var pageNo = this.$route.query.pageNo;
-    this.d1name = this.$route.query.d1name;
-    this.d2name = this.$route.query.d2name;
-    this.d3name = this.$route.query.d3name;
-    if(pageNo === "undefined") {
-      pageNo = 1;
-    }
-    this.changePageNo(this.d1name,this.d2name,this.d3name,pageNo);
-    console.log(this.d1name);
-    console.log(this.d2name);
+  beforeMount() {
+    console.log(this.$store.getters.getDepth);
+    console.log(this.$store.getters.getPageItems);
+    this.page = this.$store.getters.getPageItems;
+    // var pageNo = this.$route.query.pageNo;
+    // this.d1name = this.$route.query.d1name;
+    // this.d2name = this.$route.query.d2name;
+    // this.d3name = this.$route.query.d3name;
+    // if(pageNo === "undefined") {
+    //   pageNo = 1;
+    // }
+    // this.changePageNo(this.d1name,this.d2name,this.d3name,pageNo);
+    // console.log(this.d1name);
+    // console.log(this.d2name);
   },
+  computed:{
+    pageItems(){
+      return this.$store.getters.getPageItems;
+    },
+    pageNo() {
+      return this.$store.getters.getPageNo;
+    }
+  },
+  watch:{
+    pageItems(to,from){
+      this.page = to;
+    },
+    pageNo(to,from){
+      this.page = to;
+    },
+  }
   
 }
 </script>
