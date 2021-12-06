@@ -3,13 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import New from '../views/New.vue'
 import Best from '../views/Best.vue'
-import menu01 from "./menu01"
-import menu02 from "./menu02"
-import menu03 from "./menu03"
-import menu04 from "./menu04"
-import menu05 from "./menu05"
-import menu06 from './menu06'
-import menu07 from './menu07'
 import product from './product'
 import shoppingbag from './shoppingbag'
 import order from './order'
@@ -112,13 +105,6 @@ const routes = [
       }
     ]
   },
-  ...menu01,
-  ...menu02,
-  ...menu03,
-  ...menu04,
-  ...menu05,
-  ...menu06,
-  ...menu07,
   ...product,
   ...shoppingbag,
   ...order,

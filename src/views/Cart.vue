@@ -220,7 +220,7 @@ export default {
   },
   computed: {
     selectAll: {
-      // 체크박스들이 전체 선택되면 true를 반환 아니면 false를 반환
+      // 품절상품 제외 체크박스들이 전체 선택되면 true를 반환 아니면 false를 반환
       get: function () {
         // if(this.selectedItems.length == this.ableToCheckCount) return true;
         // else return false;
