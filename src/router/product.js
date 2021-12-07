@@ -9,7 +9,8 @@ export default [
 
   },
   {
-    path: "/product/list/:d1name/:d2name/:d3name",
+    // path: "/product/list/:d1name/:d2name/:d3name",
+    path: "/product/list",
     component: () => import(/* webpackChunkName: "product" */ '../views/product/List'),
 
   },

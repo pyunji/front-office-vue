@@ -6,8 +6,8 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon to="/cart">
-        <v-icon>mdi-shopping-outline</v-icon>
+      <v-btn icon>
+        <v-icon @click="goCart()">mdi-shopping-outline</v-icon>
       </v-btn>
       <template v-slot:extension>
         <v-tabs v-model="tab" align-with-title>
@@ -17,7 +17,7 @@
             <!-- <router-link :to="item.path">
             {{ item.tab }}
             </router-link> -->
-            {{ item.tab }}
+            <span style="font-weight: bold; font-size:18px;">{{ item.tab }}</span>
           </v-tab>
         </v-tabs>
       </template>
@@ -54,6 +54,14 @@ export default {
     changeComponent(item) {
       this.componentName = item.path;
     },
+    goCart() {
+      console.log("goCart() 실행");
+      if(this.$store.getters["userStore/getUserId"]==='') {
+        this.$router.push("/login");
+      } else {
+        this.$router.push("/cart");
+      }
+    }
   },
 };
 </script>

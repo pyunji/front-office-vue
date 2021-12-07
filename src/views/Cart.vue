@@ -15,10 +15,10 @@
 
           <v-row>
             <v-col cols="6" class="pb-0">
-              <v-checkbox class="m-0" @click="[updateTotalPrice(),updateSelectedItems()]" v-model="selectedItems" :value="cartItems[i]"> </v-checkbox>
+              <v-checkbox class="m-0" @click="[updateTotalPrice(),updateSelectedItems()]" v-model="selectedItems" :value="cartItems[i]" :disabled="cartItem.stock==0" :readonly="cartItem.stock==0"> </v-checkbox>
             </v-col>
             <v-col cols="6">
-              <btn style="float: right" @click="deleteOneItem(cartItem.pstockid)"><v-icon>mdi-close</v-icon></btn>
+              <button style="float: right" @click="deleteOneItem(cartItem.pstockid)"><v-icon>mdi-close</v-icon></button>
             </v-col>
           </v-row>
 
@@ -58,7 +58,7 @@
           </button>
             </v-col>
             <v-col cols="4">
-              <div v-if="cartItem.stock < 5 && cartItem.stock > 0">재고 5개 미만</div>
+              <div v-if="cartItem.stock < 5 && cartItem.stock > 0">재고 {{cartItem.stock}}개 남음</div>
               <div v-if="cartItem.stock >= 5">재고 5개 이상</div>
               <div v-if="cartItem.stock <= 0 ">품절</div>
               <div style="font-weight: bold; font-size: large">{{ cartItem.pprice }}원</div>
@@ -74,7 +74,7 @@
     
     <v-row class="mt-3">
       <v-col>
-        <v-btn v-on:click="deleteSelected" width="100%" outlined  style="background-color: white;"> 품절 상품 삭제 </v-btn>
+        <v-btn v-on:click="deleteOutOfStock" width="100%" outlined  style="background-color: white;"> 품절 상품 삭제 </v-btn>
       </v-col>
       <v-col>
         <v-btn v-on:click="deleteSelected" width="100%" outlined style="background-color: white;"> 선택 상품 삭제 </v-btn>
@@ -102,6 +102,7 @@ export default {
       cartSize: 0,
       selectedItems: [],
       selectedOneItem: null,
+      ableToCheckCount: 0
     };
   },
 
@@ -170,6 +171,20 @@ export default {
         },
       });
     },
+    // 품절 상품 삭제 메서드
+    async deleteOutOfStock() {
+      let delItems = [];
+      this.cartItems.forEach((item) => {
+        if (item.stock <= 0) delItems.push(item.pstockid);
+      });
+      // 품절 상품이 하나도 없으면 아무 일도 안일어남
+      if (delItems.length == 0) return;
+      else {
+        await cart.deleteSelected(delItems);
+        this.$router.go();
+      }
+    },
+
     // 체크박스 선택 상품 삭제 메서드
     async deleteSelected() {
       let delItems = [];
@@ -182,13 +197,22 @@ export default {
     },
     async deleteOneItem(pstockid) {
       console.log("pstockid =", pstockid);
-      const response = await cart.deleteOneItem(pstockid);
+      await cart.deleteOneItem(pstockid);
       this.$router.go();
     },
   },
   beforeCreate() {
     cart.cartItems().then((response) => {
-      this.cartItems = response.data;
+      let cartItems = response.data;
+      this.cartItems = cartItems;
+      let ableToCheckCount = 0;
+      cartItems.forEach((item) => {
+        if(item.stock > 0) {
+          ableToCheckCount++;
+        }
+      });
+      // 품절되지 않은 상품의 개수
+      this.ableToCheckCount = ableToCheckCount;
       this.cartSize = response.data.length;
       console.log("response.data =", response.data);
       console.log("response.data.length =", this.cartSize);
@@ -196,9 +220,11 @@ export default {
   },
   computed: {
     selectAll: {
-      // 체크박스들이 전체 선택되면 true를 반환 아니면 false를 반환
+      // 품절상품 제외 체크박스들이 전체 선택되면 true를 반환 아니면 false를 반환
       get: function () {
-        return this.cartItems ? this.selectedItems.length == this.cartItems.length : false;
+        // if(this.selectedItems.length == this.ableToCheckCount) return true;
+        // else return false;
+        return this.selectedItems ? this.selectedItems.length == this.ableToCheckCount : false;
       },
 
       set: function (value) {
@@ -208,18 +234,20 @@ export default {
         // 마스터 체크박스가 체크된 경우
         if (value) {
           this.cartItems.forEach(function (cartItem) {
-            selectedItems.push(cartItem);
+            if(cartItem.stock>0) {
+              selectedItems.push(cartItem);
+            }
           });
         }
         // 마스터 체크박스가 체크되었으면 모든 아이템이 들어갈 것이고, 체크 해제되었으면 빈 리스트가 할당될 것이다.
         this.selectedItems = selectedItems;
       },
     },
-    selectCount: {
-      get: function () {
-        return this.selectedItems.length;
-      },
-    },
+    // selectCount: {
+    //   get: function () {
+    //     return this.selectedItems.length;
+    //   },
+    // },
   },
 };
 </script>

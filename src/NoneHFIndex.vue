@@ -22,7 +22,7 @@ export default {
   },
   // 사용자가 리프레시했을 때 세션에 저장된 로그인 상태를 복원
   created() {
-    this.$store.dispatch("loadAuth");
+    this.$store.dispatch("userStore/loadAuth");
   },
 };
 </script>
