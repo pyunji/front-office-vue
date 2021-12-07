@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="card-body">
-      <div v-if="$store.state.userId === ''">
+      <div v-if="$store.getters['userStore/getUserId'] === ''">
         <div class="form-group">
           <label class="form-label">User ID</label>
           <input type="text" class="form-control" id="userId" v-model="user.id"/>
@@ -12,7 +12,7 @@
         </div>
         <button class="btn btn-info btn-sm" v-on:click="handleLogin">로그인</button>
       </div>
-      <div v-if="$store.state.userId !== ''">
+      <div v-if="$store.getters['userStore/getUserId'] !== ''">
         <button class="btn btn-info btn-sm mr-2" v-on:click="handleLogout">로그아웃</button>
       </div>
       <button class="btn btn-info btn-sm ma-2 mt-2" v-on:click="goUrl()">회원 가입</button>
@@ -59,7 +59,7 @@ export default {
         this.alertDialog = true;
 
         const response = await auth.login(this.user);
-        this.$store.dispatch("saveAuth", {
+        this.$store.dispatch("userStore/saveAuth", {
           userId: response.data.mid,
           authToken: response.data.jwt
         });
@@ -82,7 +82,7 @@ export default {
       }
     },
     handleLogout() {
-      this.$store.dispatch("deleteAuth");
+      this.$store.dispatch("userStore/deleteAuth");
     }
   },
 };
