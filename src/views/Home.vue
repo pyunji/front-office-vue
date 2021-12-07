@@ -1,8 +1,8 @@
-<template>
+<template >
   <div>
     <event />
-    <new class="mt-6" />
-    <best class="mt-6 mb-15" />
+    <new class="mt-6 ml-4 mr-4" />
+    <best class="mt-6 mb-15 ml-4 mr-4" />
   </div>
   
 </template>

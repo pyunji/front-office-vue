@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-toolbar color="transparent" flat>
+    <v-toolbar flat>
       <v-spacer></v-spacer>
       <v-toolbar-title>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| THE | HANDSOME |</v-toolbar-title>
 
@@ -10,19 +10,20 @@
         <v-icon @click="goCart()">mdi-shopping-outline</v-icon>
       </v-btn>
       <template v-slot:extension>
-        <v-tabs v-model="tab" align-with-title>
-          <v-tabs-slider color="primary"></v-tabs-slider>
+        <v-tabs v-model="tab" align-with-title
+                background-color="transparent"
+                color="black"
+                grow>
+          <v-tabs-slider color="black"></v-tabs-slider>
 
           <v-tab v-for="item in items" :key="item.tab" @click="changeComponent(item)">
-            <!-- <router-link :to="item.path">
-            {{ item.tab }}
-            </router-link> -->
+
             <span style="font-weight: bold; font-size:18px;">{{ item.tab }}</span>
           </v-tab>
         </v-tabs>
       </template>
     </v-toolbar>
-   <v-container fluid>
+   <v-container class="pa-0">
       <v-tabs-items v-model="tab" >
         <v-tab-item v-for="item in items" :key="item.tab" >
           <!-- <v-card flat > -->
