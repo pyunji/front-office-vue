@@ -39,7 +39,7 @@ export default {
     },
     async putShoppingBag() {
       console.log("putShoppingBag 실행");
-      if(this.getters["userStore/getUserId"]==='') {
+      if(this.$store.getters["userStore/getUserId"]==='') {
         this.$router.push("/login");
       } else {
         console.log(this.pstockid+" "+this.quantity);
