@@ -14,10 +14,6 @@
                         <img :src="`${product.colorList[0].img1}`" width="100%" />
 									</div>
 
-                  <!--<v-card-actions class="ma-2" v-for="(clist,index) in product.colorList" :key="index">
-                    <v-img :src="`${clist.color_img}`" width="20" height="20"/>
-                  </v-card-actions>-->
-
                   <span class="ma-2" v-for="(clist,index) in product.colorList" :key="index">
                     <span> <button> <v-img :src="`${clist.color_img}`" width="20" height="20"/></button></span>
                   </span>
@@ -43,22 +39,22 @@
         </div>
         <v-container>
                 <div style="text-align: center;">
-                <v-btn small class="mt-2 ml-1" outlined color="indigo" @click="changePageNo(d1name,d2name,d3name,1)">처음</v-btn>
+                <v-btn small class="mt-2 ml-1" outlined color="indigo" @click="changePageNo(1)">처음</v-btn>
 
                 <v-btn small class="mt-2 ml-1" outlined color="blue-grey" 
                         v-if="page.pager.groupNo > 1" 
-                        @click="changePageNo(d1name,d2name,d3name,page.pager.startPageNo-1)">PREV</v-btn>
+                        @click="changePageNo(page.pager.startPageNo-1)">PREV</v-btn>
 
                 <v-btn small :color="`${(pageNo != page.pager.pageNo)?'':'error'}` "
                         class="mt-2 ml-1"
                         v-for="pageNo in range(page.pager.startPageNo, page.pager.endPageNo)" :key="pageNo"
-                        @click="changePageNo(d1name,d2name,d3name,pageNo)">{{pageNo}}</v-btn>
+                        @click="changePageNo(pageNo)">{{pageNo}}</v-btn>
 
                 <v-btn small class="mt-2 ml-1" outlined color="blue-grey" 
                         v-if="page.pager.groupNo < page.pager.totalGroupNo"
-                        @click="changePageNo(d1name,d2name,d3name,page.pager.endPageNo+1)">NEXT</v-btn>
+                        @click="changePageNo(page.pager.endPageNo+1)">NEXT</v-btn>
                 
-                <v-btn small class="mt-2 ml-1" outlined color="indigo" @click="changePageNo(d1name,d2name,d3name,page.pager.totalPageNo)">맨끝</v-btn>
+                <v-btn small class="mt-2 ml-1" outlined color="indigo" @click="changePageNo(page.pager.totalPageNo)">맨끝</v-btn>
               </div>
         </v-container>
       </section>
@@ -81,9 +77,6 @@ export default {
   //컴포넌트 데이터 정의
   data: function() {
     return {
-      d1name:"",
-      d2name:"",
-      d3name:"",
       page:null,      
     };
   },
@@ -92,17 +85,20 @@ export default {
     showDetail(pcolorId) {
       this.$router.push(`/product/productDetail?pcolorId=${pcolorId}`);
     },
-    changePageNo(d1name,d2name,d3name,pageNo) {
+    async changePageNo(pageNo) {
       // console.log(this.d1name);
       // console.log(this.d2name);
-      // list.getProductList(d1name,d2name,d3name,pageNo)
-      //   .then(response => {
-      //     this.page = response.data;
-      //   })
-      //   .catch(error=>{
-      //     console.log(error);
-      //   })
-      this.$store.commit('setPageNo', pageNo);
+      await list.getProductList(
+        this.$store.getters["productStore/getDepth"].d1Name,
+        this.$store.getters["productStore/getDepth"].d2Name,
+        this.$store.getters["productStore/getDepth"].d3Name,
+        pageNo)
+        .then(response => {
+          this.$store.commit('productStore/setPageItems', response.data);
+        })
+        .catch(error=>{
+          console.log(error);
+        })
     },
     range(start, end) {
       const arr = [];
@@ -113,33 +109,17 @@ export default {
     }
   },
   beforeMount() {
-    console.log(this.$store.getters.getDepth);
-    console.log(this.$store.getters.getPageItems);
-    this.page = this.$store.getters.getPageItems;
-    // var pageNo = this.$route.query.pageNo;
-    // this.d1name = this.$route.query.d1name;
-    // this.d2name = this.$route.query.d2name;
-    // this.d3name = this.$route.query.d3name;
-    // if(pageNo === "undefined") {
-    //   pageNo = 1;
-    // }
-    // this.changePageNo(this.d1name,this.d2name,this.d3name,pageNo);
-    // console.log(this.d1name);
-    // console.log(this.d2name);
+    this.page = this.$store.getters["productStore/getPageItems"];
   },
   computed:{
     pageItems(){
-      return this.$store.getters.getPageItems;
+      // store의 pageItem이 변경되었는지 감시
+      return this.$store.getters["productStore/getPageItems"];
     },
-    pageNo() {
-      return this.$store.getters.getPageNo;
-    }
   },
   watch:{
+    // computed의 메서드와 watch의 메서드 명이 일치해야한다.
     pageItems(to,from){
-      this.page = to;
-    },
-    pageNo(to,from){
       this.page = to;
     },
   }

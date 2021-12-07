@@ -3,8 +3,8 @@
     <v-navigation-drawer app width="340" color="white" v-model="drawer">
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title v-if="$store.state.userId !== ''" class="text-h6">
-            {{ $store.state.userId }}회원님 반갑습니다.
+          <v-list-item-title v-if="$store.getters['userStore/getUserId']!== ''" class="text-h6">
+            {{ $store.getters["userStore/getUserId"] }}회원님 반갑습니다.
           </v-list-item-title>
           <v-list-item-title v-else class="text-h6"> 현재 로그인이 필요합니다 </v-list-item-title>
           <!--로그인 하지 않으면 로그인 해주세요 창 띄울 예정-->
@@ -50,7 +50,7 @@
       </v-list>
       <template v-slot:append>
         <div class="pa-2">
-          <v-btn v-if="$store.state.userId !== ''" block class="button" v-on:click="handleLogout()"
+          <v-btn v-if="$store.getters['userStore/getUserId'] !== ''" block class="button" v-on:click="handleLogout()"
             >Logout</v-btn
           >
           <v-btn v-else block class="button" v-on:click="handleLogin()">Login</v-btn>
@@ -66,7 +66,7 @@
         <v-btn to="/product/categoryList">
           <v-icon>mdi-heart-outline</v-icon>
         </v-btn>
-        <v-btn v-if="$store.state.userId !== ''">
+        <v-btn v-if="$store.getters['userStore/getUserId'] !== ''">
           <v-icon @click="goOrderList()">mdi-account-outline</v-icon>
         </v-btn>
         <v-btn v-else>
@@ -94,24 +94,19 @@ export default {
       this.$router.push({ path: "/login" }).catch(() => {});
     },
     handleLogout() {
-      this.$store.dispatch("deleteAuth");
+      this.$store.dispatch("userStore/deleteAuth");
       this.$router.push("/");
     },
     goOrderList() {
       this.$router.push("/order/orderlist");
     },
     async showDepthItems(d1Name, d2Name, d3Name) {
-      // this.$store.commit('setDepth', {d1Name, d2Name, d3Name});
-      //this.$store.dispatch('FETCH_ITEMS', {d1Name, d2Name, d3Name});
-      this.$store.commit('setDepth', {d1Name, d2Name, d3Name});
+      this.$store.commit('productStore/setDepth', {d1Name, d2Name, d3Name});
       const response = await productAPI.getProductList(d1Name, d2Name, d3Name);
       console.log(response);
-      this.$store.commit('setPageItems', response.data);
-      console.log(this.$store.getters.getDepth);
-      console.log(this.$store.getters['getPageItems']);
+      this.$store.commit('productStore/setPageItems', response.data);
       
       this.$router.push("/product/list").catch(()=>{
-        // this.$router.go();
         this.drawer = !this.drawer;
       });
       
@@ -120,8 +115,6 @@ export default {
   beforeCreate() {
     main.getCategories().then((response) => {
       this.Categories = response.data;
-      // console.log(this.$store.getters.getDepth);
-      // console.log(this.$store.getters.getPageItems);
     });
   },
 };
