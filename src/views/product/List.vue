@@ -117,6 +117,7 @@ export default {
       return this.$store.getters["productStore/getPageItems"];
     },
   },
+  // computed 메서드와 watch 메서드의 이름이 일치하면 store의 데이터를 감시할 수 있다.
   watch:{
     // computed의 메서드와 watch의 메서드 명이 일치해야한다.
     pageItems(to,from){
