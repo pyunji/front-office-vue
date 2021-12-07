@@ -227,20 +227,9 @@ export default {
         "cartItems": this.cartItems
       };
       let oid="";
-      let delItemsByOrder=[];
-      let stocks=[];
-      this.cartItems.forEach((cartItem) => {
-        delItemsByOrder.push(cartItem.pstockid);
-        stocks.push({
-          "pstockid": cartItem.pstockid,
-          "quantity": cartItem.quantity 
-          });
-      })
       await orderform.makeOrder(orderAllInfo)
         .then((response) => {
           oid = response.data;
-          cart.deleteByOrder(delItemsByOrder);
-          product.reduceStock(stocks);
         });
       let orderCompleteItems = {};
       await orderform.orderComplete(oid)
