@@ -1,32 +1,32 @@
 <!-- 컴포넌트 UI 정의 -->
 <template>
   <v-card outlined>
-    <div>{{withitems}}</div>
-    <div class="position-relative position-relative-example">
+    
+     <div class="position-relative position-relative-example"> 
       <v-carousel hide-delimiters show-arrows-on-hover>
-        <v-carousel-item :src="`${detail.product.img1}`">
+        <v-carousel-item v-if="detail != null" :src="`${detail.product.img1}`">
         </v-carousel-item>
-                <v-carousel-item :src="`${detail.product.img2}`">
+                <v-carousel-item  v-if="detail != null" :src="`${detail.product.img2}`">
  
     </v-carousel-item>
-            <v-carousel-item :src="`${detail.product.img3}`">
+            <v-carousel-item v-if="detail != null" :src="`${detail.product.img3}`">
  
     </v-carousel-item>
   </v-carousel>
 
-      <span class="ma-3" v-for="(color, index) in detail.colors" v-bind:key="index">
+      <span class="ma-3"  v-for="(color, index) in colorList" v-bind:key="'c' + index">
         <span>
           <button @click="changeColor(index)">
             <img v-bind:src="`${color.color_img}`" width="30px" height="30px" /></button
         ></span>
       </span>
 
-      <p class="ml-2 mt-3">{{ detail.product.bname }}</p>
-      <h5 class="ml-2">{{ detail.product.pname }}</h5>
-      <p class="ml-2 mt-1">₩ {{ detail.product.pprice }}</p>
+      <p  v-if="detail != null" class="ml-2 mt-3">{{ detail.product.bname }}</p>
+      <h5 v-if="detail != null" class="ml-2">{{ detail.product.pname }}</h5>
+      <p v-if="detail != null" class="ml-2 mt-1">₩ {{ detail.product.pprice }}</p>
       <p class="ml-2">품번 {{ pstockid }}</p>
-      <p class="ml-2">사이즈</p>
-      <span align="center" class="ml-2" v-for="(size, index) in detail.sizes" v-bind:key="index">
+      <p  class="ml-2">사이즈</p>
+      <span align="center" class="ml-2" v-for="(size, index) in detail.sizes" v-bind:key="'s' + index">
         <span v-if="size_idx === index"
           ><v-btn depressed disabled @click="changeSize(index)"> {{ size.scode }} </v-btn></span
         >
@@ -43,17 +43,17 @@
         </span>
       </div>
       <v-divider />
-      <p>{{ detail.product.pnote }}</p>
+      <p v-if="detail != null">{{ detail.product.pnote }}</p>
 
       <v-divider />
 
-      <!-- <img v-bind:src="`${detail.colors[this.color_idx].img1}`" width="100%" class="mb-3" />
-      <img v-bind:src="`${detail.colors[this.color_idx].img2}`" width="100%" class="mb-3" />
-      <img v-bind:src="`${detail.colors[this.color_idx].img3}`" width="100%" class="mb-3" /> -->
+      <img v-if="detail != null" v-bind:src="`${detail.colors[this.color_idx].img1}`" width="100%" class="mb-3" />
+      <img v-if="detail != null" v-bind:src="`${detail.colors[this.color_idx].img2}`" width="100%" class="mb-3" />
+      <img v-if="detail != null" v-bind:src="`${detail.colors[this.color_idx].img3}`" width="100%" class="mb-3" /> 
 
       <!--<p>한섬마일리지 {{ mileage }}</p>
       <p>H.Point {{ point }}</p>-->
-      <p class="ml-2">한섬마일리지 (5%)</p>
+     <p class="ml-2">한섬마일리지 (5%)</p>
       <p class="ml-2">H.Point (0.1%)</p>
       <p class="ml-2">배송비 30,000원 이상 무료배송 (실결제 기준)</p>
       <p class="ml-2">카드사 혜택</p>
@@ -86,10 +86,10 @@
     <v-divider />
     <div>
       함께 코디한 상품
-      <v-container >
+      <v-container>
         <v-row>
           <v-col cols="3"> 
-             <v-img :src="`${withitems[0].img1}`"></v-img>
+             <v-img :src="`${withitems[0].img1}`"  v-if="withItems != null"></v-img>
           </v-col>
           <v-col cols="8"> 
 
@@ -98,16 +98,16 @@
         </v-row>
         <v-row>
           <v-col>
-          <div ml-2 style="font-weight:bold; font-size: 15px;">{{withitems[0].bname}}</div> 
+          <div ml-2 style="font-weight:bold; font-size: 15px;"  v-if="withItems != null">{{withitems[0].bname}}</div> 
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-          <div ml-2>{{withitems[0].pprice}}</div>
+          <div ml-2  v-if="withItems != null">{{withitems[0].pprice}}</div>
           </v-col>
         </v-row>
       </v-container>
-    </div>
+    </div> -->
   </v-card>
 </template>
 
@@ -128,6 +128,7 @@ export default {
       pstockid: null,
       quantity: 1,
       withitems: [],
+      withProduct: null,
 
 
     };
@@ -140,10 +141,10 @@ export default {
     plus(arg) {
       if (arg < 99) this.quantity = arg + 1;
     },
-    changeColor(idx) {
+    async changeColor(idx) {
       console.log("changeColor 실행");
       this.color_idx = idx;
-      apiProduct
+      await apiProduct
         .setCategory(this.detail.product.pcommonid + "_" + this.detail.colors[idx].ccode)
         .then((response) => {
           console.log("setCategory 실행");
@@ -160,10 +161,10 @@ export default {
           console.log(error);
         });
     },
-    changeSize(idx) {
+    async changeSize(idx) {
       console.log("changeSize 실행");
       this.size_idx = idx;
-      apiProduct
+      await apiProduct
         .setCategory(this.detail.product.pcommonid + "_" + this.detail.colors[this.color_idx].ccode)
         .then((response) => {
           console.log("setCategory 실행");
@@ -181,14 +182,23 @@ export default {
         });
     },
   },
-  created() {
+    computed:{
+    colorList(){
+      return this.detail.colors;
+    },
+  },
+
+  
+  async created() {
     console.log("create 실행1");
-    apiProduct
+      await apiProduct
       .setCategory(this.$route.query.pcolorId)
       .then((response) => {
         console.log(response.data);
         this.detail = response.data;
         this.withitems = this.detail.withItems;
+        this.withProduct = this.withitems[0].bname;
+        console.log(this.withProduct);
         this.pstockid =
           this.detail.product.pcommonid +
           "_" +
