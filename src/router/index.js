@@ -76,6 +76,18 @@ const routes = [
       }
     ]
   },
+  {
+    path: '/',
+    name: '',
+    component: () => import(/* webpackChunkName: "" */ '../orderIndex'),
+    children: [
+      {
+        path:'/member/mypage',
+        name: 'myPage',
+        component: () => import(/* webpackChunkName: "orderform" */ '../views/member/myPage'),
+      }
+    ]
+  },
   
   {
     path: '/',

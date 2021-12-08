@@ -1,55 +1,28 @@
 <!--컴포넌트 UI 정의-->
 <template>
-  
-  <div>
-    <ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">주문</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">혜택</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">정보</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">활동</a>
-  </li>
-</ul>
-    <v-card class="mt-2 mb-8" outlined height="600">
-      <v-card-text>
-        <btn style="float: right;">주문 조회</btn>
-        <v-container>
-          
-          <v-row>
-            <v-col cols="12" align="center">
-                        <v-row>
-            <v-col cols="4">
-              
-                <v-img class="mr-2" :src="require(`@/assets/photos/photo1.jpg`)" width="100" height="100"/>
-              
-            </v-col>
-            <v-col cols="6">
-              <v-card
-                class="pa-2"
-                outlined
-                tile
-              >
-                <div>pname</div>
-                <div>조건</div>
-                <div>수량</div>
-                
-              </v-card>
-            </v-col>
-            <v-col cols="2">
-            </v-col>
-          </v-row>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card-text>
-    </v-card>
+<v-container id="myPage" style="margin : 0 ; padding : 0px;">
+  <div id="member_content">
+    <span>
+    사용자님 환영합니다.
+    </span>
+    <img v-bind:src="require(`@/assets/photos/photo1.jpg`)" width="80px" height="80px" />
   </div>
+  <div id="line">
+  </div>
+  <div class="d-flex justify-content-center mt-2">
+  <h3 class="me-2" @click="selectOrder">주문</h3>
+  <h3 class="me-2" @click="selectBenefit">혜택</h3>
+  <h3 class="me-2" @click="selectInfo">정보</h3>
+  <h3  @click="selectActivity">활동</h3>
+  </div>
+  <order v-if="menuStatus === 1"/>
+  <benefit v-if="menuStatus === 2"/>
+  <info v-if="menuStatus === 3"/>
+  <activity v-if="menuStatus === 4"/>
+
+
+</v-container>
+
 </template>
 
 <style scoped>
@@ -65,22 +38,70 @@
 </style>
 
 <script>
+import order from "@/components/myPage/order.vue"
+import benefit from "@/components/myPage/benefit.vue"
+import info from "@/components/myPage/info.vue"
+import activity from "@/components/myPage/activity.vue"
+
+
+
 export default {
   //컴포넌트의 대표 이름(devtools에 나오는 이름)
-  name: "",
+  name: "myPage",
   //추가하고 싶은 컴포넌트들 목록
-  components: {},
+  components: {
+    order,
+    benefit,
+    info,
+    activity,
+
+  },
   //컴포넌트 데이터 정의
-  data: function () {
+  data() {
     return {
-      photoFileName: "orderComplete.jpg",
-    };
+      menuStatus: 1,
+    }
   },
   //컴포넌트 메소드 정의
-  methods: {},
+  methods: {
+    selectOrder(){
+      this.menuStatus = 1;
+    },
+    selectBenefit(){
+      this.menuStatus = 2;
+
+    },
+    selectInfo(){
+      this.menuStatus = 3;
+      
+    },
+    selectActivity(){
+      this.menuStatus = 4;
+      
+    },
+  },
 };
 </script>
 
 <!--컴포넌트 스타일 정의-->
 <!--scoped를 생략하면 전역으로 사용-->
-<style scoped></style>
+<style>
+
+#myPage{
+  padding: 0px;
+  margin: 0px;
+}
+#member_content{
+    padding: 0px;
+  margin: 0px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 42px;
+}
+#line{
+  background-color: #f1f1f1;
+  height: 10px;
+}
+
+</style>

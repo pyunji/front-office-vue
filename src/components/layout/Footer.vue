@@ -60,7 +60,7 @@
         <v-btn to="/">
           <v-icon>mdi-home-outline</v-icon>
         </v-btn>
-        <v-btn to="/product/categoryList">
+        <v-btn to="/member/myPage">
           <v-icon>mdi-heart-outline</v-icon>
         </v-btn>
         <v-btn v-if="$store.getters['userStore/getUserId'] !== ''">
