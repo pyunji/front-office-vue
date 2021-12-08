@@ -22,7 +22,7 @@
               </v-col>
             </v-row>
 
-            <div v-for="(orderItem, i) in initOrderItems.orderItemListMap" :key="i">
+            <div v-for="(orderItem, i) in initOrderItems.orderCompleteItems" :key="i">
               <v-row class="mb-2">
                 <v-col cols="4">
                   <v-img class="mr-2" :src="`${orderItem.img1}`" width="100" height="100" />
@@ -33,7 +33,7 @@
                   <div>
                     {{ orderItem.ccode }} | {{ orderItem.scode }} | {{ orderItem.ocount }} 개
                   </div>
-                  <div style="font-weight: bold">{{ initOrderItems.totalPrice }}원</div>
+                  <div style="font-weight: bold">{{ orderItem.totalPrice }}원</div>
                 </v-col>
                 <v-col cols="2"> </v-col>
               </v-row>
