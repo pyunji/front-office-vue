@@ -3,11 +3,10 @@
     <v-navigation-drawer app width="340" color="white" v-model="drawer">
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title v-if="$store.getters['userStore/getUserId']!== ''" class="text-h6">
+          <v-list-item-title v-if="$store.getters['userStore/getUserId'] !== ''" class="text-h6">
             {{ $store.getters["userStore/getUserId"] }}회원님 반갑습니다.
           </v-list-item-title>
           <v-list-item-title v-else class="text-h6"> 현재 로그인이 필요합니다 </v-list-item-title>
-          <!--로그인 하지 않으면 로그인 해주세요 창 띄울 예정-->
         </v-list-item-content>
       </v-list-item>
 
@@ -29,18 +28,12 @@
                       <v-list-item-title>{{ d2name }}</v-list-item-title>
                     </v-list-item-content>
                   </template>
-                  <!-- <v-list-item
-                    v-for="(d3name, index2) in value5"
-                    :key="index2"
-                    v-bind:to="`/product/list?d1name=${d1name}&d2name=${d2name}&d3name=${d3name}&pageNo=1`"
-                  > -->
                   <v-list-item
                     v-for="(d3name, index2) in value5"
                     :key="index2"
                     @click="showDepthItems(d1name, d2name, d3name)"
                   >
                     <v-list-item-title>{{ d3name }}</v-list-item-title>
-
                   </v-list-item>
                 </v-list-group>
               </div>
@@ -50,7 +43,11 @@
       </v-list>
       <template v-slot:append>
         <div class="pa-2">
-          <v-btn v-if="$store.getters['userStore/getUserId'] !== ''" block class="button" v-on:click="handleLogout()"
+          <v-btn
+            v-if="$store.getters['userStore/getUserId'] !== ''"
+            block
+            class="button"
+            v-on:click="handleLogout()"
             >Logout</v-btn
           >
           <v-btn v-else block class="button" v-on:click="handleLogin()">Login</v-btn>
@@ -79,7 +76,7 @@
 
 <script>
 import main from "@/apis/product/main";
-import productAPI from "@/apis/product/list"
+import productAPI from "@/apis/product/list";
 export default {
   name: "Footer",
 
@@ -101,16 +98,19 @@ export default {
       this.$router.push("/order/orderlist");
     },
     async showDepthItems(d1Name, d2Name, d3Name) {
-      this.$store.commit('productStore/setDepth', {d1Name, d2Name, d3Name});
-      const response = await productAPI.getProductList(d1Name, d2Name, d3Name);
-      console.log(response);
-      this.$store.commit('productStore/setPageItems', response.data);
-      
-      this.$router.push("/product/list").catch(()=>{
+      // 사용자가 선택한 depth를 store에 저장
+      this.$store.commit("productStore/setDepth", { d1Name, d2Name, d3Name });
+      // depth와 pageNo를 통해 비동기 api 요청
+      const response = await productAPI.getProductList(d1Name, d2Name, d3Name, 1);
+      // 요청 후 가져온 상품 데이터를 store에 저장
+      this.$store.commit("productStore/setPageItems", response.data);
+
+      // 현재 경로가 product/list가 아니면 경로 이동
+      this.$router.push("/product/list").catch(() => {
+        // 해당 경로에서 데이터만 바뀔 시 카테고리 내비게이션이 다시 들어가게 함
         this.drawer = !this.drawer;
       });
-      
-    }
+    },
   },
   beforeCreate() {
     main.getCategories().then((response) => {

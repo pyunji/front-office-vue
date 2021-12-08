@@ -58,22 +58,47 @@ export default {
     showDetail(pcolorId) {
       this.$router.push(`/product/productDetail?pcolorId=${pcolorId}`);
     },
-    changeItems(d1name) {
-      main.getBestItems(d1name).then(response => {
-      this.items = response.data;
-    });
-    }
+    async changeItems(d1name) {
+      await main.getBestItems(d1name)
+        .then(response=>{
+          this.$store.commit('homeStore/setBestItems',response.data);
+        })
+        .catch(error=>{
+          console.log(error);
+        })
+    },
   },
 
-  beforeCreate() {
-    main.getD1Names()
-    .then(response => {
-      this.d1names = response.data;
-    });
-    main.getBestItems().then(response => {
-      this.items = response.data;
-    });
-  
+  beforeMount() {
+    // main.getD1Names()
+    // .then(response => {
+    //   this.d1names = response.data;
+    // });
+    this.d1names = this.$store.getters["homeStore/getD1Names"];
+    // main.getBestItems().then(response => {
+    //   this.items = response.data;
+    // });
+    this.items = this.$store.getters["homeStore/getBestItems"];
   },
+  computed:{
+    d1Names(){
+      // store의 d1Names이 변경되었는지 감시
+      return this.$store.getters["homeStore/getD1Names"];
+    },
+    bestItems(){
+      // store의 newItems 변경되었는지 감시
+      return this.$store.getters["homeStore/getBestItems"];
+    },
+  },
+  // computed 메서드와 watch 메서드의 이름이 일치하면 store의 데이터를 감시할 수 있다.
+  watch:{
+    // computed의 메서드와 watch의 메서드 명이 일치해야한다.
+    d1Names(to,from){
+      this.d1names = to;
+    },
+    bestItems(to,from){
+      this.items = to;
+    },
+  }
 };
 </script>

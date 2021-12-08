@@ -1,8 +1,10 @@
 <!-- 컴포넌트 UI 정의 -->
 <template>
   <v-card outlined>
+
     
      <div class="position-relative position-relative-example"> 
+
       <v-carousel hide-delimiters show-arrows-on-hover>
         <v-carousel-item v-if="detail != null" :src="`${detail.product.img1}`">
         </v-carousel-item>
@@ -86,10 +88,12 @@
     <v-divider />
     <div>
       함께 코디한 상품
-      <v-container>
+      <v-container >
         <v-row>
           <v-col cols="3"> 
+
              <v-img :src="`${withitems[0].img1}`"  v-if="withItems != null"></v-img>
+
           </v-col>
           <v-col cols="8"> 
 
@@ -98,12 +102,16 @@
         </v-row>
         <v-row>
           <v-col>
+
           <div ml-2 style="font-weight:bold; font-size: 15px;"  v-if="withItems != null">{{withitems[0].bname}}</div> 
+
           </v-col>
         </v-row>
         <v-row>
           <v-col>
+
           <div ml-2  v-if="withItems != null">{{withitems[0].pprice}}</div>
+
           </v-col>
         </v-row>
       </v-container>
@@ -128,7 +136,9 @@ export default {
       pstockid: null,
       quantity: 1,
       withitems: [],
+
       withProduct: null,
+
 
 
     };
@@ -199,6 +209,7 @@ export default {
         this.withitems = this.detail.withItems;
         this.withProduct = this.withitems[0].bname;
         console.log(this.withProduct);
+
         this.pstockid =
           this.detail.product.pcommonid +
           "_" +

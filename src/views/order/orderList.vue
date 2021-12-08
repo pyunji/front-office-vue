@@ -13,7 +13,7 @@
             <v-divider/>
              
           </v-row>
-          <div v-for="(oneItem, i) in oneOrder.orderItemListMap" :key="i">
+          <div v-for="(oneItem, i) in oneOrder.orderHistoryItems" :key="i">
 
             <div class= "card mb-2" >
 

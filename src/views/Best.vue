@@ -1,7 +1,8 @@
 <!--컴포넌트 UI 정의-->
 <template>
-  <div class="deep-orange lighten-4 pa-8">
+  <div class="red lighten-3 pa-8">
     <v-carousel
+      style="height:100%"
       cycle
       show-arrows-on-hover
       hide-delimiters
