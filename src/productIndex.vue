@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <main-app-bar/>
+    <main-app-bar v-bind:pstockid="pstockid"/>
 
     <v-main>
         

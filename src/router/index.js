@@ -4,9 +4,7 @@ import Home from '../views/Home.vue'
 import New from '../views/New.vue'
 import Best from '../views/Best.vue'
 import product from './product'
-// import cart from './cart'
 import order from './order'
-import login from '../views/login.vue'
 import member from './member'
 
 Vue.use(VueRouter)

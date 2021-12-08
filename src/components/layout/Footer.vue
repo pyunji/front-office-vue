@@ -60,9 +60,15 @@
         <v-btn to="/">
           <v-icon>mdi-home-outline</v-icon>
         </v-btn>
-        <v-btn to="/product/categoryList">
-          <v-icon>mdi-heart-outline</v-icon>
+
+
+        <v-btn v-if="$store.getters['userStore/getUserId'] !== ''">
+          <v-icon @click="goWishList()">mdi-heart-outline</v-icon>
         </v-btn>
+        <v-btn v-else>
+          <v-icon @click="handleLogin()">mdi-account-outline</v-icon>
+        </v-btn>
+
         <v-btn v-if="$store.getters['userStore/getUserId'] !== ''">
           <v-icon @click="goOrderList()">mdi-account-outline</v-icon>
         </v-btn>
@@ -96,6 +102,9 @@ export default {
     },
     goOrderList() {
       this.$router.push("/order/orderlist");
+    },
+    goWishList() {
+      this.$router.push("/wishlist");
     },
     async showDepthItems(d1Name, d2Name, d3Name) {
       // 사용자가 선택한 depth를 store에 저장

@@ -1,7 +1,6 @@
 <!-- 컴포넌트 UI 정의 -->
 <template>
   <v-card outlined>
-    <div>{{withitems}}</div>
     <div class="position-relative position-relative-example">
       <v-carousel hide-delimiters show-arrows-on-hover>
         <v-carousel-item :src="`${detail.product.img1}`">
