@@ -6,6 +6,12 @@ import store from './store'
 import axios from './apis/axiosConfig'
 import vuetify from './plugins/vuetify'
 
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
+
 Vue.config.productionTip = false
 
 /* Cart에서 cartFooter로 총 가격 데이터 전달 */

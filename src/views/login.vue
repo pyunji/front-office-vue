@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="card-header" style="text-align:center; font-weight: bold; font-size:18px">
+      Login
+    </div>
     <div class="card-body">
       <div v-if="$store.getters['userStore/getUserId'] === ''">
         <div class="form-group">
@@ -10,18 +13,15 @@
           <label for="userPassword" class="col-form-label">User Password</label>
           <input type="text" class="form-control" v-model="user.password"/>
         </div>
-        <button class="btn btn-info btn-sm" v-on:click="handleLogin">로그인</button>
+        <div style="text-align:right"><b-button variant="primary" class="mt-2" v-on:click="handleLogin">로그인</b-button></div>
+        <div style="text-align:right"><a>현재 회원이 아니신가요?  </a><b-button variant="primary" class="mt-2" v-on:click="handleJoin()">회원 가입</b-button></div>
       </div>
-      <div v-if="$store.getters['userStore/getUserId'] !== ''">
-        <button class="btn btn-info btn-sm mr-2" v-on:click="handleLogout">로그아웃</button>
-      </div>
-      <button class="btn btn-info btn-sm ma-2 mt-2" v-on:click="goUrl()">회원 가입</button>
     </div>
-      <alert-dialog
-      :message="alertDialogMessage"
-      :loading="loading"
-      v-if="alertDialog"
-      @close="alertDialog = false"/>
+    <alert-dialog
+    :message="alertDialogMessage"
+    :loading="loading"
+    v-if="alertDialog"
+    @close="alertDialog = false"/>
   </div>
 </template>
 
@@ -48,7 +48,7 @@ export default {
   }),
     // 컴포넌트 메서드 정의
   methods: {
-    goUrl() {
+    handleJoin() {
       this.$router.push({path:"/join"}).catch(()=>{});
     },
     async handleLogin() {

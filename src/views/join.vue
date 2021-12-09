@@ -1,30 +1,29 @@
 <!--컴포넌트 UI 정의-->
 <template>
   <div>
-    <div class="card mt-5">
-      <div class="card-header">
-        회원 가입
+      <div class="card-header" style="text-align:center; font-weight: bold; font-size:18px">
+        간편 회원 가입
       </div>
       <div class="card-body">
-        <div class="form-group">
+        <div  style="text-align:center;">자세한 정보는 마이페이지에서 수정이 가능합니다</div>
+        <div class="form-group mt-3">
           <label class="form-label">User ID</label>
           <input type="text" class="form-control" v-model="user.id" />
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label class="form-label">User Name</label>
           <input type="text" class="form-control" v-model="user.name" />
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label class="col-form-label">User Password</label>
           <input type="text" class="form-control" v-model="user.password" />
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label class="col-form-label">User Email</label>
           <input type="text" class="form-control" v-model="user.email" />
         </div>
-        <button class="btn btn-info btn-sm" v-on:click="handleJoin">가입</button>
+        <div style="text-align:right"><b-button variant="primary" class="mt-2" v-on:click="handleJoin">가입</b-button></div>
       </div>
-    </div>
     <alert-dialog
       :message="alertDialogMessage"
       :loading="loading"
