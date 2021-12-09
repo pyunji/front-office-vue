@@ -60,7 +60,6 @@
         <v-btn to="/">
           <v-icon>mdi-home-outline</v-icon>
         </v-btn>
-
         <v-btn v-if="$store.getters['userStore/getUserId'] !== ''">
           <v-icon @click="goWishList()">mdi-heart-outline</v-icon>
         </v-btn>

@@ -2,7 +2,6 @@
 <template>
   <v-card outlined>
     <div class="position-relative position-relative-example">
-
       <v-carousel hide-delimiters show-arrows-on-hover>
         <v-carousel-item v-if="detail != null" :src="`${detail.product.img1}`">
         </v-carousel-item>
