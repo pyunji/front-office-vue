@@ -15,7 +15,7 @@
     </template>
 
     <template v-slot:footer> 
-      <button class="btn btn-info btn-sm" v-on:click="closeAndPrev()">닫기</button>
+      <b-button variant="primary" class="mt-2" v-on:click="closeAndPrev()">닫기</b-button>
     </template>
   </modal-dialog-template>
 </template>
