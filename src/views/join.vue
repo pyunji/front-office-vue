@@ -8,21 +8,25 @@
         <div  style="text-align:center;">자세한 정보는 마이페이지에서 수정이 가능합니다</div>
         <div class="form-group mt-3">
           <label class="form-label">User ID</label>
-          <input type="text" class="form-control" v-model="user.id" />
+          <input type="text" class="form-control" v-model="user.id" placeholder="회원 ID 입력"/>
         </div>
-        <div class="form-group mt-2">
+        <div class="form-group mt-3">
           <label class="form-label">User Name</label>
-          <input type="text" class="form-control" v-model="user.name" />
+          <input type="text" class="form-control" v-model="user.name" placeholder="회원 이름 입력"/>
         </div>
-        <div class="form-group mt-2">
+        <div class="form-group mt-3">
           <label class="col-form-label">User Password</label>
-          <input type="text" class="form-control" v-model="user.password" />
+          <input type="text" class="form-control" v-model="user.password" placeholder="회원 PW 입력"/>
         </div>
-        <div class="form-group mt-2">
+        <div class="form-group mt-3">
           <label class="col-form-label">User Email</label>
-          <input type="text" class="form-control" v-model="user.email" />
+          <input type="text" class="form-control" v-model="user.email" placeholder="회원 이메일 입력(user@team2.com)"/>
         </div>
-        <div style="text-align:right"><b-button variant="primary" class="mt-2" v-on:click="handleJoin">가입</b-button></div>
+        <div class="form-group mt-3">
+          <label class="col-form-label">User Phone Number</label>
+          <input type="text" class="form-control" v-model="user.phone" placeholder="회원 핸드폰 번호 입력(01012345678)"/>
+        </div>
+        <div style="text-align:right"><b-button variant="primary" class="mt-3" v-on:click="handleJoin">가입</b-button></div>
       </div>
     <alert-dialog
       :message="alertDialogMessage"
@@ -48,11 +52,12 @@ export default {
     return {
       user: {
         id: "",
-        name: "사용자",
+        name: "",
         password: "",
         enabled: 1,
         role: "ROLE_USER",
-        email: "user@mycompany.com"
+        email: "",
+        phone:""
       },
       alertDialog: false,
       alertDialogMessage: "",

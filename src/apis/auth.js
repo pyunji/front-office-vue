@@ -17,7 +17,8 @@ function join(user) { //user={id:xxx, name:xxx, password:xxx, role:xxx, email:xx
       mpassword:  user.password,
       menabled:   user.enabled,
       mrole:      user.role,
-      memail:     user.email
+      memail:     user.email,
+      mphone:     user.phone
   }
   );
 }
