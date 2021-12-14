@@ -63,7 +63,6 @@ export default {
       // A || B  ==> A가 없다면 B
       context.commit("setUserId", sessionStorage.getItem("userId") || "");
       context.commit("setAuthToken", sessionStorage.getItem("authToken") || "");
-
       // authToken이 있을 경우 Axios의 공통 헤더에 Authorization을 추가
       if(context.state.authToken !== "") {
         axiosConfig.addAuthHeader(context.state.authToken);
@@ -82,6 +81,6 @@ export default {
 
       // 헤더 지우기
       axiosConfig.removeAuthHeader();
-    }
+    },
   },
 };

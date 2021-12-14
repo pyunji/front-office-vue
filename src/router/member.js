@@ -1,12 +1,27 @@
-//나중에 뺄것
 import Product from '../views/wishlist/Product.vue'
 import Brand from '../views/wishlist/Brand.vue'
+import Order from '../views/order/orderList.vue'
+import Coupon from '../views/mypage/Coupon.vue'
+import Mileage from '../views/mypage/Mileage.vue'
+import Grade from '../views/mypage/Grade.vue'
 
 export default [
   {
-    path: "/member/mypage",
-    component: () => import(/* webpackChunkName: "menu02" */ '../views/member/myPage'),
-
+    path: '/',
+    name: '',
+    component: () => import(/* webpackChunkName: "" */ '../myPageIndex'),
+    children: [
+      {
+        path:"/mypage",
+        components: {
+          default:Order,
+          order:Order,
+          coupon:Coupon,
+          mileage:Mileage,
+          grade:Grade
+        }
+      }
+    ]
   },
   {
     path: '/',
@@ -22,5 +37,15 @@ export default [
         }
       }
     ]
+  },
+  {
+    path: '/checkPW',
+    name: '',
+    component: () => import(/* webpackChunkName: "" */ '../views/mypage/CheckPW'),
+  },
+  {
+    path: '/updateForm',
+    name: '',
+    component: () => import(/* webpackChunkName: "" */ '../views/mypage/updateForm'),
   },
 ]
