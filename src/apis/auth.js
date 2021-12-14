@@ -24,15 +24,26 @@ function join(user) { //user={id:xxx, name:xxx, password:xxx, role:xxx, email:xx
 }
 
 function login(user) { //user={id:xxx, password:xxx}
-  console.log("데이터 바인딩 확인 id :", user.id);
-  console.log("데이터 바인딩 확인 id :", user.password);
+  // console.log("데이터 바인딩 확인 id :", user.id);
+  // console.log("데이터 바인딩 확인 id :", user.password);
   return instance.post(
     "/login",
     `mid=${user.id}&mpassword=${user.password}`
   );
 }
 
+function checkPW(id,password) {
+  // console.log("checkPW실행");
+  // console.log("데이터 바인딩 확인 id :", id);
+  // console.log("데이터 바인딩 확인 id :", password);
+  return instance.post(
+    "/checkPW",
+    `mid=${id}&mpassword=${password}`
+  );
+}
+
 export default {
   join,
   login,
+  checkPW
 }

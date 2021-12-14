@@ -68,7 +68,7 @@
         </v-btn>
 
         <v-btn v-if="$store.getters['userStore/getUserId'] !== ''">
-          <v-icon @click="goOrderList()">mdi-account-outline</v-icon>
+          <v-icon @click="goMyPage()">mdi-account-outline</v-icon>
         </v-btn>
         <v-btn v-else>
           <v-icon @click="handleLogin()">mdi-account-outline</v-icon>
@@ -98,8 +98,11 @@ export default {
       this.$store.dispatch("userStore/deleteAuth");
       this.$router.push("/");
     },
-    goOrderList() {
-      this.$router.push("/order/orderlist");
+    // goOrderList() {
+    //   this.$router.push("/order/orderlist");
+    // },
+    goMyPage() {
+      this.$router.push("/mypage");
     },
     goWishList() {
       this.$router.push("/wishlist");
