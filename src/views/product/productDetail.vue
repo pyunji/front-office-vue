@@ -87,13 +87,12 @@
     </div>
     <v-divider />
     <div>
-      함께 코디한 상품
+      <div style="fonst-weight: bold;">함께 코디한 상품</div>
       <v-container >
         <v-row>
           <v-col cols="3"> 
-
-             <v-img :src="`${withitems[0].img1}`"  v-if="withItems != null"></v-img>
-
+            
+             <v-img v-if="smryWithItems != null" :src="`${smryWithItems.smryWithItems[0].img1}`" @click="showDetail(smryWithItems.smryWithItems[0].pcolorid)"></v-img>
           </v-col>
           <v-col cols="8"> 
 
@@ -103,19 +102,19 @@
         <v-row>
           <v-col>
 
-          <div ml-2 style="font-weight:bold; font-size: 15px;"  v-if="withItems != null">{{withitems[0].bname}}</div> 
+          <div v-if="smryWithItems != null" ml-2 style="font-weight:bold; font-size: 15px;">{{smryWithItems.smryWithItems[0].bname}}</div> 
 
           </v-col>
         </v-row>
         <v-row>
           <v-col>
 
-          <div ml-2  v-if="withItems != null">{{withitems[0].pprice}}</div>
+          <div v-if="smryWithItems != null" ml-2>{{smryWithItems.smryWithItems[0].pprice}}</div>
 
           </v-col>
         </v-row>
       </v-container>
-    </div> -->
+    </div> 
   </v-card>
 </template>
 
@@ -135,8 +134,8 @@ export default {
       size_idx: 0,
       pstockid: null,
       quantity: 1,
-      withitems: [],
-
+      smryWithItems: null,
+      pcolorid: null,
       withProduct: null,
 
 
@@ -145,6 +144,26 @@ export default {
   },
   // 컴포넌트 메서드 정의
   methods: {
+    // showDetail(pcolorId){
+    //   const currentQuery = this.$route.query;
+
+    //   if(currentQuery.pcolorId == pcolorId){
+    //     console.log("pcolorId값이 동일하여 페이지를 이동하지 않습니다.");
+    //   }
+    //   else{
+    //   return this.$router.replace({
+    //     path: this.$route.path,
+    //     query: {
+    //       pcolorId : pcolorId,
+    //     }
+    //   })
+    // }
+    // },
+
+     showDetail(pcolorId){
+       this.$router.push(`/product/productDetail?pcolorId=${pcolorId}`).catch(() => {});
+       
+     },
     minus(arg) {
       if (arg > 1) this.quantity = arg - 1;
     },
@@ -220,12 +239,25 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+      
+      apiProduct.getWithItems(this.$route.query.pcolorId)
+      .then((response)=> {
+        console.log(response.data);
+        this.smryWithItems = response.data;
+        console.log(this.smryWithItems);
+      }) 
     //장바구니에 담기 위한 데이터 불러오기
   },
   updated() {
     console.log("updated 실행");
     this.$emit("productForCart", this.pstockid, this.quantity);
   },
+  watch:{
+    $route(to,form){
+      console.log("params만 바뀜: " + this.$route.query.pcolorId);
+     
+    }
+  }
 };
 </script>
 
