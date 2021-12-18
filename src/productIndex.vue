@@ -1,15 +1,10 @@
 <template>
   <v-app>
-    <main-app-bar/>
-
+    <main-app-bar v-bind:pstockid="pstockid"/>
     <v-main>
-        
       <v-container fluid >
-    
         <router-view @productForCart="handleEvent"/>
-        
       </v-container>
-      
     </v-main>
     <main-footer v-bind:pstockid="pstockid" v-bind:quantity="quantity"/>
   </v-app>

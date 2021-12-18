@@ -1,26 +1,26 @@
 <template>
-  <v-card flat>
-    <v-container fluid>
-      <v-row class="child-flex">
-        <div>
+  <v-card>
+    <v-footer app padless>
+      <v-row >
+        <v-col class="pa-0">
           <v-toolbar v-on:click="putShoppingBag()">
             <v-spacer />
-            <v-toolbar-title class="font-weight-bold">쇼핑백 담기</v-toolbar-title>
+            <v-toolbar-title class="font-weight-bold mb-2 ml-2">쇼핑백 담기</v-toolbar-title>
             <v-spacer />
           </v-toolbar>
-        </div>
+        </v-col>
 
-        <div>
+        <v-col class="pa-0">
           <v-toolbar dark>
             <v-spacer />
             <router-link to="/" style="text-decoration: none; color: inherit;">
-            <v-toolbar-title  class="font-weight-bold">바로 주문</v-toolbar-title>
+            <v-toolbar-title class="font-weight-bold mb-2 mr-2">바로 주문</v-toolbar-title>
             </router-link>
             <v-spacer />
           </v-toolbar>
-        </div>
+        </v-col>
       </v-row>
-    </v-container>
+    </v-footer>
   </v-card>
 </template>
 

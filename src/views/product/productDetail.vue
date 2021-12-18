@@ -1,21 +1,16 @@
 <!-- 컴포넌트 UI 정의 -->
 <template>
   <v-card outlined>
+    <div class="position-relative position-relative-example">
 
-    
-     <div class="position-relative position-relative-example"> 
+      <!-- Product images-->
+      <v-carousel class="mb-3" hide-delimiters show-arrows-on-hover>
+        <v-carousel-item v-if="detail != null" :src="`${detail.product.img1}`"></v-carousel-item>
+        <v-carousel-item  v-if="detail != null" :src="`${detail.product.img2}`"></v-carousel-item>
+        <v-carousel-item v-if="detail != null" :src="`${detail.product.img3}`"></v-carousel-item>
+      </v-carousel>
 
-      <v-carousel hide-delimiters show-arrows-on-hover>
-        <v-carousel-item v-if="detail != null" :src="`${detail.product.img1}`">
-        </v-carousel-item>
-                <v-carousel-item  v-if="detail != null" :src="`${detail.product.img2}`">
- 
-    </v-carousel-item>
-            <v-carousel-item v-if="detail != null" :src="`${detail.product.img3}`">
- 
-    </v-carousel-item>
-  </v-carousel>
-
+      <!-- Product colorchip-->
       <span class="ma-3"  v-for="(color, index) in colorList" v-bind:key="'c' + index">
         <span>
           <button @click="changeColor(index)">
@@ -23,32 +18,47 @@
         ></span>
       </span>
 
-      <p  v-if="detail != null" class="ml-2 mt-3">{{ detail.product.bname }}</p>
+      <!-- Product brand-->
+      <p  v-if="detail != null" class="ml-2 mt-3" style="font-weight: bold">{{ detail.product.bname }}</p>
+      
+      <!-- Product name-->
       <h5 v-if="detail != null" class="ml-2">{{ detail.product.pname }}</h5>
-      <p v-if="detail != null" class="ml-2 mt-1">₩ {{ detail.product.pprice }}</p>
-      <p class="ml-2">품번 {{ pstockid }}</p>
-      <p  class="ml-2">사이즈</p>
-      <span align="center" class="ml-2" v-for="(size, index) in detail.sizes" v-bind:key="'s' + index">
-        <span v-if="size_idx === index"
-          ><v-btn depressed disabled @click="changeSize(index)"> {{ size.scode }} </v-btn></span
-        >
-        <span v-else
-          ><v-btn depressed @click="changeSize(index)"> {{ size.scode }} </v-btn></span
-        >
-      </span>
-      <div class="mt-2 ml-2">
+
+      <!-- Product price-->
+      <p v-if="detail != null" class="ml-2 mt-2">₩ {{ detail.product.pprice }}</p>
+
+      <!-- Product pstockid-->
+      <p class="ml-2 mb-5">품번 {{ pstockid }}</p>
+
+      <!-- Product size-->
+      <div class="ma-2">
+        <p>사이즈</p>
+        <span v-for="(size, index) in detail.sizes" v-bind:key="'s' + index">
+          <span v-if="size_idx === index">
+            <v-btn class="mr-1 mb-1" depressed disabled @click="changeSize(index)"> {{ size.scode }} </v-btn>
+          </span>
+          <span v-else>
+            <v-btn class="mr-1 mb-1" depressed @click="changeSize(index)"> {{ size.scode }} </v-btn>
+          </span>
+        </span>
+      </div>
+
+      <!-- Product quantity -->
+      <div class="ma-2 mt-5">
         <p>수량</p>
         <span>
-          <button @click="minus(quantity)" class="mr-2">-</button>
+          <button @click="minus(quantity)" class="mr-3">-</button>
           <input :value="quantity" size="1" maxlength="2" />
           <button @click="plus(quantity)" style="margin: 0px">+</button>
         </span>
       </div>
-      <v-divider />
-      <p v-if="detail != null">{{ detail.product.pnote }}</p>
 
       <v-divider />
 
+      <!-- Product note -->
+      <p v-if="detail != null" class="ma-2 mb-4">{{ detail.product.pnote }}</p>
+
+      <!-- Product image -->
       <img v-if="detail != null" v-bind:src="`${detail.colors[this.color_idx].img1}`" width="100%" class="mb-3" />
       <img v-if="detail != null" v-bind:src="`${detail.colors[this.color_idx].img2}`" width="100%" class="mb-3" />
       <img v-if="detail != null" v-bind:src="`${detail.colors[this.color_idx].img3}`" width="100%" class="mb-3" /> 
@@ -80,7 +90,7 @@
             <v-list-item-title class="">배송 및 교환/반품</v-list-item-title>
           </template>
         </v-list-group>
-        <v-list-group class="nav-item mt-2">
+        <v-list-group>
           <template v-slot:activator><v-list-item-title class="">Q&A</v-list-item-title></template>
         </v-list-group>
       </v-list>

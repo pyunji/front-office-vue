@@ -1,11 +1,10 @@
+<!--컴포넌트 UI 정의-->
 <template>
   <v-card>
     <v-toolbar flat>
       <v-spacer></v-spacer>
-      <v-toolbar-title>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| THE | HANDSOME |</v-toolbar-title>
-
+      <v-toolbar-title style="font-weight: bold; font-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;좋아요</v-toolbar-title>
       <v-spacer></v-spacer>
-
       <v-btn icon>
         <v-icon @click="goCart()">mdi-shopping-outline</v-icon>
       </v-btn>
@@ -29,43 +28,40 @@
    <v-container class="pa-0">
       <v-tabs-items v-model="tab" >
         <v-tab-item v-for="item in items" :key="item.tab" >
-          <!-- <v-card flat > -->
-            <router-view :name="componentName" ></router-view>
-            <!-- <v-card-text v-text="text"></v-card-text> -->
-          <!-- </v-card> -->
+          <router-view :name="componentName" ></router-view>
         </v-tab-item>
       </v-tabs-items>
     </v-container>
-    
   </v-card>
 </template>
 
 <script>
 export default {
-  name: "AppBar",
+  name:"WishBar",
   data() {
     return {
       tab: null,
       items: [
-        { tab: "홈", path: "home" },
-        { tab: "신상품", path: "new" },
-        { tab: "베스트", path: "best" },
+        { tab: "상품", path: "product" },
+        { tab: "브랜드", path: "brand" },
       ],
-      componentName: "home",
+      componentName: "product",
     };
   },
-  methods: {
+  //컴포넌트 메소드 정의
+  methods:{
     changeComponent(item) {
       this.componentName = item.path;
     },
     goCart() {
-      console.log("goCart() 실행");
-      if(this.$store.getters["userStore/getUserId"]==='') {
-        this.$router.push("/login");
-      } else {
-        this.$router.push("/cart");
-      }
+      this.$router.push("/cart");
     }
-  },
-};
+  }
+}
 </script>
+
+<!--컴포넌트 스타일 정의-->
+<!--scoped를 생략하면 전역으로 사용-->
+<style scoped>
+
+</style>

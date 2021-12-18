@@ -3,39 +3,41 @@
 <div>
   <div v-if="page!=null">
     <div>
-      <section class="py-5">
-        <div class="container px-4 px-lg-5 mt-5">
-          <div class="row gx-4 gx-lg-5 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div v-for="product in page.products" :key="product.pcommonid">
+      <section >
+        <div class="mt-5 ml-5 mb-2">{{$store.getters["productStore/getDepth"].d1Name}} > {{$store.getters["productStore/getDepth"].d2Name}} > {{$store.getters["productStore/getDepth"].d3Name}}</div>
+        <div class="container">
+          <div class="row row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div v-for="product in page.products" :key="product.pcommonid" class="mb-4">
               <v-card class="h-100 mx-auto" width="200" @click="showDetail(product.colorList[0].pcolorId)" >
-									<!-- Product image-->
+                <!-- Product image-->
+                <div class="text-center">
+                <div class="mb-3" >
+                      <img :src="`${product.colorList[0].img1}`" width="100%" />
+                </div>
+
+                <!-- Product colorchip-->
+                <span class="ma-2" v-for="(clist,index) in product.colorList" :key="index">
+                  <span> <button> <v-img :src="`${clist.color_img}`" width="20" height="20"/></button></span>
+                </span>
+                </div>
+
+                <!-- Product details-->
+                <v-card-text class="card-body p-2">
                   <div class="text-center">
-                  <div class="mb-3" >
-                        <img :src="`${product.colorList[0].img1}`" width="100%" />
-									</div>
-
-                  <span class="ma-2" v-for="(clist,index) in product.colorList" :key="index">
-                    <span> <button> <v-img :src="`${clist.color_img}`" width="20" height="20"/></button></span>
-                  </span>
+                    <!-- 브랜드 명-->
+                    <div class="fw-bolder mb-1 brand_name" style="font-weight: bold">{{product.bname}}</div>
+                    <!-- 상품명-->
+                    <div class="fw-bolder mb-1 name">{{product.pname}}</div>
+                    <!-- 가격-->
+                    <div class="fw-bolder mb-1 price">
+                      <span>₩{{product.colorList[0].pprice}}</span>
+                    </div>
                   </div>
-
-									<!-- Product details-->
-									<v-card-text class="card-body p-2">
-										<div class="text-center">
-											<!-- 브랜드 명-->
-											<div class="fw-bolder mb-1 brand_name" style="font-weight: bold">{{product.bname}}</div>
-											<!-- 상품명-->
-											<div class="fw-bolder mb-1 name">{{product.pname}}</div>
-											<!-- 가격-->
-											<div class="fw-bolder mb-1 price">
-                        <span>₩{{product.colorList[0].pprice}}</span>
-											</div>
-
-										</div>
-									</v-card-text>
+                </v-card-text>
+                
               </v-card>
-              </div>
             </div>
+          </div>
         </div>
         <v-container>
                 <div style="text-align: center;">

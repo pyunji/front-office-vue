@@ -1,13 +1,12 @@
+<!--컴포넌트 UI 정의-->
 <template>
   <v-card>
     <v-toolbar flat>
       <v-spacer></v-spacer>
-      <v-toolbar-title>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| THE | HANDSOME |</v-toolbar-title>
-
+      <v-toolbar-title style="font-weight: bold; font-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마이페이지</v-toolbar-title>
       <v-spacer></v-spacer>
-
       <v-btn icon>
-        <v-icon @click="goCart()">mdi-shopping-outline</v-icon>
+        <v-icon @click="goBack()">mdi-close</v-icon>
       </v-btn>
 
       <template v-slot:extension>
@@ -29,43 +28,44 @@
    <v-container class="pa-0">
       <v-tabs-items v-model="tab" >
         <v-tab-item v-for="item in items" :key="item.tab" >
-          <!-- <v-card flat > -->
-            <router-view :name="componentName" ></router-view>
-            <!-- <v-card-text v-text="text"></v-card-text> -->
-          <!-- </v-card> -->
+          <router-view :name="componentName" ></router-view>
         </v-tab-item>
       </v-tabs-items>
     </v-container>
-    
   </v-card>
 </template>
 
 <script>
 export default {
-  name: "AppBar",
+  name:"mypageBar",
+  components: {
+  },
   data() {
     return {
       tab: null,
       items: [
-        { tab: "홈", path: "home" },
-        { tab: "신상품", path: "new" },
-        { tab: "베스트", path: "best" },
+        { tab: "주문", path: "order" },
+        { tab: "쿠폰", path: "coupon" },
+        { tab: "마일리지", path: "mileage" },
+        { tab: "등급", path: "grade" },
       ],
-      componentName: "home",
+      componentName: "order",
     };
   },
-  methods: {
+  //컴포넌트 메소드 정의
+  methods:{
     changeComponent(item) {
       this.componentName = item.path;
     },
-    goCart() {
-      console.log("goCart() 실행");
-      if(this.$store.getters["userStore/getUserId"]==='') {
-        this.$router.push("/login");
-      } else {
-        this.$router.push("/cart");
-      }
+    goBack() {
+      this.$router.go(-1);
     }
-  },
-};
+  }
+}
 </script>
+
+<!--컴포넌트 스타일 정의-->
+<!--scoped를 생략하면 전역으로 사용-->
+<style scoped>
+
+</style>

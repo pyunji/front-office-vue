@@ -18,7 +18,7 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              <button class="modal-default-button btn btn-info btn-sm" @click="$emit('close')">닫기</button>
+              <b-button variant="primary" class="mt-2" @click="$emit('close')">닫기</b-button>
             </slot>
           </div>
         </div>
