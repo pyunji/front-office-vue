@@ -1,17 +1,28 @@
 <!--컴포넌트 UI 정의-->
 <template>
   <v-card>
-    <v-card-title>등급페이지</v-card-title>
-    <v-card-text></v-card-text>
+    <v-card-title></v-card-title>
+    <v-card-text>
+      <div>
+      <user-grade/>
+      </div>
+      <div class="mt-5">
+        <grade-info/>
+      </div>
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
+import GradeInfo from '../../components/myPage/gradeInfo.vue';
+import UserGrade from '../../components/myPage/userGrade.vue';
 export default {
   //컴포넌트의 대표 이름(devtools에 나오는 이름)
   name:"Grade",
   //추가하고 싶은 컴포넌트들 목록
   components:{
+    UserGrade,
+    GradeInfo,
   },
   //컴포넌트 데이터 정의
   data: function() {
