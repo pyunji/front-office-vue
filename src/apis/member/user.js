@@ -36,8 +36,18 @@ function wthdMember(mid) {
  return instance.post("/member/wthd",`mid=${mid}`);
 }
 
+function getGradeInfo() {
+  return instance.get("/grade")
+}
+
+function getUserGrade() {
+  return instance.get("/member/grade");
+}
+
 export default {
   getUserInfo,
   updateUserInfo,
   wthdMember,
+  getGradeInfo,
+  getUserGrade
 }
