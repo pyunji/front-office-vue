@@ -4,7 +4,7 @@
     <!--<p>cartItems:{{ cartItems }}</p>-->
     <!-- //cart에서 여기로 넘어오는 데이터를 확인하고, 상품 정보를 보여주세요 -->
     <form @submit.prevent="submit">
-      
+       
       <v-card class="p-3" outlined>
         <div>
           <div style="font-weight: bold" class="mb-2">
@@ -78,6 +78,7 @@
             :error-messages="errors"
             label="이름"
             required
+            
           ></v-text-field>
         </validation-provider>
         <validation-provider v-slot="{ errors }" name="phoneNumber" rules="required|max:11">
@@ -113,14 +114,36 @@
           <v-radio label="계좌이체" value="cash"></v-radio>
         </v-radio-group>
       </v-card>
+            <v-card class="p-3 mt-3" outlined>
+        <div style="font-weight: bold">마일리지 사용 여부</div>
+      <v-container fluid>
+      <v-row>
+      <v-col cols="4">
+      </v-col>
+      <v-col cols="8">
+        <v-text-field
+          v-model="orders.usedMileage" type="number"
+          suffix="Mileage" :max="10000" :min="0"
+        ></v-text-field>
+      </v-col>
+    </v-row>
+  </v-container>
+      </v-card>
       <v-card class="p-3 mt-3" outlined>
-        <div style="font-weight: bold">최종 결제 금액
+        <div style="font-weight: bold">할인 전 금액
           <div style="float: right">{{ totalPrice }}원</div>
         </div>
-
-        
+        <div style="font-weight: bold">최종 결제 금액
+          <div style="float: right">{{ totalPrice - orders.usedMileage }}원</div>
+        </div>       
       </v-card>
-            <validation-provider v-slot="{ errors }" rules="required" name="checkbox">
+
+      <v-card>
+        <div style="font-weight: bold">적립마일리지
+          <div style="float: right">{{ totalPrice * memberInfo.grate / 100 }}Mileage</div>
+        </div>
+      </v-card>
+      <validation-provider v-slot="{ errors }" rules="required" name="checkbox">
         <v-checkbox
           v-model="checkbox"
           :error-messages="errors"
@@ -183,14 +206,19 @@ export default {
   },
   data: () => ({
     orders: {
-      oreceiver: "",
-      ophone: "",
-      otel: "",
-      oemail: "",
-      ozipcode: "",
-      oaddress: "",
-      memo: "",
+      oreceiver: "서회형",
+      ophone: "01012345678",
+      otel: "021234567",
+      oemail: "shh@hansome.com",
+      ozipcode: "12345",
+      oaddress: "서울시 강남구 테헤란로98길 12",
+      memo: "주문 테스트 기본값",
       paymentMethodCode: "card",
+      usedMileage: 0,
+      beforeDcPrice: 0,
+      afterDcPrice: 0,
+      addMileage: 0,
+
       // cartItems: []
     },
     checkbox: null,
@@ -200,6 +228,7 @@ export default {
     totalPrice: 0,
     memberInfo: {},
     show: false,
+    
   }),
   props: {
     initCartItems: Array,
@@ -222,11 +251,18 @@ export default {
                     this.show = !this.show;
                 },
     async toOrderComplete(){
+      this.orders.beforeDcPrice = this.totalPrice;
+      this.orders.afterDcPrice = this.totalPrice - this.orders.usedMileage;
+      this.orders.addMileage = (this.totalPrice * this.memberInfo.grate) / 100;
+
       let orderAllInfo = {
         "orders": this.orders,
         "cartItems": this.cartItems
       };
       let oid="";
+      console.log(this.orders.beforeDcPrice);
+      console.log(this.orders.afterDcPrice);
+
       await orderform.makeOrder(orderAllInfo)
         .then((response) => {
           oid = response.data;
@@ -261,10 +297,17 @@ export default {
     for (step = 0; step < this.cartLength; step++) {
       this.totalPrice += this.cartItems[step].appliedPrice;
     }
-
+    console.log(this.totalPrice);
     console.log("데이터 바인딩 확인 =", this.cartItems);
     console.log("Member 데이터 바인딩 확인 =", this.memberInfo);
   },
+
+  computed:{
+    'orders.usedMileage' : function(){
+      console.log(this.orders.afterDcprice);
+      return  this.orders.afterDcprice - this.orders.usedMileage;
+    }
+  }
 };
 </script>
 

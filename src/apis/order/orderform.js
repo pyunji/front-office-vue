@@ -30,9 +30,13 @@ function makeOrder(orders) {
 function orderComplete(oid) {
   return instance.get(`/order/ordercomplete?oid=${oid}`);
 }
+function getOrderMember(){
+  return instance.get("/member/orderMember");
+}
 
 export default {
   orderForm,
   makeOrder,
-  orderComplete
+  orderComplete,
+  getOrderMember,
 }
