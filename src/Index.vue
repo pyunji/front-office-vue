@@ -1,14 +1,8 @@
 <template>
   <v-app>
     <main-app-bar/>
-
-    <!-- <v-main>
-      <v-container fluid>
-        <router-view />
-      </v-container>
-    </v-main> -->
-
-    <main-footer/>
+    
+    <main-footer style="padding-bottom:50px"/>
   </v-app>
 </template>
 
