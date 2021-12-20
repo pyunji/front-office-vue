@@ -48,4 +48,16 @@ export default [
     name: '',
     component: () => import(/* webpackChunkName: "" */ '../views/mypage/updateForm'),
   },
+  {
+    path: '/',
+    name: '',
+    component: () => import(/* webpackChunkName: "" */ '../EventIndex'),
+    children: [
+      {
+        path:'/event',
+        name: 'event',
+        component: () => import(/* webpackChunkName: "" */ '../views/EventDetail'),
+      }
+    ]
+  },
 ]
