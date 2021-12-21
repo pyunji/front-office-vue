@@ -4,9 +4,9 @@
       <v-col cols="2" class="p-0">
         <!-- 카테고리 보여주기 시작 -->
         <v-navigation-drawer permanent class="mx-auto">
-          <v-list-item>
+          <v-list-item class="p-0">
             <v-list-item-content>
-              <v-list-item-title style="font-size: 0.7em; font-weight: bold"
+              <v-list-item-title class="text-center" style="font-size: 0.8em; font-weight: bold"
                 >베스트</v-list-item-title
               >
             </v-list-item-content>
@@ -21,7 +21,7 @@
             @click="changeItems(d1name)"
             class="m-0 p-0" link>
               <v-list-item-content> 
-                <v-list-item-title style="font-size: 0.2em">{{d1name}}</v-list-item-title>
+                <v-list-item-title class="font-weight-bold" style="font-size: 0.2em">{{d1name}}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
 
@@ -34,8 +34,8 @@
           <v-slide-item class="mr-3" v-for="(item, i) in items" :key="i">
             <v-card height="200" width="100" tile @click="showDetail(item.pcolorid)">
               <v-img :src="item.img1"/>
-              <div class="text-center" style="font-size: 0.8em">{{ item.bname }}</div>
-              <div class="text-center" style="font-size: 0.8em">{{ item.pprice }}</div>
+              <div class="text-center font-weight-bold" style="font-size: 0.75em">{{ item.bname }}</div>
+              <div class="text-center" style="font-size: 0.75em">{{ item.pprice | comma}}</div>
             </v-card>
           </v-slide-item>
         </v-slide-group>
@@ -53,7 +53,11 @@ export default {
     items: null,
     d1names: null,
   }),
-
+  filters: {
+    comma(val) {
+      return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+  },
   methods: {
     showDetail(pcolorId) {
       this.$router.push(`/product/productDetail?pcolorId=${pcolorId}`);
