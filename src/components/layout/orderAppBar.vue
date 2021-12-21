@@ -10,7 +10,7 @@
       
       
 
-      <v-toolbar-title >| THE | HANDSOME |</v-toolbar-title>
+      <v-toolbar-title class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HYUNDAI X TEAM2</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
