@@ -25,8 +25,13 @@ function selectForMain() {
   return instance.get("/event/main");
 }
 
+function getCoupon(eno) {
+  return instance.post("/event/coupon/"+eno);
+}
+
 export default {
   selectAllEvent,
   selectEvent,
   selectForMain,
+  getCoupon,
 }
