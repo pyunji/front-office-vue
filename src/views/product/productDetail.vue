@@ -25,7 +25,7 @@
       <h5 v-if="detail != null" class="ml-2">{{ detail.product.pname }}</h5>
 
       <!-- Product price-->
-      <p v-if="detail != null" class="ml-2 mt-2">₩ {{ detail.product.pprice }}</p>
+      <p v-if="detail != null" class="ml-2 mt-2">₩ {{ detail.product.pprice | comma }}</p>
 
       <!-- Product pstockid-->
       <p class="ml-2 mb-5">품번 {{ pstockid }}</p>
@@ -119,7 +119,7 @@
         <v-row>
           <v-col>
 
-          <div v-if="smryWithItems != null" ml-2>{{smryWithItems.smryWithItems[0].pprice}}</div>
+          <div v-if="smryWithItems != null" ml-2>{{smryWithItems.smryWithItems[0].pprice | comma}}</div>
 
           </v-col>
         </v-row>
@@ -136,6 +136,11 @@ export default {
   name: "productDetail",
   // 추가하고 싶은 컴포넌트를 등록
   components: {},
+  filters: {
+    comma(val) {
+      return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+  },
   // 컴포넌트에서 이용하는 데이터 정의
   data: function () {
     return {

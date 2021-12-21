@@ -6,7 +6,7 @@
       <section >
         <div class="mt-5 ml-5 mb-2">{{$store.getters["productStore/getDepth"].d1Name}} > {{$store.getters["productStore/getDepth"].d2Name}} > {{$store.getters["productStore/getDepth"].d3Name}}</div>
         <div class="container">
-          <div class="row row-cols-md-3 row-cols-xl-4 justify-content-center">
+          <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div v-for="product in page.products" :key="product.pcommonid" class="mb-4">
               <v-card class="h-100 mx-auto" width="200" @click="showDetail(product.colorList[0].pcolorId)" >
                 <!-- Product image-->
@@ -30,7 +30,7 @@
                     <div class="fw-bolder mb-1 name">{{product.pname}}</div>
                     <!-- 가격-->
                     <div class="fw-bolder mb-1 price">
-                      <span>₩{{product.colorList[0].pprice}}</span>
+                      <span>₩{{product.colorList[0].pprice | comma}}</span>
                     </div>
                   </div>
                 </v-card-text>
@@ -41,22 +41,22 @@
         </div>
         <v-container>
                 <div style="text-align: center;">
-                <v-btn small class="mt-2 ml-1" outlined color="indigo" @click="changePageNo(1)">처음</v-btn>
+                <v-btn small class="mt-2 ml-1 p-0" outlined color="indigo" @click="changePageNo(1)">처음</v-btn>
 
-                <v-btn small class="mt-2 ml-1" outlined color="blue-grey" 
+                <v-btn small class="mt-2 ml-1 p-0" outlined color="blue-grey" 
                         v-if="page.pager.groupNo > 1" 
                         @click="changePageNo(page.pager.startPageNo-1)">PREV</v-btn>
 
                 <v-btn small :color="`${(pageNo != page.pager.pageNo)?'':'error'}` "
-                        class="mt-2 ml-1"
+                        class="mt-2 ml-1 p-0"
                         v-for="pageNo in range(page.pager.startPageNo, page.pager.endPageNo)" :key="pageNo"
                         @click="changePageNo(pageNo)">{{pageNo}}</v-btn>
 
-                <v-btn small class="mt-2 ml-1" outlined color="blue-grey" 
+                <v-btn small class="mt-2 ml-1 p-0" outlined color="blue-grey" 
                         v-if="page.pager.groupNo < page.pager.totalGroupNo"
                         @click="changePageNo(page.pager.endPageNo+1)">NEXT</v-btn>
                 
-                <v-btn small class="mt-2 ml-1" outlined color="indigo" @click="changePageNo(page.pager.totalPageNo)">맨끝</v-btn>
+                <v-btn small class="mt-2 ml-1 p-0" outlined color="indigo" @click="changePageNo(page.pager.totalPageNo)">맨끝</v-btn>
               </div>
         </v-container>
       </section>
@@ -75,6 +75,11 @@ export default {
   //추가하고 싶은 컴포넌트들 목록
   components:{
     //ProductList
+  },
+  filters: {
+    comma(val) {
+      return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
   },
   //컴포넌트 데이터 정의
   data: function() {

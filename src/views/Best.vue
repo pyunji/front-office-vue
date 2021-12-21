@@ -18,7 +18,7 @@
         <h2 class="ma-3" style="font-weight: bold">베스트</h2>
         <div class="mt-4 ml-4" style="font-weight: bold">{{item.bname}}</div>
         <div class="ml-4">{{item.pname}}</div>
-        <div class="ml-4">{{item.pprice}}</div>
+        <div class="ml-4">{{item.pprice | comma}}</div>
       </v-carousel-item>
     </v-carousel>
     <v-select
@@ -37,6 +37,11 @@ export default {
   name:"Best",
   //추가하고 싶은 컴포넌트들 목록
   components:{
+  },
+  filters: {
+    comma(val) {
+      return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
   },
   //컴포넌트 데이터 정의
   data: () => ({

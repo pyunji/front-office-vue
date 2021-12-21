@@ -47,10 +47,10 @@
           </template>
           
           <v-list-item-content>
-            <v-list-item-title>할인 전 가격: {{initOrderItems.beforeDcPrice}}</v-list-item-title>
-            <v-list-item-title>할인 후 가격: {{initOrderItems.afterDcPrice}}</v-list-item-title>
+            <v-list-item-title>할인 전 가격: {{initOrderItems.beforeDcPrice | comma }}</v-list-item-title>
+            <v-list-item-title>할인 후 가격: {{initOrderItems.afterDcPrice | comma}}</v-list-item-title>
             <v-list-item-title>마일리지 반영 가격: {{usedMileage}}</v-list-item-title>
-            <v-list-item-title>총 가격 {{initOrderItems.totalPrice}}</v-list-item-title>
+            <v-list-item-title>총 가격: {{initOrderItems.afterDcPrice | comma}}</v-list-item-title>
           </v-list-item-content>
           
         </v-list-group>
@@ -108,6 +108,11 @@
 export default {
   //컴포넌트의 대표 이름(devtools에 나오는 이름)
   name: "",
+  filters: {
+    comma(val) {
+      return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+  },
   //추가하고 싶은 컴포넌트들 목록
   components: {},
   //컴포넌트 데이터 정의

@@ -26,7 +26,7 @@
                     <div class="fw-bolder mb-1 name">{{item.pname}}</div>
                     <!-- 가격-->
                     <div class="fw-bolder mb-1 price">
-                      <span>₩{{item.pprice}}</span>
+                      <span>₩{{item.pprice | comma}}</span>
                     </div>
                   </div>
                 </v-card-text>
@@ -61,6 +61,12 @@ export default {
     },
     showDetail(pcolorid) {
       this.$router.push(`/product/productDetail?pcolorId=${pcolorid}`);
+    },
+  },
+
+  filters: {
+    comma(val) {
+      return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
   beforeCreate() {
