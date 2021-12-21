@@ -53,20 +53,24 @@ export default {
       this.$router.push({ path: "/login" }).catch(() => {});
     },
     async getCoupon(eno) {
-      await eventApi.getCoupon(eno)
-        .then(response=>{
-          let result = response.data;
-          console.log(result);
-          if(result==='fail') {
-            alert("쿠폰 발급 실패 : 선착순이 마감되었습니다");
-          }else if(result=='fail_double') {
-            alert("쿠폰은 중복해서 받을 수 없습니다.");
-          }else {
-            alert("쿠폰이 발급되었습니다!");
-          }
-        }).catch((error)=>{
-          console.log(error);
-        });
+      if(this.event.estatus==0) {
+        alert("진행 예정 이벤트 입니다.");
+      }else{
+        await eventApi.getCoupon(eno)
+          .then(response=>{
+            let result = response.data;
+            console.log(result);
+            if(result==='fail') {
+              alert("쿠폰 발급 실패 : 선착순이 마감되었습니다");
+            }else if(result=='fail_double') {
+              alert("쿠폰은 중복해서 받을 수 없습니다.");
+            }else {
+              alert("쿠폰이 발급되었습니다!");
+            }
+          }).catch((error)=>{
+            console.log(error);
+          });
+      }
     }
   },
   created() {
