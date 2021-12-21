@@ -44,10 +44,20 @@ function getUserGrade() {
   return instance.get("/member/grade");
 }
 
+function getUserMileage() {
+  return instance.get("/member/mileage");
+}
+
+function getUserCoupon() {
+  return instance.get("/member/coupon");
+}
+
 export default {
   getUserInfo,
   updateUserInfo,
   wthdMember,
   getGradeInfo,
-  getUserGrade
+  getUserGrade,
+  getUserMileage,
+  getUserCoupon
 }

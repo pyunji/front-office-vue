@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar flat>
       <v-spacer></v-spacer>
-      <v-toolbar-title>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| THE | HANDSOME |</v-toolbar-title>
+      <v-toolbar-title class="font-weight-bold">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HYUNDAI X TEAM2 </v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -50,6 +50,7 @@ export default {
         { tab: "홈", path: "home" },
         { tab: "신상품", path: "new" },
         { tab: "베스트", path: "best" },
+        { tab: "이벤트", path: "event" },
       ],
       componentName: "home",
     };

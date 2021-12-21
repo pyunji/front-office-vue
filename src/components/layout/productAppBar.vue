@@ -9,7 +9,7 @@
         <v-icon>mdi-home</v-icon>
       </v-btn>-->
 
-      <v-toolbar-title @click="gohome()">| THE | HANDSOME |</v-toolbar-title>
+      <v-toolbar-title class="font-weight-bold" @click="gohome()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HYUNDAI X TEAM2</v-toolbar-title>
 
       <v-spacer></v-spacer>
 

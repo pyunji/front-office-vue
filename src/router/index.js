@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import New from '../views/New.vue'
 import Best from '../views/Best.vue'
+import Event from '../views/Event.vue'
 import product from './product'
 import order from './order'
 import member from './member'
@@ -32,6 +33,7 @@ const routes = [
           new: New,
           best: Best,
           home: Home,
+          event: Event,
         }
       }
     ]

@@ -5,29 +5,35 @@
     hide-delimiter-background
     delimiter-icon="mdi-minus">
     <v-carousel-item 
-      v-for="(item, i) in items" 
+      v-for="(event, i) in events" 
       :key="i"
-      :src="item.src">
+      :src="event.eimg"
+      @click="showEventDetail(event.eno)">
     </v-carousel-item>
   </v-carousel>
 </template>
 
 <script>
+import eventApi from "@/apis/member/event";
+
   export default {
     name: 'Event',
 
     data: () => ({
-    items: [
-        {
-          src: require('@/assets/photos/event.png')
-        },
-        {
-          src: require('@/assets/photos/event1.png')
-        },
-        {
-          src: require('@/assets/photos/event2.png')
-        },
-      ]
+      events:[],
     }),
+    methods:{
+      showEventDetail(eno) {
+        this.$router.push(`/event?eno=${eno}`);
+    },
+    },
+    created() {
+      eventApi.selectForMain()
+        .then((response)=>{
+          this.events = response.data;
+        }).catch((error)=>{
+          console.log(error);
+        });
+    }
   }
 </script>

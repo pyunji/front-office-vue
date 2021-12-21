@@ -2,7 +2,7 @@
 <v-card>
     <v-toolbar color="transparent" flat>
       <v-spacer></v-spacer>
-      <v-toolbar-title @click="goHome()">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| THE | HANDSOME |</v-toolbar-title>
+      <v-toolbar-title class="font-weight-bold" @click="goHome()">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HYUNDAI X TEAM2</v-toolbar-title>
 
       <v-spacer></v-spacer>
 

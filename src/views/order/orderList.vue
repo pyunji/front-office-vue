@@ -7,7 +7,7 @@
           <div v-for="(oneOrder, j) in allOrders" :key="j">
           <v-row>
             <v-col cols="12">
-              <div @click="goToOrderComplete(oneOrder.oid)" style="font-weight: bold; font-size: large">주문 날짜<btn style="float: right;"><v-icon>mdi-chevron-right</v-icon></btn></div> 
+              <div @click="goToOrderComplete(oneOrder.oid)" style="font-weight: bold; font-size: large"><span>주문 날짜 {{oneOrder.orderHistoryItems[0].odate}}</span><btn style="float: right;"><v-icon>mdi-chevron-right</v-icon></btn></div> 
 
             </v-col>
             <v-divider/>
@@ -38,7 +38,7 @@
                   <div style="font-weight: bold; ">{{oneItem.bname}}</div>
                   <div>{{oneItem.pname}}</div>
                   <div>{{oneItem.ccode}} | {{oneItem.scode}} | {{oneItem.ocount}} 개</div>
-                  <div style="font-weight: bold; font-size: large">{{oneItem.totalPrice}}원</div>
+                  <div style="font-weight: bold; font-size: large">{{oneItem.totalPrice | comma}}원</div>
                 
 
               </v-col>
@@ -83,6 +83,11 @@ export default {
     return {
       allOrders : [],
     };
+  },
+  filters: {
+    comma(val) {
+      return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
   },
   //컴포넌트 메소드 정의
   methods: {

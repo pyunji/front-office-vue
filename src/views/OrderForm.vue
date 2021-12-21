@@ -33,7 +33,7 @@
                     {{ productInCart.quantity }} 개
                   </div>
                   <div>
-                    {{ productInCart.pprice }} 원
+                    {{ productInCart.pprice | comma }} 원
                   </div>
                   </v-col>
                   <v-col cols="1">
@@ -131,10 +131,10 @@
       </v-card>
       <v-card class="p-3 mt-3" outlined>
         <div style="font-weight: bold">할인 전 금액
-          <div style="float: right">{{ totalPrice }}원</div>
+          <div style="float: right">{{ totalPrice | comma }}원</div>
         </div>
         <div style="font-weight: bold">최종 결제 금액
-          <div style="float: right">{{ totalPrice - orders.usedMileage }}원</div>
+          <div style="float: right">{{ totalPrice - orders.usedMileage | comma}}원</div>
         </div>       
       </v-card>
 
@@ -203,6 +203,11 @@ export default {
   components: {
     ValidationProvider,
     ValidationObserver,
+  },
+  filters: {
+    comma(val) {
+      return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
   },
   data: () => ({
     orders: {
