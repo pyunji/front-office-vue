@@ -17,6 +17,13 @@
     </div>
     <div class="text-center">
       <div class="mb-3" >
+        <button v-if="$store.getters['userStore/getUserId'] === ''"
+                @click="handleLogin()">쿠폰 발급</button>
+        <button v-else @click="getCoupon(event.eno)">쿠폰 발급</button>
+      </div>
+    </div>
+    <div class="text-center">
+      <div class="mb-3" >
         <img src="../assets/photos/eventDetail.png" width="100%" />
       </div>
     </div>
@@ -40,6 +47,27 @@ export default {
   },
   //컴포넌트 메소드 정의
   methods:{
+    handleLogin() {
+      console.log("handleLogin()실행");
+      alert("로그인이 필요합니다");
+      this.$router.push({ path: "/login" }).catch(() => {});
+    },
+    async getCoupon(eno) {
+      await eventApi.getCoupon(eno)
+        .then(response=>{
+          let result = response.data;
+          console.log(result);
+          if(result==='fail') {
+            alert("쿠폰 발급 실패 : 선착순이 마감되었습니다");
+          }else if(result=='fail_double') {
+            alert("쿠폰은 중복해서 받을 수 없습니다.");
+          }else {
+            alert("쿠폰이 발급되었습니다!");
+          }
+        }).catch((error)=>{
+          console.log(error);
+        });
+    }
   },
   created() {
     eventApi.selectEvent(this.$route.query.eno)
