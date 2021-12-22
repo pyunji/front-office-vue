@@ -51,7 +51,12 @@ export default {
   //컴포넌트 메소드 정의
   methods:{
     showDetail(pcolorId) {
-      this.$router.push(`/product/productDetail?pcolorId=${pcolorId}`);
+      this.$router.push({
+        name: "productdetail",
+        params: {
+          initPcolorid: pcolorId
+        }
+      });
     },
     change() {
       main.getNewItems(this.d1name).then(response => {

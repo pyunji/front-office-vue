@@ -61,7 +61,7 @@
               <div v-if="cartItem.stock < 5 && cartItem.stock > 0">재고 {{cartItem.stock}}개 남음</div>
               <div v-if="cartItem.stock >= 5">재고 5개 이상</div>
               <div v-if="cartItem.stock <= 0 ">품절</div>
-              <div style="font-weight: bold; font-size: large">{{ cartItem.pprice | comma }}원</div>
+              <div style="font-weight: bold; font-size: large; color: #959ace;">{{ cartItem.pprice | comma }}원</div>
               
             </v-col>
           </v-row>

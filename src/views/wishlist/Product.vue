@@ -1,9 +1,9 @@
 <!--컴포넌트 UI 정의-->
 <template>
-  <div>
+  <div style="background-color: #fdeeda;">
     <section>
       <div class="container mt-2">
-        <div class="row row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="row row-cols-2 row row-cols-md-3 row-cols-xl-4 justify-content-center">
           <div v-for="(item, i) in wishItems" :key="i" class="mb-4">
             <v-card class="h-100 mx-auto" width="180" @click="showDetail(item.pcolorid)">
               <!-- Product image-->
@@ -59,8 +59,13 @@ export default {
     gohome() {
       this.$router.push("/");
     },
-    showDetail(pcolorid) {
-      this.$router.push(`/product/productDetail?pcolorId=${pcolorid}`);
+    showDetail(pcolorId) {
+      this.$router.push({
+        name: "productdetail",
+        params: {
+          initPcolorid: pcolorId
+        }
+      });
     },
   },
 

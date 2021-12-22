@@ -1,0 +1,28 @@
+.v-toolbar__title {
+  color: #000051;
+}
+
+
+.black {
+  background-color: #000051 !important;
+}
+
+.v-bottom-navigation {
+  background-color: #000051 !important;
+}
+
+*{
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+test {
+  background-color: #d7dafd !important;
+}
+
+test1 {
+  background-color: #f7f1e9 !important;
+}
+
+test2 {
+  background-color: #fdeeda !important;
+}

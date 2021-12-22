@@ -1,18 +1,18 @@
 <template>
   <div>
-    <v-navigation-drawer app width="340" color="white" v-model="drawer">
-      <v-list-item>
+    <v-navigation-drawer app width="340" v-model="drawer" style="background-color: #d7dafd;">
+      <v-list-item style="background-color: #000051;">
         <v-list-item-content>
-          <v-list-item-title v-if="$store.getters['userStore/getUserId'] !== ''" class="text-h6">
+          <v-list-item-title style="color: #ffffff; text-align: center;" v-if="$store.getters['userStore/getUserId'] !== ''" class="text-h6">
             {{ $store.getters["userStore/getUserId"] }}회원님 반갑습니다.
           </v-list-item-title>
           <v-list-item-title v-else class="text-h6"> 현재 로그인이 필요합니다 </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
-      <v-divider></v-divider>
+      <v-divider class="m-0"></v-divider>
 
-      <v-list>
+      <v-list  style="background-color: #d7dafd;">
         <div v-for="(value, i1) in Categories" :key="i1">
           <div v-for="(value2, i2) in value" :key="i2">
             <v-list-group v-for="(value3, d1name) in value2" :key="d1name">
@@ -42,7 +42,7 @@
         </div>
       </v-list>
       <template v-slot:append>
-        <div class="pa-2">
+        <div class="pa-2"  style="background-color: #d7dafd;">
           <v-btn
             v-if="$store.getters['userStore/getUserId'] !== ''"
             block
@@ -55,7 +55,7 @@
       </template>
     </v-navigation-drawer>
     <v-footer app padless>
-      <v-bottom-navigation class="black" absolute dark>
+      <v-bottom-navigation absolute dark>
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-btn to="/">
           <v-icon>mdi-home-outline</v-icon>
@@ -129,3 +129,8 @@ export default {
   },
 };
 </script>
+<style>
+.black {
+  background-color: #000051 !important;
+}
+</style>
