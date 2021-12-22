@@ -96,6 +96,7 @@ const routes = [
         path:'/product/productdetail',
         name: 'productdetail',
         component: () => import(/* webpackChunkName: "orderform" */ '../views/product/productDetail'),
+        props: true
       }
     ]
   },

@@ -60,7 +60,12 @@ export default {
   },
   methods: {
     showDetail(pcolorId) {
-      this.$router.push(`/product/productDetail?pcolorId=${pcolorId}`);
+      this.$router.push({
+        name: "productdetail",
+        params: {
+          initPcolorid: pcolorId
+        }
+      });
     },
     async changeItems(d1name) {
       await main.getBestItems(d1name)
