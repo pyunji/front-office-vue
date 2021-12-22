@@ -1,8 +1,10 @@
 <template >
-  <div>
+
+  <div style="background-color: #fdeeda;">
     <component  class="mt-6 mb-15  mr-4" v-bind:is="compName0"></component>
     <component  class="mt-6 mb-15 ml-4 mr-4" v-bind:is="compName1"></component>
     <component  class="mt-6 mb-15 ml-4 mr-4" v-bind:is="compName2"></component>
+
   </div>
   
 </template>

@@ -3,18 +3,18 @@
     <v-footer app padless>
       <v-row >
         <v-col class="pa-0">
-          <v-toolbar v-on:click="putShoppingBag()">
+          <v-toolbar style="background-color: #dddde0" v-on:click="putShoppingBag()">
             <v-spacer />
-            <v-toolbar-title class="font-weight-bold mb-2 ml-2">쇼핑백 담기</v-toolbar-title>
+            <v-toolbar-title  class="font-weight-bold mb-2 ml-2">쇼핑백 담기</v-toolbar-title>
             <v-spacer />
           </v-toolbar>
         </v-col>
 
         <v-col class="pa-0">
-          <v-toolbar dark>
+          <v-toolbar style="background-color: #000051;">
             <v-spacer />
             <router-link to="/" style="text-decoration: none; color: inherit;">
-            <v-toolbar-title class="font-weight-bold mb-2 mr-2">바로 주문</v-toolbar-title>
+            <v-toolbar-title class="font-weight-bold mb-2 mr-2" style="color: #ffffff;">바로 주문</v-toolbar-title>
             </router-link>
             <v-spacer />
           </v-toolbar>

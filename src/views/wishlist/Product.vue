@@ -1,6 +1,6 @@
 <!--컴포넌트 UI 정의-->
 <template>
-  <div>
+  <div style="background-color: #fdeeda;">
     <section>
       <div class="container mt-2">
         <div class="row row-cols-2 row row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -59,8 +59,13 @@ export default {
     gohome() {
       this.$router.push("/");
     },
-    showDetail(pcolorid) {
-      this.$router.push(`/product/productDetail?pcolorId=${pcolorid}`);
+    showDetail(pcolorId) {
+      this.$router.push({
+        name: "productdetail",
+        params: {
+          initPcolorid: pcolorId
+        }
+      });
     },
   },
 

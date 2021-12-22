@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <list-app-bar/>
-      <div id = "content" class="content">
-        <router-view></router-view>
+      <div id = "content" class="content" style="background-color: #fdeeda;">
+        <router-view ></router-view>
       </div>
-    <main-footer style="padding-bottom:70px"/>
+    <main-footer style="padding-bottom:55px"/>
   </v-app>
 </template>
 
