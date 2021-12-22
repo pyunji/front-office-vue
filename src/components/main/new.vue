@@ -1,9 +1,9 @@
 <template>
-  <v-card tile elevation="0">
+  <v-card tile elevation="0" style="background-color: #f7f1e9;">
     <v-row>
       <v-col cols="2" class="p-0">
         <!-- 카테고리 보여주기 시작 -->
-        <v-navigation-drawer permanent class="mx-auto">
+        <v-navigation-drawer permanent class="mx-auto" style="background-color: #f7f1e9;">
           <v-list-item class="p-0">
             <v-list-item-content>
               <v-list-item-title class="text-center" style="font-size: 0.8em; font-weight: bold"
@@ -32,7 +32,7 @@
       <v-col class="p-1" cols="10" align-self="center">
         <v-slide-group>
           <v-slide-item class="mr-3" v-for="(item, i) in items" :key="i">
-            <v-card height="200" width="100" tile @click="showDetail(item.pcolorid)">
+            <v-card height="200" width="100" tile @click="showDetail(item.pcolorid)" style="background-color: lightgray;">
               <v-img :src="item.img1"/>
               <div>
                 <div class="text-center font-weight-bold" style="font-size: 0.75em">{{ item.bname }}</div>

@@ -1,10 +1,10 @@
 <!--컴포넌트 UI 정의-->
 <template>
   <div>
-    <v-card class="mt-5 mb-8" outlined>
+    <v-card class="mt-5 mb-8" outlined style="background-color: #fdeeda;">
       <v-card-text>
         <v-container>
-          <div v-for="(oneOrder, j) in allOrders" :key="j">
+          <div v-for="(oneOrder, j) in allOrders" :key="j" >
           <v-row>
             <v-col cols="12">
               <div @click="goToOrderComplete(oneOrder.oid)" style="font-weight: bold; font-size: large"><span>주문 날짜 {{oneOrder.orderHistoryItems[0].odate}}</span><v-btn style="float: right; background-color: #ffffff;"><v-icon>mdi-chevron-right</v-icon></v-btn></div> 
@@ -15,7 +15,7 @@
           </v-row>
           <div v-for="(oneItem, i) in oneOrder.orderHistoryItems" :key="i">
 
-            <div class= "card mb-2" >
+            <div class= "card mb-2"  style="background-color: #f7f1e9;">
 
             <v-row>
               
@@ -44,7 +44,7 @@
               </v-col>
               <v-col cols="2"> </v-col>
             </v-row>
-            <button type="button" class="btn btn-secondary" style="color:white; font-weight: bold;"> 주문 배송 조회 </button>
+            <button type="button" class="btn btn-secondary" style="color:white; background-color: #959ace; font-weight: bold;"> 주문 배송 조회 </button>
             
           </div>
           </div>

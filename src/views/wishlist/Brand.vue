@@ -1,8 +1,8 @@
 <!--컴포넌트 UI 정의-->
 <template>
   <v-card>
-    <v-card-title>ㅋㅋ</v-card-title>
-    <v-card-text>ㅋ쿄</v-card-text>
+    <v-card-title>the CASHMERE</v-card-title>
+    <!-- <v-card-text>ㅋ쿄</v-card-text> -->
   </v-card>
 </template>
 

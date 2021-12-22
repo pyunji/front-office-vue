@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <main-app-bar v-bind:pstockid="pstockid"/>
-    <v-main>
+    <v-main style="background-color: #fdeeda;">
       <v-container fluid >
         <router-view/>
       </v-container>
