@@ -3,7 +3,7 @@
   <div>
     <section>
       <div class="container mt-2">
-        <div class="row row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="row row-cols-2 row row-cols-md-3 row-cols-xl-4 justify-content-center">
           <div v-for="(item, i) in wishItems" :key="i" class="mb-4">
             <v-card class="h-100 mx-auto" width="180" @click="showDetail(item.pcolorid)">
               <!-- Product image-->
