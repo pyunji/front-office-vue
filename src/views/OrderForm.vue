@@ -211,6 +211,8 @@ export default {
   },
   data: () => ({
     orders: {
+      // mname:this.initMemberInfo.mname,
+      mname:"",
       oreceiver: "서회형",
       ophone: "01012345678",
       otel: "021234567",
@@ -295,7 +297,7 @@ export default {
     // this.orders.cartItems = this.initCartItems;
     this.cartLength = this.initCartItems.length;
     this.memberInfo = this.initMemberInfo;
-
+    this.orders.mname = this.initMemberInfo.mname;
 
 
     var step;
