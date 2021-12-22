@@ -10,7 +10,7 @@
               <div class="text-center">
                 <div class="mb-1" >
                   <div class="wish-icon-div">
-                      <v-btn icon @click="gohome()">
+                      <v-btn icon @click="refresh()">
                         <v-icon color="red">mdi-heart</v-icon>
                       </v-btn>
                   </div>
@@ -56,8 +56,8 @@ export default {
   },
   //컴포넌트 메소드 정의
   methods:{
-    gohome() {
-      this.$router.push("/");
+    refresh() {
+      this.$router.go();
     },
     showDetail(pcolorId) {
       this.$router.push({
