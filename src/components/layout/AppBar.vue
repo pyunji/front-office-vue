@@ -50,6 +50,7 @@ export default {
         { tab: "홈", path: "home" },
         { tab: "신상품", path: "new" },
         { tab: "베스트", path: "best" },
+        { tab: "이벤트", path: "event" },
       ],
       componentName: "home",
     };

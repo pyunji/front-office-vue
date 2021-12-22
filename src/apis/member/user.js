@@ -48,11 +48,16 @@ function getUserMileage() {
   return instance.get("/member/mileage");
 }
 
+function getUserCoupon() {
+  return instance.get("/member/coupon");
+}
+
 export default {
   getUserInfo,
   updateUserInfo,
   wthdMember,
   getGradeInfo,
   getUserGrade,
-  getUserMileage
+  getUserMileage,
+  getUserCoupon
 }
