@@ -8,7 +8,6 @@
       <v-btn icon>
         <v-icon @click="goBack()">mdi-close</v-icon>
       </v-btn>
-    <keep-alive>
       <template v-slot:extension>
         <v-tabs v-model="tab" align-with-title
                 background-color="transparent"
@@ -18,10 +17,8 @@
           <v-tab class="ma-0 pa-0" v-for="item in items" :key="item.tab" @click="changeComponent(item)">
             <div style="font-weight: bold; font-size:18px; ">{{ item.tab }}</div>
           </v-tab>
-
         </v-tabs>
       </template>
-    </keep-alive>
     </v-toolbar>
 
    <v-container class="pa-0">
