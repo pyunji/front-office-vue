@@ -213,6 +213,7 @@ export default {
     orders: {
       // mname:this.initMemberInfo.mname,
       mname:"",
+      memail:"",
       oreceiver: "서회형",
       ophone: "01012345678",
       otel: "021234567",
@@ -298,6 +299,7 @@ export default {
     this.cartLength = this.initCartItems.length;
     this.memberInfo = this.initMemberInfo;
     this.orders.mname = this.initMemberInfo.mname;
+    this.orders.memail = this.initMemberInfo.memail;
 
 
     var step;
