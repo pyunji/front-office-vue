@@ -8,7 +8,7 @@
       <v-btn icon>
         <v-icon @click="goBack()">mdi-close</v-icon>
       </v-btn>
-
+    <keep-alive>
       <template v-slot:extension>
         <v-tabs v-model="tab" align-with-title
                 background-color="transparent"
@@ -22,7 +22,7 @@
 
         </v-tabs>
       </template>
-
+    </keep-alive>
     </v-toolbar>
 
    <v-container class="pa-0">
