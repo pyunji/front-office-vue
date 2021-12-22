@@ -55,7 +55,7 @@
       </template>
     </v-navigation-drawer>
     <v-footer app padless>
-      <v-bottom-navigation class="black" absolute dark>
+      <v-bottom-navigation absolute dark>
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-btn to="/">
           <v-icon>mdi-home-outline</v-icon>
@@ -129,3 +129,8 @@ export default {
   },
 };
 </script>
+<style>
+.black {
+  background-color: #000051 !important;
+}
+</style>

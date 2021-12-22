@@ -7,7 +7,7 @@
           <div v-for="(oneOrder, j) in allOrders" :key="j">
           <v-row>
             <v-col cols="12">
-              <div @click="goToOrderComplete(oneOrder.oid)" style="font-weight: bold; font-size: large"><span>주문 날짜 {{oneOrder.orderHistoryItems[0].odate}}</span><btn style="float: right;"><v-icon>mdi-chevron-right</v-icon></btn></div> 
+              <div @click="goToOrderComplete(oneOrder.oid)" style="font-weight: bold; font-size: large"><span>주문 날짜 {{oneOrder.orderHistoryItems[0].odate}}</span><v-btn style="float: right; background-color: #ffffff;"><v-icon>mdi-chevron-right</v-icon></v-btn></div> 
 
             </v-col>
             <v-divider/>

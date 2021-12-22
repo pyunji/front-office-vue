@@ -47,13 +47,19 @@ const routes = [
         path:"/product/list",
         name: 'list',
         component: () => import(/* webpackChunkName: "list" */ '../views/product/List'),
-      }
+      },
+      {
+        path: "/order/ordercomplete",
+        name: 'ordercomplete',
+        component: () => import(/* webpackChunkName: "menu02" */ '../views/order/orderComplete'),
+        props: true
+      },
     ]
   },
   {
     path: '/',
     name: '',
-    component: () => import(/* webpackChunkName: "" */ '../NoneHFIndex'),
+    component: () => import(/* webpackChunkName: "" */ '../orderFormIndex'),
     children: [
       {
         path:'/orderform',
@@ -61,14 +67,6 @@ const routes = [
         component: () => import(/* webpackChunkName: "orderform" */ '../views/OrderForm'),
         props: true
       },
-
-    ]
-  },
-  {
-    path: '/',
-    name: '',
-    component: () => import(/* webpackChunkName: "" */ '../orderIndex'),
-    children: [
       {
         path:'/order/orderList',
         name: 'orderList',

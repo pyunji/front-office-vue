@@ -12,9 +12,9 @@
       <template v-slot:extension>
         <v-tabs v-model="tab" align-with-title
                 background-color="transparent"
-                color="black"
+                style="color: #000051;"
                 grow>
-          <v-tabs-slider color="black"></v-tabs-slider>
+          <v-tabs-slider style="color: #000051;"></v-tabs-slider>
 
           <v-tab class="ma-0 pa-0" v-for="item in items" :key="item.tab" @click="changeComponent(item)">
             <div style="font-weight: bold; font-size:18px;">{{ item.tab }}</div>
