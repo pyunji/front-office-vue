@@ -31,7 +31,7 @@ function orderComplete(oid) {
   return instance.get(`/order/ordercomplete?oid=${oid}`);
 }
 function getOrderMember(){
-  return instance.get("/member/orderMember");
+  return instance.get("/getMemberInfo");
 }
 
 export default {
