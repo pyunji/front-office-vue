@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <list-app-bar/>
+    <list-app-bar style="background-color: #f7f1e9;"/>
       <div id = "content" class="content" style="background-color: #fdeeda;">
         <router-view ></router-view>
       </div>

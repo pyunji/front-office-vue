@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-navigation-drawer app width="340" v-model="drawer" style="background-color: #d7dafd;">
+    <v-navigation-drawer app width="340" v-model="drawer" style="background-color: #f7f1e9;">
       <v-list-item style="background-color: #000051;">
         <v-list-item-content>
           <v-list-item-title style="color: #ffffff; text-align: center;" v-if="$store.getters['userStore/getUserId'] !== ''" class="text-h6">
@@ -12,7 +12,7 @@
 
       <v-divider class="m-0"></v-divider>
 
-      <v-list  style="background-color: #d7dafd;">
+      <v-list  style="background-color: #f7f1e9;">
         <div v-for="(value, i1) in Categories" :key="i1">
           <div v-for="(value2, i2) in value" :key="i2">
             <v-list-group v-for="(value3, d1name) in value2" :key="d1name">
@@ -42,12 +42,13 @@
         </div>
       </v-list>
       <template v-slot:append>
-        <div class="pa-2"  style="background-color: #d7dafd;">
+        <div class="pa-2"  style="background-color: #f7f1e9;">
           <v-btn
             v-if="$store.getters['userStore/getUserId'] !== ''"
             block
             class="button"
             v-on:click="handleLogout()"
+             style="background-color: #fdeeda;"
             >Logout</v-btn
           >
           <v-btn v-else block class="button" v-on:click="handleLogin()">Login</v-btn>

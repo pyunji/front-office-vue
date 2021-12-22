@@ -1,7 +1,7 @@
 <!--컴포넌트 UI 정의-->
 <template>
   <v-container fluid class="p-0">
-    <v-card outlined>
+    <v-card outlined style="background-color: #f7f1e9;">
       <v-row> 
         <v-col cols="4" class="pb-0 pt-0">
           <!-- <p>selectedItems:{{ selectedItems }}</p> -->
@@ -11,7 +11,7 @@
       </v-row>
    </v-card> 
       <div class="mt-7">
-        <v-card v-for="(cartItem, i) in cartItems" :key="i" outlined tile>
+        <v-card v-for="(cartItem, i) in cartItems" :key="i" outlined tile style="background-color: #f7f1e9;">
 
           <v-row>
             <v-col cols="6" class="pb-0">
@@ -259,6 +259,9 @@ export default {
 
 <!--컴포넌트 스타일 정의-->
 <!--scoped를 생략하면 전역으로 사용-->
-<style scoped>
-
+<style>
+.v-application .primary--text {
+    color: #000051 !important;
+    caret-color: #000051 !important;
+}
 </style>

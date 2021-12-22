@@ -1,12 +1,12 @@
 <!--컴포넌트 UI 정의-->
 <template>
   <div>
-    <v-card class="mt-5 mb-8" outlined>
+    <v-card class="mt-5 mb-8" outlined style="background-color: #fdeeda;">
       <v-card-text>
         <v-container>
           <v-row>
             <v-col cols="12" align="center" justify="center">
-              <v-card class="pa-2" outlined tile height="150" style="display: flex"
+              <v-card class="pa-2" outlined tile height="150" style="display: flex; background-color: #f7f1e9;"
                 ><div style="font-size: 25px; font-weight: bold; margin: auto auto">
                   주문이 완료 되었습니다.
                 </div>
@@ -14,10 +14,10 @@
             </v-col>
           </v-row>
 
-          <div class="card mt-2">
+          <div class="card mt-2" style="background-color: #f7f1e9;">
             <v-row class="mb-1">
               <v-col cols="12" style="font-weight: bold">
-                주문 번호: {{ initOrderItems.oid }}<br/> 주문 날짜: {{ initOrderItems.odate }}
+                주문 번호: {{ initOrderItems.oid }}<br/> 주문 날짜: {{ initOrderItems.strDate }}
                 
               </v-col>
             </v-row>
@@ -39,8 +39,8 @@
               </v-row>
             </div>
           </div>
-          <v-list>
-        <v-list-group>
+          <v-list style="background-color: #f7f1e9;" class="mt-2">
+        <v-list-group >
           <template v-slot:activator>
             <v-list-item-title class="">결제정보</v-list-item-title>
             

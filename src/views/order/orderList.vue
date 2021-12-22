@@ -1,7 +1,7 @@
 <!--컴포넌트 UI 정의-->
 <template>
   <div>
-    <v-card class="mt-5 mb-8" outlined style="background-color: #fdeeda;">
+    <v-card class="mt-5 mb-8" outlined style="background-color: #f7f1e9;">
       <v-card-text>
         <v-container>
           <div v-for="(oneOrder, j) in allOrders" :key="j" >
@@ -44,7 +44,7 @@
               </v-col>
               <v-col cols="2"> </v-col>
             </v-row>
-            <button type="button" class="btn btn-secondary" style="color:white; background-color: #959ace; font-weight: bold;"> 주문 배송 조회 </button>
+            <button type="button" class="btn btn-secondary" style="color:#000051; background-color: #fdeeda; font-weight: bold;"> 주문 배송 조회 </button>
             
           </div>
           </div>
