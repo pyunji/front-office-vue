@@ -4,9 +4,9 @@
       <v-row class="child-flex">
         <div style="height: 48px">&nbsp;</div>
         <div id="fixed" class="p-0">
-          <v-toolbar color="indigo" class="white--text">
+          <v-toolbar style="background-color: #000051;">
             <v-spacer />
-            <v-toolbar-title class="font-weight-bold;" @click="toOrderForm()"
+            <v-toolbar-title style="color: #ffffff;" class="font-weight-bold;" @click="toOrderForm()"
               >{{ totalPrice | comma }}원 주문 하기</v-toolbar-title
             >
             <v-spacer />

@@ -83,8 +83,8 @@
         </v-list-group>
       </v-list>
         </v-container>
-        <v-btn width="100%" depressed color="black">
-          <div style="font-weight: bold" @click="toOrderList"> 주문 내역 확인 </div>
+        <v-btn width="100%" depressed style="background-color: #000051;">
+          <div style="font-weight: bold; color: #ffffff;" @click="toOrderList"> 주문 내역 확인 </div>
         </v-btn>
       </v-card-text>
     </v-card>

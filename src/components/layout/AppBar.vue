@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-toolbar flat>
+    <v-toolbar flat style="background-color: #f7f1e9;">
       <v-spacer></v-spacer>
       <v-toolbar-title class="font-weight-bold">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HYUNDAI X TEAM2 </v-toolbar-title>
 
@@ -13,7 +13,6 @@
       <template v-slot:extension>
         <v-tabs v-model="tab" align-with-title
                 background-color="transparent"
-                color="black"
                 grow>
           <v-tabs-slider color="black"></v-tabs-slider>
 
@@ -70,3 +69,13 @@ export default {
   },
 };
 </script>
+<style>
+.theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active), .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon, .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) > .v-btn, .theme--light.v-tabs > .v-tabs-bar .v-tab--disabled {
+    color: #959ace;
+}
+
+.v-application .primary--text {
+    color: #000051 !important;
+    caret-color: #000051 !important;
+}
+</style>
