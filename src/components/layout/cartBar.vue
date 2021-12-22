@@ -1,6 +1,6 @@
 <template>
   <v-card> 
-    <v-app-bar  app  outlined  inverted-scroll white flat>
+    <v-app-bar  app  outlined white flat>
       <v-btn style="margin" icon @click="goback()">
         <v-icon>mdi-arrow-left-circle</v-icon>
       </v-btn>
@@ -78,3 +78,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+.v-toolbar__title {
+  color: #000051;
+}
+</style>

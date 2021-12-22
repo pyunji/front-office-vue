@@ -5,7 +5,7 @@
     <!-- //cart에서 여기로 넘어오는 데이터를 확인하고, 상품 정보를 보여주세요 -->
     <form @submit.prevent="submit">
        
-      <v-card class="p-3" outlined>
+      <v-card class="p-3" outlined style="background-color: #f7f1e9;">
         <div>
           <div style="font-weight: bold" class="mb-2">
             주문 상품
@@ -42,7 +42,7 @@
           </div>
         </div>
       </v-card>
-      <v-card class="p-3 mt-3"  outlined>
+      <v-card class="p-3 mt-3"  outlined style="background-color: #f7f1e9;">
         <div style="font-weight: bold">주문자 정보</div>
         <hr />
           <v-text-field
@@ -68,7 +68,7 @@
             disabled
           ></v-text-field>
       </v-card>
-      <v-card class="p-3 mt-3" outlined>
+      <v-card class="p-3 mt-3" outlined style="background-color: #f7f1e9;">
         <div style="font-weight: bold">배송지 정보</div>
         <hr />
         <validation-provider v-slot="{ errors }" name="Name" rules="required|max:10">
@@ -106,7 +106,7 @@
         </validation-provider>
         <v-text-field v-model="orders.memo" label="메모"></v-text-field>
       </v-card>
-      <v-card class="p-3 mt-3" outlined>
+      <v-card class="p-3 mt-3" outlined style="background-color: #f7f1e9;">
         <div style="font-weight: bold">카드 및 결제 방법</div>
         <v-radio-group row v-model="orders.paymentMethodCode">
           <v-radio label="카드" value="card"></v-radio>
@@ -114,7 +114,7 @@
           <v-radio label="계좌이체" value="cash"></v-radio>
         </v-radio-group>
       </v-card>
-            <v-card class="p-3 mt-3" outlined>
+            <v-card class="p-3 mt-3" outlined style="background-color: #f7f1e9;">
         <div style="font-weight: bold">마일리지 사용 여부</div>
       <v-container fluid>
       <v-row>
@@ -123,13 +123,13 @@
       <v-col cols="8">
         <v-text-field
           v-model="orders.usedMileage" type="number"
-          suffix="Mileage" :max="10000" :min="0"
+          suffix="M" :max="10000" :min="0"
         ></v-text-field>
       </v-col>
     </v-row>
   </v-container>
       </v-card>
-      <v-card class="p-3 mt-3" outlined>
+      <v-card class="p-3 mt-3" outlined style="background-color: #f7f1e9;">
         <div style="font-weight: bold">할인 전 금액
           <div style="float: right">{{ totalPrice | comma }}원</div>
         </div>
@@ -138,9 +138,9 @@
         </div>       
       </v-card>
 
-      <v-card>
+      <v-card class="p-3 mt-3" style="background-color: #f7f1e9;">
         <div style="font-weight: bold">적립마일리지
-          <div style="float: right">{{ totalPrice * memberInfo.grate / 100 }}Mileage</div>
+          <div style="float: right">{{ totalPrice * memberInfo.grate / 100 }} M</div>
         </div>
       </v-card>
       <validation-provider v-slot="{ errors }" rules="required" name="checkbox">
@@ -156,7 +156,7 @@
       <v-container fluid>
         <v-row>
           <v-col>
-            <v-btn width="100%" @click="toOrderComplete" outlined :disabled="invalid"> 주문하기 </v-btn>
+            <v-btn width="100%" @click="toOrderComplete" outlined :disabled="invalid" style="background-color: #f7f1e9; color: #000051;"> 주문하기 </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -213,6 +213,7 @@ export default {
     orders: {
       // mname:this.initMemberInfo.mname,
       mname:"",
+      memail:"",
       oreceiver: "서회형",
       ophone: "01012345678",
       otel: "021234567",
@@ -298,6 +299,7 @@ export default {
     this.cartLength = this.initCartItems.length;
     this.memberInfo = this.initMemberInfo;
     this.orders.mname = this.initMemberInfo.mname;
+    this.orders.memail = this.initMemberInfo.memail;
 
 
     var step;

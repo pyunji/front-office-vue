@@ -2,7 +2,7 @@
 <template>
   <div>
     <v-footer app padless>
-      <v-bottom-navigation class="black" absolute dark>
+      <v-bottom-navigation absolute dark>
         <!--<v-btn>
           {{ $store.getters["userStore/getUserId"] }}회원님
         </v-btn>-->

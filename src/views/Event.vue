@@ -1,6 +1,6 @@
 <!--컴포넌트 UI 정의-->
 <template>
-  <div>
+  <div style="background-color: #fdeeda;">
     <div v-for="(event,index) in events" :key="index">
       <v-card v-if="event.estatus!==2" class="mt-3" elevation="3" outlined shaped @click="showEventDetail(event.eno)">
         <div>

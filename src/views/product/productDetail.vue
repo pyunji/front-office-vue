@@ -5,9 +5,9 @@
 
       <!-- Product images-->
       <v-carousel class="mb-3" hide-delimiters show-arrows-on-hover>
-        <v-carousel-item v-if="detail != null" :src="`${detail.product.img1}`"></v-carousel-item>
-        <v-carousel-item  v-if="detail != null" :src="`${detail.product.img2}`"></v-carousel-item>
-        <v-carousel-item v-if="detail != null" :src="`${detail.product.img3}`"></v-carousel-item>
+        <v-carousel-item v-if="detail != null" :src="`${product.img1}`"></v-carousel-item>
+        <v-carousel-item  v-if="detail != null" :src="`${product.img2}`"></v-carousel-item>
+        <v-carousel-item v-if="detail != null" :src="`${product.img3}`"></v-carousel-item>
       </v-carousel>
 
       <!-- Product colorchip-->
@@ -19,13 +19,13 @@
       </span>
 
       <!-- Product brand-->
-      <p  v-if="detail != null" class="ml-2 mt-3" style="font-weight: bold">{{ detail.product.bname }}</p>
+      <p  v-if="detail != null" class="ml-2 mt-3" style="font-weight: bold">{{ product.bname }}</p>
       
       <!-- Product name-->
-      <h5 v-if="detail != null" class="ml-2">{{ detail.product.pname }}</h5>
+      <h5 v-if="detail != null" class="ml-2">{{ product.pname }}</h5>
 
       <!-- Product price-->
-      <p v-if="detail != null" class="ml-2 mt-2">₩ {{ detail.product.pprice | comma }}</p>
+      <p v-if="detail != null" class="ml-2 mt-2">₩ {{ product.pprice | comma }}</p>
 
       <!-- Product pstockid-->
       <p class="ml-2 mb-5">품번 {{ pstockid }}</p>
@@ -33,7 +33,7 @@
       <!-- Product size-->
       <div class="ma-2">
         <p>사이즈</p>
-        <span v-for="(size, index) in detail.sizes" v-bind:key="'s' + index">
+        <span v-for="(size, index) in sizes" v-bind:key="'s' + index">
           <span v-if="size_idx === index">
             <v-btn class="mr-1 mb-1" depressed disabled @click="changeSize(index)"> {{ size.scode }} </v-btn>
           </span>
@@ -56,12 +56,12 @@
       <v-divider />
 
       <!-- Product note -->
-      <p v-if="detail != null" class="ma-2 mb-4">{{ detail.product.pnote }}</p>
+      <p v-if="detail != null" class="ma-2 mb-4">{{ product.pnote }}</p>
 
       <!-- Product image -->
-      <img v-if="detail != null" v-bind:src="`${detail.colors[this.color_idx].img1}`" width="100%" class="mb-3" />
-      <img v-if="detail != null" v-bind:src="`${detail.colors[this.color_idx].img2}`" width="100%" class="mb-3" />
-      <img v-if="detail != null" v-bind:src="`${detail.colors[this.color_idx].img3}`" width="100%" class="mb-3" /> 
+      <img v-if="detail != null" :src="`${product.img1}`" width="100%" class="mb-3" />
+      <img v-if="detail != null" :src="`${product.img2}`" width="100%" class="mb-3" />
+      <img v-if="detail != null" :src="`${product.img3}`" width="100%" class="mb-3" /> 
 
       <!--<p>한섬마일리지 {{ mileage }}</p>
       <p>H.Point {{ point }}</p>-->
@@ -102,7 +102,7 @@
         <v-row>
           <v-col cols="3"> 
             
-             <v-img v-if="smryWithItems != null" :src="`${smryWithItems.smryWithItems[0].img1}`" @click="showDetail(smryWithItems.smryWithItems[0].pcolorid)"></v-img>
+             <v-img v-if="smryWithItems.length  != 0" :src="`${smryWithItems[0].img1}`" @click="showDetail(smryWithItems[0].pcolorid)"></v-img>
           </v-col>
           <v-col cols="8"> 
 
@@ -112,14 +112,14 @@
         <v-row>
           <v-col>
 
-          <div v-if="smryWithItems != null" ml-2 style="font-weight:bold; font-size: 15px;">{{smryWithItems.smryWithItems[0].bname}}</div> 
+          <div v-if="smryWithItems.length != 0" ml-2 style="font-weight:bold; font-size: 15px;">{{smryWithItems[0].bname}}</div> 
 
           </v-col>
         </v-row>
         <v-row>
           <v-col>
 
-          <div v-if="smryWithItems != null" ml-2>{{smryWithItems.smryWithItems[0].pprice | comma}}</div>
+          <div v-if="smryWithItems.length != 0" ml-2>{{smryWithItems[0].pprice | comma}}</div>
 
           </v-col>
         </v-row>
@@ -144,14 +144,20 @@ export default {
   // 컴포넌트에서 이용하는 데이터 정의
   data: function () {
     return {
-      detail: null,
+      detail: Object,
+      product: Object,
+      sizes: Array,
+      withItems: Array,
+      colors: Array,
+      stocks: Array,
       color_idx: 0,
       size_idx: 0,
-      pstockid: null,
+      pstockid: "",
       quantity: 1,
-      smryWithItems: null,
-      pcolorid: null,
-      withProduct: null,
+      smryWithItems: Object,
+      pcolorid: "",
+      pcommonid:"",
+      withProduct: "",
 
 
 
@@ -174,11 +180,17 @@ export default {
     //   })
     // }
     // },
-
-     showDetail(pcolorId){
-       this.$router.push(`/product/productDetail?pcolorId=${pcolorId}`).catch(() => {});
-       
-     },
+    showDetail(pcolorId) {
+      this.$router.push({
+        name: "productdetail",
+        params: {
+          initPcolorid: pcolorId
+        }
+      }).catch((error) => {
+        console.log("이동 불가능");
+        // this.$router.go();
+      });
+    },
     minus(arg) {
       if (arg > 1) this.quantity = arg - 1;
     },
@@ -189,16 +201,21 @@ export default {
       console.log("changeColor 실행");
       this.color_idx = idx;
       await apiProduct
-        .setCategory(this.detail.product.pcommonid + "_" + this.detail.colors[idx].ccode)
+        .setCategory(this.pcommonid + "_" + this.detail.colors[idx].ccode)
         .then((response) => {
-          console.log("setCategory 실행");
-          this.detail = response.data;
+        console.log(response.data);
+        this.detail = response.data;
+        this.product = this.detail.product;
+        this.sizes = this.detail.sizes;
+        // this.withItems = this.detail.withItems;
+        this.colors = this.detail.colors;
+        this.stocks = this.detail.stocks;
           this.pstockid =
-            this.detail.product.pcommonid +
+            this.pcommonid +
             "_" +
-            this.detail.colors[this.color_idx].ccode +
+            this.colors[this.color_idx].ccode +
             "_" +
-            this.detail.sizes[this.size_idx].scode;
+            this.sizes[this.size_idx].scode;
           console.log(this.pstockid);
         })
         .catch((error) => {
@@ -211,8 +228,14 @@ export default {
       await apiProduct
         .setCategory(this.detail.product.pcommonid + "_" + this.detail.colors[this.color_idx].ccode)
         .then((response) => {
-          console.log("setCategory 실행");
-          this.detail = response.data;
+        console.log(response.data);
+        this.detail = response.data;
+        this.product = this.detail.product;
+        this.sizes = this.detail.sizes;
+        // this.withItems = this.detail.withItems;
+        this.colors = this.detail.colors;
+        this.stocks = this.detail.stocks;
+        console.log("detail = ", this.detail);
           this.pstockid =
             this.detail.product.pcommonid +
             "_" +
@@ -232,47 +255,62 @@ export default {
     },
   },
 
+  props: {
+    initPcolorid: String
+  },
   
   async created() {
+    this.pcolorid = this.initPcolorid;
     console.log("create 실행1");
-      await apiProduct
-      .setCategory(this.$route.query.pcolorId)
+    console.log("this.pcolorid = ", this.pcolorid);
+    await apiProduct
+      .setCategory(this.initPcolorid)
       .then((response) => {
         console.log(response.data);
         this.detail = response.data;
-        this.withitems = this.detail.withItems;
-        this.withProduct = this.withitems[0].bname;
-        console.log(this.withProduct);
-
+        this.product = this.detail.product;
+        this.sizes = this.detail.sizes;
+        // this.withItems = this.detail.withItems;
+        this.colors = this.detail.colors;
+        this.stocks = this.detail.stocks;
+        console.log("detail = ", this.detail);
+        // this.withitems = this.detail.withItems;
+        // this.withProduct = this.withitems[0].bname;
+        // console.log(this.withProduct);
+        this.pcommonid = this.initPcolorid.split("_")[0];
+        
         this.pstockid =
-          this.detail.product.pcommonid +
+          this.pcommonid +
           "_" +
           this.detail.colors[this.color_idx].ccode +
           "_" +
           this.detail.sizes[this.size_idx].scode;
+        console.log("this.pstockid = ", this.pstockid);
       })
       .catch((error) => {
         console.log(error);
       });
       
-      apiProduct.getWithItems(this.$route.query.pcolorId)
+      await apiProduct.getWithItems(this.initPcolorid)
       .then((response)=> {
         console.log(response.data);
-        this.smryWithItems = response.data;
-        console.log(this.smryWithItems);
+        console.log("smryWithItems 실행");
+        let data = response.data;
+        this.smryWithItems = data.smryWithItems;
+        console.log("smryWithItems = ", this.smryWithItems);
+        console.log("smryWithItems = ", typeof(this.smryWithItems));
       }) 
     //장바구니에 담기 위한 데이터 불러오기
   },
   updated() {
-    console.log("updated 실행");
     this.$emit("productForCart", this.pstockid, this.quantity);
   },
-  watch:{
-    $route(to,form){
-      console.log("params만 바뀜: " + this.$route.query.pcolorId);
+  // watch:{
+  //   $route(to,form){
+  //     console.log("params만 바뀜: " + this.pcolorid);
      
-    }
-  }
+  //   }
+  // }
 };
 </script>
 
