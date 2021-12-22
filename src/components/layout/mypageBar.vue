@@ -1,7 +1,7 @@
 <!--컴포넌트 UI 정의-->
 <template>
   <v-card>
-    <v-toolbar flat>
+    <v-toolbar flat style="background-color: #f7f1e9;">
       <v-spacer></v-spacer>
       <v-toolbar-title style="font-weight: bold; font-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마이페이지</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -22,7 +22,7 @@
     </v-toolbar>
 
    <v-container class="pa-0">
-      <v-tabs-items v-model="tab" >
+      <v-tabs-items v-model="tab"  style="background-color: #fdeeda;">
         <v-tab-item v-for="item in items" :key="item.tab" >
           <router-view :name="componentName" ></router-view>
         </v-tab-item>

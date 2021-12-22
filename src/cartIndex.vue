@@ -2,7 +2,7 @@
   <v-app>
     <main-app-bar/>
 
-    <v-main class="mainPage" style="background-color: lightgray; padding-top: 60px;">
+    <v-main class="mainPage" style="background-color: #fdeeda; padding-top: 60px;">
         
       <v-container fluid >
     

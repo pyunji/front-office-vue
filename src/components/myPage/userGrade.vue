@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: #f7f1e9;">
     <v-toolbar
       flat
       color="grey lighten-1">

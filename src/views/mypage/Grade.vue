@@ -1,6 +1,6 @@
 <!--컴포넌트 UI 정의-->
 <template>
-  <v-card>
+  <v-card style="background-color: #fdeeda;">
     <v-card-title></v-card-title>
     <v-card-text>
       <div>
