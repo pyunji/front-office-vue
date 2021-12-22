@@ -83,6 +83,8 @@ export default {
           throw { message: "아이디가 중복됨" };
         } else if (response.data.result === "fail") {
           throw { message: "서버측 오류가 있음" };
+        } else if(response.data.result === "duplicated_ip") {
+          throw { message: "회원 가입은 하루에 두번 이상 불가능합니다"};
         }
       } catch (error) {
         console.log(error);
