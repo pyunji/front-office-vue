@@ -59,8 +59,13 @@ export default {
     gohome() {
       this.$router.push("/");
     },
-    showDetail(pcolorid) {
-      this.$router.push(`/product/productDetail?pcolorId=${pcolorid}`);
+    showDetail(pcolorId) {
+      this.$router.push({
+        name: "productdetail",
+        params: {
+          initPcolorid: pcolorId
+        }
+      });
     },
   },
 

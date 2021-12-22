@@ -62,19 +62,19 @@ export default {
   },
   // //이미 담겨있는 상품인지 확인
   watch:{
-    pstockid:function(val) {
-      console.log("watch 실행" + val);
-      wishlist.checkIsWish(val)
-      .then((response)=>{
-        console.log("watch 실행" + response.data);
-        if(response.data===1) {
-          this.iswish = true;
-        }
-      })
-      .catch((error)=>{
-        console.log(error);
-      });
-    }
+    // pstockid:function(val) {
+    //   console.log("watch 실행" + val);
+    //   wishlist.checkIsWish(val)
+    //   .then((response)=>{
+    //     console.log("watch 실행" + response.data);
+    //     if(response.data===1) {
+    //       this.iswish = true;
+    //     }
+    //   })
+    //   .catch((error)=>{
+    //     console.log(error);
+    //   });
+    // }
   }
 };
 </script>
