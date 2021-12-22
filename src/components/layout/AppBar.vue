@@ -26,7 +26,7 @@
     </v-toolbar>
 
    <v-container class="pa-0">
-      <v-tabs-items v-model="tab" >
+      <v-tabs-items v-model="tab"  style="background-color: #fdeeda;" class="mr-0">
         <v-tab-item v-for="item in items" :key="item.tab" >
           <!-- <v-card flat > -->
             <router-view :name="componentName" ></router-view>

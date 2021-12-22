@@ -1,6 +1,6 @@
 <template>
   <v-card> 
-    <v-app-bar  app  outlined white flat>
+    <v-app-bar  app  outlined white flat style="background-color: #f7f1e9;">
       <v-btn style="margin" icon @click="goback()">
         <v-icon>mdi-arrow-left-circle</v-icon>
       </v-btn>

@@ -31,12 +31,12 @@
       </v-col>
       <v-col class="p-1" cols="10" align-self="center">
         <v-slide-group>
-          <v-slide-item class="mr-3" v-for="(item, i) in items" :key="i">
-            <v-card height="200" width="100" tile @click="showDetail(item.pcolorid)" style="background-color: lightgray;">
+          <v-slide-item v-for="(item, i) in items" :key="i">
+            <v-card class="mr-2" height="210" width="100" tile @click="showDetail(item.pcolorid)" style="background-color: lightgray;">
               <v-img :src="item.img1"/>
-              <div>
-                <div class="text-center font-weight-bold" style="font-size: 0.75em">{{ item.bname }}</div>
-                <div class="text-center" style="font-size: 0.75em">{{ item.pprice | comma }}</div>
+              <div style="vertical-align:bottom; text-align: center;">
+                <div class="font-weight-bold" style="font-size: 0.75em">{{ item.bname }}</div>
+                <div style="font-size: 0.75em">{{ item.pprice | comma }}</div>
               </div>
             </v-card>
           </v-slide-item>

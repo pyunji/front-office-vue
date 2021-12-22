@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="background-color: #fdeeda;">
     <mypage-bar/>
 
     <mypage-footer style="padding-bottom:60px"/>

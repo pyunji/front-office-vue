@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: #f7f1e9;">
     <v-toolbar
       flat
       color="grey lighten-1"
@@ -7,12 +7,12 @@
       <v-toolbar-title style="font-weight: bold; font-size:18px;">평가 기준 및 혜택</v-toolbar-title>
     </v-toolbar>
 
-    <v-tabs vertical class="mt-4">
-      <v-tab v-for="grade in grades" :key="grade">
+    <v-tabs vertical class="mt-4" style="background-color: #f7f1e9;">
+      <v-tab v-for="grade in grades" :key="grade" style="background-color: #f7f1e9;">
         {{grade.glevel}} Level
       </v-tab>
 
-      <v-tab-item v-for="grade in grades" :key="grade" class="ml-2">
+      <v-tab-item v-for="grade in grades" :key="grade" style="background-color: #f7f1e9;">
         <div class="text-center mb-4"><img v-bind:src="`${grade.gimg}`" width="90px" height="90px" /></div>
         <p class="text-center" style="font-weight: bold; font-size:15px;">혜택</p>
         <p v-if="grade.grate>0" class="mt-2 text-center">마일리지 추가 적립 ({{grade.grate}}% 추가적립)</p>
