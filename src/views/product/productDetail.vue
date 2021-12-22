@@ -98,11 +98,11 @@
     <v-divider />
     <div>
       <div style="fonst-weight: bold;">함께 코디한 상품</div>
-      <!-- <v-container >
+      <v-container >
         <v-row>
           <v-col cols="3"> 
             
-             <v-img v-if="smryWithItems != null" :src="`${smryWithItems.smryWithItems[0].img1}`" @click="showDetail(smryWithItems.smryWithItems[0].pcolorid)"></v-img>
+             <v-img v-if="smryWithItems.length  != 0" :src="`${smryWithItems[0].img1}`" @click="showDetail(smryWithItems[0].pcolorid)"></v-img>
           </v-col>
           <v-col cols="8"> 
 
@@ -112,18 +112,18 @@
         <v-row>
           <v-col>
 
-          <div v-if="smryWithItems != null" ml-2 style="font-weight:bold; font-size: 15px;">{{smryWithItems.smryWithItems[0].bname}}</div> 
+          <div v-if="smryWithItems.length != 0" ml-2 style="font-weight:bold; font-size: 15px;">{{smryWithItems[0].bname}}</div> 
 
           </v-col>
         </v-row>
         <v-row>
           <v-col>
 
-          <div v-if="smryWithItems != null" ml-2>{{smryWithItems.smryWithItems[0].pprice | comma}}</div>
+          <div v-if="smryWithItems.length != 0" ml-2>{{smryWithItems[0].pprice | comma}}</div>
 
           </v-col>
         </v-row>
-      </v-container> -->
+      </v-container>
     </div> 
   </v-card>
 </template>
@@ -154,7 +154,7 @@ export default {
       size_idx: 0,
       pstockid: "",
       quantity: 1,
-      // smryWithItems: {},
+      smryWithItems: Object,
       pcolorid: "",
       pcommonid:"",
       withProduct: "",
@@ -186,6 +186,9 @@ export default {
         params: {
           initPcolorid: pcolorId
         }
+      }).catch((error) => {
+        console.log("이동 불가능");
+        // this.$router.go();
       });
     },
     minus(arg) {
@@ -260,7 +263,7 @@ export default {
     this.pcolorid = this.initPcolorid;
     console.log("create 실행1");
     console.log("this.pcolorid = ", this.pcolorid);
-      await apiProduct
+    await apiProduct
       .setCategory(this.initPcolorid)
       .then((response) => {
         console.log(response.data);
@@ -291,8 +294,11 @@ export default {
       await apiProduct.getWithItems(this.initPcolorid)
       .then((response)=> {
         console.log(response.data);
-        this.smryWithItems = response.data;
-        console.log(this.smryWithItems);
+        console.log("smryWithItems 실행");
+        let data = response.data;
+        this.smryWithItems = data.smryWithItems;
+        console.log("smryWithItems = ", this.smryWithItems);
+        console.log("smryWithItems = ", typeof(this.smryWithItems));
       }) 
     //장바구니에 담기 위한 데이터 불러오기
   },
