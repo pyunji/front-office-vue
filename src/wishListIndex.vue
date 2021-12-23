@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <wish-bar/>
+    <wish-bar />
 
     <main-footer style="padding-bottom:60px"/>
   </v-app>

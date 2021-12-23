@@ -1,9 +1,9 @@
 <!--컴포넌트 UI 정의-->
 <template>
   <v-card>
-    <v-toolbar flat>
+    <v-toolbar flat style="background-color: #f7f1e9;">
       <v-spacer></v-spacer>
-      <v-toolbar-title style="font-weight: bold; font-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;좋아요</v-toolbar-title>
+      <v-toolbar-title style="font-weight: bold; font-size:18px; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;좋아요</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon @click="goCart()">mdi-shopping-outline</v-icon>
@@ -24,8 +24,8 @@
 
     </v-toolbar>
 
-   <v-container class="pa-0">
-      <v-tabs-items v-model="tab" >
+   <v-container class="pa-0" >
+      <v-tabs-items v-model="tab"  style="background-color: #f7f1e9;">
         <v-tab-item v-for="item in items" :key="item.tab" >
           <router-view :name="componentName" ></router-view>
         </v-tab-item>
