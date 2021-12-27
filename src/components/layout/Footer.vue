@@ -6,7 +6,7 @@
           <v-list-item-title style="color: #ffffff; text-align: center;" v-if="$store.getters['userStore/getUserId'] !== ''" class="text-h6">
             {{ $store.getters["userStore/getUserId"] }}회원님 반갑습니다.
           </v-list-item-title>
-          <v-list-item-title v-else class="text-h6"> 현재 로그인이 필요합니다 </v-list-item-title>
+          <v-list-item-title style="color: #ffffff" v-else class="text-h6"> 현재 로그인이 필요합니다 </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 

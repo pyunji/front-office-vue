@@ -42,8 +42,8 @@ export default {
       items: [
         { tab: "주문", path: "order" },
         { tab: "쿠폰", path: "coupon" },
-        { tab: "마일리지", path: "mileage" },
-        { tab: "등급", path: "grade" },
+        //{ tab: "마일리지", path: "mileage" },
+        { tab: "등급/마일리지", path: "gradeMileage" },
       ],
       componentName: "order",
     };

@@ -1,5 +1,6 @@
 <!--컴포넌트 UI 정의-->
 <template>
+<div>
   <div>
       <div class="card-header" style="text-align:center; font-weight: bold; font-size:18px">
         간편 회원 가입
@@ -16,15 +17,15 @@
         </div>
         <div class="form-group mt-3">
           <label class="col-form-label">User Password</label>
-          <input type="text" class="form-control" v-model="user.password" placeholder="회원 PW 입력"/>
+          <input type="password" class="form-control" v-model="user.password" placeholder="회원 PW 입력"/>
         </div>
         <div class="form-group mt-3">
           <label class="col-form-label">User Email</label>
-          <input type="text" class="form-control" v-model="user.email" placeholder="회원 이메일 입력(user@team2.com)"/>
+          <input type="email" class="form-control" required v-model="user.email" placeholder="회원 이메일 입력(user@team2.com)"/>
         </div>
         <div class="form-group mt-3">
           <label class="col-form-label">User Phone Number</label>
-          <input type="text" class="form-control" v-model="user.phone" placeholder="회원 핸드폰 번호 입력(01012345678)"/>
+          <input type="tel" class="form-control" v-model="user.phone" placeholder="회원 핸드폰 번호 입력(01012345678)"/>
         </div>
         <div style="text-align:right"><b-button variant="primary" class="mt-3" v-on:click="handleJoin">가입</b-button></div>
       </div>
@@ -34,11 +35,14 @@
       v-if="alertDialog"
       @close="alertDialog = false"/>
   </div>
+  <main-footer style="padding-bottom:50px"/>
+  </div>
 </template>
 
 <script>
 import auth from "@/apis/auth";
 import AlertDialog from "@/components/dialog/AlertDialog.vue";
+import MainFooter from "@/components/layout/Footer"
 
 export default {
   //컴포넌트의 대표 이름(devtools에 나오는 이름)
@@ -46,6 +50,7 @@ export default {
   //추가하고 싶은 컴포넌트들 목록
   components:{
     AlertDialog,
+    MainFooter:MainFooter,
   },
   //컴포넌트 데이터 정의
   data: function() {

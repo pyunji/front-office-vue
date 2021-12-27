@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="mt-3">
-        <input type="text" class="form-control" id="userPW" v-model="password"/>
+        <input type="password" class="form-control" id="userPW" v-model="password"/>
       </div>
       <v-row>
         <v-col>

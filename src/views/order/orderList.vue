@@ -44,7 +44,7 @@
               </v-col>
               <v-col cols="2"> </v-col>
             </v-row>
-            <button type="button" class="btn btn-secondary" style="color:#000051; background-color: #fdeeda; font-weight: bold;"> 주문 배송 조회 </button>
+            <button type="button" class="btn btn-secondary" style="color:#000051; background-color: #fdeeda; font-weight: bold;"> 주문 취소하기 </button>
             
           </div>
           </div>

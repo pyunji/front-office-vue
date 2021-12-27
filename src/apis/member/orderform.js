@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: 'http://localhost:81'
-  //baseURL:'http://kosa1.iptime.org:50320'
+  //baseURL: 'http://localhost:81'
+  baseURL:'http://kosa1.iptime.org:50320'
 });
 
 /* 로그인이 필요한 서비스에서 session의 token을 가져와 초기화하는 설정 시작 */

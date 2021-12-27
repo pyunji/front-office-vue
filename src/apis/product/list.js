@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: 'http://localhost:80'
+  //baseURL: 'http://localhost:80'
+  baseURL:'http://kosa1.iptime.org:50220'
 });
 
 function getProductList(d1name,d2name,d3name,pageNo) {

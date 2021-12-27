@@ -2,8 +2,8 @@ import Product from '../views/wishlist/Product.vue'
 import Brand from '../views/wishlist/Brand.vue'
 import Order from '../views/order/orderList.vue'
 import Coupon from '../views/mypage/Coupon.vue'
-import Mileage from '../views/mypage/Mileage.vue'
-import Grade from '../views/mypage/Grade.vue'
+//import Mileage from '../views/mypage/Mileage.vue'
+import GradeMileage from '../views/mypage/GradeMileage.vue'
 
 export default [
   {
@@ -17,8 +17,8 @@ export default [
           default:Order,
           order:Order,
           coupon:Coupon,
-          mileage:Mileage,
-          grade:Grade
+          //mileage:Mileage,
+          gradeMileage:GradeMileage
         }
       }
     ]
