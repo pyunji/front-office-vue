@@ -95,14 +95,15 @@ export default {
     updateHandler() {
       console.log(this.user);
       try {
-        this.loading = true;
-        this.alertDialog = true;
+        // this.loading = true;
+         this.alertDialog = true;
         
         userApi.updateUserInfo(this.user);
 
-        this.alertDialogMessage = "회원 정보가 수정되었습니다.";
-        this.loading = false;
-        this.$router.push("/mypage");
+         this.alertDialogMessage = "회원 정보가 수정되었습니다.";
+        // this.loading = false;
+        //alert("회원 정보가 수정되었습니다");
+        //this.$router.push("/mypage");
       }catch(error) {
         this.alertDialogMessage = "회원 정보가 수정 실패";
         this.loading = false;
@@ -111,9 +112,11 @@ export default {
     },
     wthdHandler() {
       userApi.wthdMember(this.user.mid);
-      this.alertDialogMessage = "회원 정보가 수정되었습니다.";
-      this.loading = false;
-      this.$router.push("/mypage");
+       this.alertDialogMessage = "회원 탈퇴 처리 되었습니다.";
+      // this.loading = false;
+      //alert("탈퇴처리 되었습니다");
+      this.$store.dispatch("userStore/deleteAuth");
+      //this.$router.push("/");
     }
   },
   async created() {

@@ -8,8 +8,9 @@
     <template v-slot:body>
       <div v-if="loading" class="mt-3">
         <div class="spinner-border text-dark" role="status">
-          <span class="sr-only">Loading...</span>
+          <span class="sr-only"></span>
         </div>
+        <span class="sr-only">Loading...</span>
       </div> 
       <div v-if="!loading">{{message}}</div>
     </template>
@@ -25,7 +26,7 @@
 import ModalDialogTemplate from '@/components/dialog/ModalDialogTemplate.vue';
 
 export default {
-  //컴포넌트의 대표 이름(devtools에 나오는 이름)
+  //컴포넌트의 대표 이름(devtools에 나y오는 이름)
   name:"AlertDialog",
   //추가하고 싶은 컴포넌트들 목록
   components:{
@@ -43,7 +44,7 @@ export default {
       //console.log("component7 closeAndPrev실행");
       this.$emit('close');
       //console.log("component7 close수행");
-      this.$router.go(-1);
+      this.$router.push("/");
     }
   },
   props: [ "message", "loading" ]

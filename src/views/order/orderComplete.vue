@@ -130,7 +130,8 @@ export default {
   //컴포넌트 메소드 정의
   methods: {
     toOrderList() {
-      this.$router.push("/order/orderlist");
+      //this.$router.push("/order/orderlist");
+      this.$router.push("/mypage");
     }
 //     formattingDate(){
     

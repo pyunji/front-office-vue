@@ -1,4 +1,5 @@
 <template>
+<div>
   <div>
     <div class="card-header" style="text-align:center; font-weight: bold; font-size:18px">
       Login
@@ -11,7 +12,7 @@
         </div>
         <div class="form-group">
           <label for="userPassword" class="col-form-label">User Password</label>
-          <input type="text" class="form-control" v-model="user.password"/>
+          <input type="password" class="form-control" v-model="user.password"/>
         </div>
         <div style="text-align:right"><b-button variant="primary" class="mt-2" v-on:click="handleLogin">로그인</b-button></div>
         <div style="text-align:right"><a>현재 회원이 아니신가요?  </a><b-button variant="primary" class="mt-2" v-on:click="handleJoin()">회원 가입</b-button></div>
@@ -23,16 +24,20 @@
     v-if="alertDialog"
     @close="alertDialog = false"/>
   </div>
+  <main-footer style="padding-bottom:50px"/>
+  </div>
 </template>
 
 <script>
 import auth from "@/apis/auth";
 import AlertDialog from "@/components/dialog/AlertDialog.vue";
+import MainFooter from "@/components/layout/Footer"
 
 export default {
   name: "Home",
   components:{
     AlertDialog,
+    MainFooter:MainFooter,
   },
   data: () => ({
     user: {
@@ -66,6 +71,7 @@ export default {
         console.log("userId", response.data.mid);
         console.log("authToken", response.data.jwt);
         this.loading = false;
+        this.alertDialogMessage = "로그인 성공";
         this.$router.go(-1);
       } catch(error) {
         try {
