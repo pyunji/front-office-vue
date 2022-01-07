@@ -6,14 +6,14 @@
         <v-navigation-drawer permanent class="mx-auto" style="background-color: #f7f1e9;">
           <v-list-item class="p-0">
             <v-list-item-content>
-              <v-list-item-title class="text-center" style="font-size: 0.8em; font-weight: bold"
+              <v-list-item-title class="text-center" style="font-size: 0.8rem; font-weight: bold"
                 >신상품</v-list-item-title
               >
             </v-list-item-content>
           </v-list-item>
           <v-divider class="m-0"></v-divider>
 
-          <v-list dense nav>
+          <v-list class="p-1" dense nav>
 
             <v-list-item  
             v-for="d1name in d1names"
@@ -21,7 +21,7 @@
             @click="changeItems(d1name)"
             class="m-0 p-0" link>
               <v-list-item-content> 
-                <v-list-item-title class="font-weight-bold" style="font-size: 0.2em">{{d1name}}</v-list-item-title>
+                <v-list-item-title class="font-weight-bold" style="font-size: 0.6rem; letter-spacing: -0.05rem">{{d1name}}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
 

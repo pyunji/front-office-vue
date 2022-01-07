@@ -8,11 +8,11 @@
       <div v-if="$store.getters['userStore/getUserId'] === ''">
         <div class="form-group">
           <label class="form-label">User ID</label>
-          <input type="text" class="form-control" id="userId" v-model="user.id"/>
+          <input type="text" class="form-control" id="userId" v-model="user.id" placeholder="user1" required/>
         </div>
         <div class="form-group">
           <label for="userPassword" class="col-form-label">User Password</label>
-          <input type="password" class="form-control" v-model="user.password"/>
+          <input type="password" class="form-control" v-model="user.password" placeholder="*****" required/>
         </div>
         <div style="text-align:right"><b-button variant="primary" class="mt-2" v-on:click="handleLogin">로그인</b-button></div>
         <div style="text-align:right"><a>현재 회원이 아니신가요?  </a><b-button variant="primary" class="mt-2" v-on:click="handleJoin()">회원 가입</b-button></div>
@@ -41,9 +41,9 @@ export default {
   },
   data: () => ({
     user: {
-      id: "",
+      id: "user1",
       name: "사용자",
-      password: "",
+      password: "12345",
       role: "ROLE_USER",
       email: "user@mycompany.com"
     },
