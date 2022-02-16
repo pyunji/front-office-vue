@@ -8,7 +8,7 @@
       <div v-if="$store.getters['userStore/getUserId'] === ''">
         <div class="form-group">
           <label class="form-label">User ID</label>
-          <input type="text" class="form-control" id="userId" v-model="user.id" placeholder="user1" required/>
+          <input type="text" class="form-control" id="userId" v-model="user.id" placeholder="hyundaiS2" required/>
         </div>
         <div class="form-group">
           <label for="userPassword" class="col-form-label">User Password</label>
@@ -41,7 +41,7 @@ export default {
   },
   data: () => ({
     user: {
-      id: "user1",
+      id: "hyundaiS2",
       name: "사용자",
       password: "12345",
       role: "ROLE_USER",
