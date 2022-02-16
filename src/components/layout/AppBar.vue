@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar flat style="background-color: #f7f1e9;">
       <v-spacer></v-spacer>
-      <v-toolbar-title class="font-weight-bold">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HYUNDAI X TEAM2 </v-toolbar-title>
+      <v-toolbar-title class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HYUNDAI X TEAM2</v-toolbar-title>
 
       <v-spacer></v-spacer>
 

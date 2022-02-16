@@ -13,7 +13,7 @@
         </div>
         <div class="form-group mt-3">
           <label class="form-label">User Name</label>
-          <input type="text" class="form-control" v-model="user.name" placeholder="회원 이름 입력"/>
+          <input type="text" class="form-control" v-model="user.name" placeholder="default_name"/>
         </div>
         <div class="form-group mt-3">
           <label class="col-form-label">User Password</label>
@@ -21,11 +21,11 @@
         </div>
         <div class="form-group mt-3">
           <label class="col-form-label">User Email</label>
-          <input type="email" class="form-control" required v-model="user.email" placeholder="회원 이메일 입력(user@team2.com)"/>
+          <input type="email" class="form-control" required v-model="user.email" placeholder="default_email@hmall.com"/>
         </div>
         <div class="form-group mt-3">
           <label class="col-form-label">User Phone Number</label>
-          <input type="tel" class="form-control" v-model="user.phone" placeholder="회원 핸드폰 번호 입력(01012345678)"/>
+          <input type="tel" class="form-control" v-model="user.phone" placeholder="01012345678"/>
         </div>
         <div style="text-align:right"><b-button variant="primary" class="mt-3" v-on:click="handleJoin">가입</b-button></div>
       </div>
@@ -57,12 +57,12 @@ export default {
     return {
       user: {
         id: "",
-        name: "",
+        name: "default_name",
         password: "",
         enabled: 1,
         role: "ROLE_USER",
-        email: "",
-        phone:""
+        email: "default_email@hmall.com",
+        phone:"01012345678"
       },
       alertDialog: false,
       alertDialogMessage: "",
